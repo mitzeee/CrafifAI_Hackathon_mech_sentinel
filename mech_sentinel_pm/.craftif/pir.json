@@ -1,0 +1,3050 @@
+{
+  "schema_version": "2.0.0",
+  "id": "pir_mech_sentinel_pm",
+  "revision": "66d596888e6273513ae935fb1b0aaa5a",
+  "provenance": {
+    "project_path": "/Users/mitzeee/Documents/Codes/craftif_orbit/MechSentinel/mech_sentinel/mech_sentinel_pm",
+    "chat_id": "c5550a13-9b77-434e-a70b-5e804af1c624",
+    "revision": "66d596888e6273513ae935fb1b0aaa5a",
+    "generated_at_ms": 1786263124613,
+    "analyzer_version": "pir_maker-static-0.2.0",
+    "analyzed_files": [
+      "CMakeLists.txt",
+      "firmware/app/app.c",
+      "firmware/app/app.h",
+      "firmware/app/app_tasks.c",
+      "firmware/app/app_tasks.h",
+      "firmware/app/state_machine.c",
+      "firmware/app/state_machine.h",
+      "firmware/configs/app_config.h",
+      "firmware/configs/board_config.h",
+      "firmware/configs/build_config.h",
+      "firmware/configs/platform_config.h",
+      "firmware/drivers/adxl355.c",
+      "firmware/drivers/adxl355.h",
+      "firmware/drivers/inmp441.c",
+      "firmware/drivers/inmp441.h",
+      "firmware/drivers/modbus_stack.c",
+      "firmware/drivers/modbus_stack.h",
+      "firmware/drivers/status_led_ws2812.c",
+      "firmware/drivers/status_led_ws2812.h",
+      "firmware/drivers/thermal_adc.c",
+      "firmware/drivers/thermal_adc.h",
+      "firmware/dsp/vibration_metrics.c",
+      "firmware/dsp/vibration_metrics.h",
+      "firmware/net/mqtt_client_mgr.c",
+      "firmware/net/mqtt_client_mgr.h",
+      "firmware/net/wifi_prov_mgr.c",
+      "firmware/net/wifi_prov_mgr.h",
+      "firmware/utils/helpers/helpers.c",
+      "firmware/utils/helpers/helpers.h",
+      "firmware/utils/logger/logger.c",
+      "firmware/utils/logger/logger.h",
+      "firmware/utils/psram_alloc.c",
+      "firmware/utils/psram_alloc.h",
+      "firmware/utils/ringbuf_psram.c",
+      "firmware/utils/ringbuf_psram.h",
+      "main/CMakeLists.txt",
+      "main/entry.c",
+      "main/firmgen_sources.cmake",
+      "main/idf_component.yml",
+      "sdkconfig",
+      "sdkconfig.defaults"
+    ],
+    "file_hashes": {
+      "firmware/configs/platform_config.h": "010b01144dbd2d3fb63f3053b158ab7a",
+      "firmware/utils/ringbuf_psram.h": "f93c32e5c64410c072be1304d3884a08",
+      "firmware/app/state_machine.h": "a9bfa1b4713a6430536c069b1714101d",
+      "firmware/app/app.c": "e3177c868a8880d973efb6908472922d",
+      "firmware/drivers/inmp441.c": "92f55548a02a272f6241306c90f02211",
+      "firmware/drivers/status_led_ws2812.h": "b87620c4487d9f4f500427108cd20ecf",
+      "firmware/configs/build_config.h": "dd997e9a0a461df28c370a61963fd7e5",
+      "firmware/app/app.h": "bc88844840b4c743283b026f851e00f0",
+      "firmware/drivers/status_led_ws2812.c": "73db980b84efdcf3b66bde9576c24f0b",
+      "firmware/drivers/thermal_adc.h": "69f06b9bbef0873a375d318525e94f7b",
+      "firmware/utils/psram_alloc.c": "cf60f410317be87d9c687d3cd5beabf9",
+      "firmware/utils/psram_alloc.h": "8572db100563d3f26f62da2826d6a8b5",
+      "main/firmgen_sources.cmake": "ee57268b6d49408e396643166b571f17",
+      "firmware/drivers/adxl355.c": "20dd769c0686989457228ce69a863b03",
+      "firmware/net/wifi_prov_mgr.h": "2deea95e94419995eece8f8e772852e5",
+      "firmware/drivers/thermal_adc.c": "2aa432641ba7a31ad16a135015587314",
+      "CMakeLists.txt": "9e846365d3972f553528f5c09d865a3d",
+      "firmware/app/app_tasks.h": "c9772082300eb74ac40ddbf43a596cab",
+      "firmware/dsp/vibration_metrics.c": "e3a33deb7ce80f29cae36e5a59da8ccb",
+      "sdkconfig.defaults": "c30560e2b1487df145b38e782be2a243",
+      "firmware/drivers/inmp441.h": "21f6f8959d2afad974a0e870238c6d39",
+      "firmware/net/mqtt_client_mgr.h": "63c88175f26b885793b16728cd9630fa",
+      "firmware/utils/logger/logger.c": "8e992fef35c9a4678ec38e60902d741d",
+      "main/entry.c": "86aaa3bc61772628c601798f4d9dea56",
+      "firmware/app/app_tasks.c": "83911d84df35ee11733eb2afa42b4414",
+      "firmware/configs/app_config.h": "61b537b868517e7fba4c00fe324b3380",
+      "firmware/utils/helpers/helpers.c": "914568ab7415fec17e74f306cbb5ae09",
+      "firmware/net/mqtt_client_mgr.c": "df648a44a03361a57ff053f1d7d2668b",
+      "firmware/utils/logger/logger.h": "2c284c641c88c6a4fff52db62e8d1ea5",
+      "firmware/drivers/adxl355.h": "098ffb034c005e8898467be1307232a1",
+      "firmware/drivers/modbus_stack.h": "4ab0fd9b132c1d8bb7e197c0a1c3e925",
+      "firmware/drivers/modbus_stack.c": "ab1883eb119846944c306d57be2b1a5c",
+      "firmware/dsp/vibration_metrics.h": "502eb59888031915a7100d97f433c38e",
+      "firmware/utils/helpers/helpers.h": "ec8b635b7e5b55f8aeb8f47c3ff34312",
+      "firmware/utils/ringbuf_psram.c": "edc6dff4d5ffed5ec6db972c7c001aa5",
+      "main/CMakeLists.txt": "4defd1f9466116f394694df6dd736180",
+      "sdkconfig": "cb190857c914ecddc4f4c5918b5d3b86",
+      "firmware/app/state_machine.c": "7297e73f4a62221254a7547fbe1fd112",
+      "firmware/configs/board_config.h": "1c9a4a907f0f3571d71f991d1b216556",
+      "firmware/net/wifi_prov_mgr.c": "f700f1ec8c0b69669c8fb9c60d7b0227",
+      "main/idf_component.yml": "1baf2c1efffe6287eaacd2f0e3014eb2"
+    }
+  },
+  "approval": {
+    "status": "stale"
+  },
+  "nodes": [
+    {
+      "id": "boot",
+      "node_type": "system_init",
+      "label": "Boot / app_main",
+      "properties": {
+        "target": "esp32s3"
+      },
+      "source_refs": [
+        {
+          "file": "main/entry.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "66d596888e6273513ae935fb1b0aaa5a"
+      },
+      "ownership": {
+        "primary_files": [
+          "main/entry.c"
+        ]
+      },
+      "editable_fields": [
+        "target"
+      ],
+      "layer": "system",
+      "ai_summary": "Bootstraps firmware startup and initializes core subsystems.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    },
+    {
+      "id": "Task_Vibration_Acquisition",
+      "node_type": "rtos_task",
+      "label": "Task Task_Vibration_Acquisition",
+      "properties": {
+        "task_name": "Task_Vibration_Acquisition",
+        "priority": 5,
+        "stack_size": 8192,
+        "period_ms": 0.0
+      },
+      "source_refs": [
+        {
+          "file": "firmware/app/app_tasks.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "66d596888e6273513ae935fb1b0aaa5a"
+      },
+      "ownership": {
+        "primary_files": [
+          "firmware/app/app_tasks.c"
+        ]
+      },
+      "editable_fields": [
+        "task_name",
+        "priority",
+        "stack_size",
+        "period_ms"
+      ],
+      "layer": "runtime",
+      "ai_summary": "Executes RTOS loop logic for Task_Vibration_Acquisition.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    },
+    {
+      "id": "Task_State_Machine",
+      "node_type": "rtos_task",
+      "label": "Task Task_State_Machine",
+      "properties": {
+        "task_name": "Task_State_Machine",
+        "priority": 5,
+        "stack_size": 6144,
+        "period_ms": 0.0
+      },
+      "source_refs": [
+        {
+          "file": "firmware/app/app_tasks.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "66d596888e6273513ae935fb1b0aaa5a"
+      },
+      "ownership": {
+        "primary_files": [
+          "firmware/app/app_tasks.c"
+        ]
+      },
+      "editable_fields": [
+        "task_name",
+        "priority",
+        "stack_size",
+        "period_ms"
+      ],
+      "layer": "runtime",
+      "ai_summary": "Executes RTOS loop logic for Task_State_Machine.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    },
+    {
+      "id": "Task_Comms_Modbus_MQTT",
+      "node_type": "rtos_task",
+      "label": "Task Task_Comms_Modbus_MQTT",
+      "properties": {
+        "task_name": "Task_Comms_Modbus_MQTT",
+        "priority": 5,
+        "stack_size": 6144,
+        "period_ms": 0.0
+      },
+      "source_refs": [
+        {
+          "file": "firmware/app/app_tasks.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "66d596888e6273513ae935fb1b0aaa5a"
+      },
+      "ownership": {
+        "primary_files": [
+          "firmware/app/app_tasks.c"
+        ]
+      },
+      "editable_fields": [
+        "task_name",
+        "priority",
+        "stack_size",
+        "period_ms"
+      ],
+      "layer": "runtime",
+      "ai_summary": "Executes RTOS loop logic for Task_Comms_Modbus_MQTT.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    },
+    {
+      "id": "logger",
+      "node_type": "logger",
+      "label": "Logger",
+      "properties": {
+        "tag": "APP",
+        "level": "info"
+      },
+      "source_refs": [
+        {
+          "file": "firmware/app/app.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "66d596888e6273513ae935fb1b0aaa5a"
+      },
+      "ownership": {
+        "primary_files": [
+          "firmware/app/app.c"
+        ]
+      },
+      "editable_fields": [
+        "tag",
+        "level"
+      ],
+      "layer": "system",
+      "ai_summary": "Emits structured runtime logs for diagnostics.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    },
+    {
+      "id": "mqtt",
+      "node_type": "mqtt_client",
+      "label": "MQTT",
+      "properties": {
+        "broker_url": "mqtt://192.168.1.10:1883",
+        "topic": "esp32/sensor",
+        "qos": 0
+      },
+      "source_refs": [
+        {
+          "file": "firmware/app/app_tasks.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "66d596888e6273513ae935fb1b0aaa5a"
+      },
+      "ownership": {
+        "primary_files": [
+          "firmware/app/app_tasks.c"
+        ]
+      },
+      "editable_fields": [
+        "broker_url",
+        "topic",
+        "client_id",
+        "qos"
+      ],
+      "layer": "network",
+      "ai_summary": "Publishes and receives MQTT messages on `esp32/sensor`.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    },
+    {
+      "id": "adc_reader",
+      "node_type": "adc_reader",
+      "label": "ADC Reader",
+      "properties": {
+        "attenuation": "11db",
+        "sample_rate_hz": 100.0
+      },
+      "source_refs": [
+        {
+          "file": "firmware/app/app_tasks.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "66d596888e6273513ae935fb1b0aaa5a"
+      },
+      "ownership": {
+        "primary_files": [
+          "firmware/app/app_tasks.c"
+        ]
+      },
+      "editable_fields": [
+        "pin",
+        "attenuation",
+        "sample_rate_hz"
+      ],
+      "layer": "physical",
+      "ai_summary": "Reads analog values from configured ADC input channels.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    },
+    {
+      "id": "timer_node",
+      "node_type": "timer_node",
+      "label": "Timer",
+      "properties": {
+        "timer_name": "periodic_timer",
+        "period_ms": 1000.0,
+        "auto_reload": true
+      },
+      "source_refs": [
+        {
+          "file": "firmware/app/app_tasks.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "66d596888e6273513ae935fb1b0aaa5a"
+      },
+      "ownership": {
+        "primary_files": [
+          "firmware/app/app_tasks.c"
+        ]
+      },
+      "editable_fields": [
+        "timer_name",
+        "period_ms",
+        "auto_reload"
+      ],
+      "layer": "runtime",
+      "ai_summary": "Schedules periodic callbacks for time-based workflow.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    },
+    {
+      "id": "spi_device",
+      "node_type": "spi_device",
+      "label": "SPI Device",
+      "properties": {
+        "host": "SPI2_HOST",
+        "mosi_pin": 23,
+        "miso_pin": 19,
+        "sclk_pin": 18,
+        "cs_pin": 5
+      },
+      "source_refs": [
+        {
+          "file": "firmware/drivers/adxl355.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "66d596888e6273513ae935fb1b0aaa5a"
+      },
+      "ownership": {
+        "primary_files": [
+          "firmware/drivers/adxl355.c"
+        ]
+      },
+      "editable_fields": [
+        "host",
+        "sclk_pin",
+        "mosi_pin",
+        "miso_pin",
+        "cs_pin",
+        "dc_pin",
+        "rst_pin"
+      ],
+      "layer": "physical",
+      "ai_summary": "Represents an SPI peripheral with mapped bus pins.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    },
+    {
+      "id": "uart_device",
+      "node_type": "uart_device",
+      "label": "UART Device",
+      "properties": {
+        "pin_bindings": {
+          "tx": "cfg->gpio_tx",
+          "rx": "cfg->gpio_rx"
+        },
+        "editable_fields": [
+          "pin"
+        ]
+      },
+      "source_refs": [
+        {
+          "file": "firmware/drivers/modbus_stack.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "66d596888e6273513ae935fb1b0aaa5a"
+      },
+      "ownership": {
+        "primary_files": [
+          "firmware/drivers/modbus_stack.c"
+        ]
+      },
+      "editable_fields": [
+        "port",
+        "baud_rate",
+        "tx_pin",
+        "rx_pin"
+      ],
+      "layer": "physical",
+      "ai_summary": "Represents a UART peripheral with mapped serial pins.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    },
+    {
+      "id": "event_handler",
+      "node_type": "event_handler",
+      "label": "Event Handler",
+      "properties": {
+        "event_base": "ESP_EVENT_ANY_BASE",
+        "event_id": -1
+      },
+      "source_refs": [
+        {
+          "file": "firmware/net/mqtt_client_mgr.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "66d596888e6273513ae935fb1b0aaa5a"
+      },
+      "ownership": {
+        "primary_files": [
+          "firmware/net/mqtt_client_mgr.c"
+        ]
+      },
+      "editable_fields": [
+        "event_base",
+        "event_id"
+      ],
+      "layer": "runtime",
+      "ai_summary": "Queues and dispatches asynchronous firmware events.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    },
+    {
+      "id": "wifi",
+      "node_type": "wifi_manager",
+      "label": "WiFi",
+      "properties": {
+        "mode": "station"
+      },
+      "source_refs": [
+        {
+          "file": "firmware/net/wifi_prov_mgr.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "66d596888e6273513ae935fb1b0aaa5a"
+      },
+      "ownership": {
+        "primary_files": [
+          "firmware/net/wifi_prov_mgr.c"
+        ]
+      },
+      "editable_fields": [
+        "ssid",
+        "password",
+        "mode"
+      ],
+      "layer": "network",
+      "ai_summary": "Manages Wi-Fi connectivity and network state.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    },
+    {
+      "id": "storage_manager",
+      "node_type": "storage_manager",
+      "label": "Storage Manager",
+      "properties": {
+        "backend": "nvs",
+        "namespace": "app"
+      },
+      "source_refs": [
+        {
+          "file": "firmware/net/wifi_prov_mgr.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "66d596888e6273513ae935fb1b0aaa5a"
+      },
+      "ownership": {
+        "primary_files": [
+          "firmware/net/wifi_prov_mgr.c"
+        ]
+      },
+      "editable_fields": [
+        "backend",
+        "namespace"
+      ],
+      "layer": "system",
+      "ai_summary": "Persists runtime state and configuration data.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    },
+    {
+      "id": "diagnostics",
+      "node_type": "diagnostics",
+      "label": "Diagnostics",
+      "properties": {
+        "check_heap": true,
+        "check_stack": true
+      },
+      "source_refs": [
+        {
+          "file": "firmware/utils/psram_alloc.c",
+          "confidence": 1.0,
+          "inferred_by": "static"
+        }
+      ],
+      "sync": {
+        "state": "synced",
+        "last_synced_revision": "66d596888e6273513ae935fb1b0aaa5a"
+      },
+      "ownership": {
+        "primary_files": [
+          "firmware/utils/psram_alloc.c"
+        ]
+      },
+      "editable_fields": [
+        "check_heap",
+        "check_stack"
+      ],
+      "layer": "system",
+      "ai_summary": "Collects firmware health and diagnostic telemetry.",
+      "confidence": 1.0,
+      "authority": "agent",
+      "semantic_tags": [],
+      "dependencies": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_boot_Task_Vibration_Acquisition",
+      "source_node_id": "boot",
+      "target_node_id": "Task_Vibration_Acquisition",
+      "source_port_id": "boot_boot_out_0",
+      "target_port_id": "Task_Vibration_Acquisition_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.9,
+      "source_refs": [],
+      "semantic_label": "spawns",
+      "validated": false
+    },
+    {
+      "id": "e_boot_Task_State_Machine",
+      "source_node_id": "boot",
+      "target_node_id": "Task_State_Machine",
+      "source_port_id": "boot_boot_out_0",
+      "target_port_id": "Task_State_Machine_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.9,
+      "source_refs": [],
+      "semantic_label": "spawns",
+      "validated": false
+    },
+    {
+      "id": "e_boot_Task_Comms_Modbus_MQTT",
+      "source_node_id": "boot",
+      "target_node_id": "Task_Comms_Modbus_MQTT",
+      "source_port_id": "boot_boot_out_0",
+      "target_port_id": "Task_Comms_Modbus_MQTT_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.9,
+      "source_refs": [],
+      "semantic_label": "spawns",
+      "validated": false
+    },
+    {
+      "id": "e_boot_logger",
+      "source_node_id": "boot",
+      "target_node_id": "logger",
+      "source_port_id": "boot_boot_out_0",
+      "target_port_id": "logger_exec_in_1",
+      "kind": "execution",
+      "confidence": 0.9,
+      "source_refs": [],
+      "semantic_label": "initializes",
+      "validated": false
+    },
+    {
+      "id": "e_boot_timer_node",
+      "source_node_id": "boot",
+      "target_node_id": "timer_node",
+      "source_port_id": "boot_boot_out_0",
+      "target_port_id": "timer_node_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.9,
+      "source_refs": [],
+      "semantic_label": "initializes",
+      "validated": false
+    },
+    {
+      "id": "e_boot_spi_device",
+      "source_node_id": "boot",
+      "target_node_id": "spi_device",
+      "source_port_id": "boot_boot_out_0",
+      "target_port_id": "spi_device_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.9,
+      "source_refs": [],
+      "semantic_label": "initializes",
+      "validated": false
+    },
+    {
+      "id": "e_boot_uart_device",
+      "source_node_id": "boot",
+      "target_node_id": "uart_device",
+      "source_port_id": "boot_boot_out_0",
+      "target_port_id": "uart_device_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.9,
+      "source_refs": [],
+      "semantic_label": "initializes",
+      "validated": false
+    },
+    {
+      "id": "e_boot_wifi",
+      "source_node_id": "boot",
+      "target_node_id": "wifi",
+      "source_port_id": "boot_boot_out_0",
+      "target_port_id": "wifi_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.9,
+      "source_refs": [],
+      "semantic_label": "initializes",
+      "validated": false
+    },
+    {
+      "id": "e_boot_storage_manager",
+      "source_node_id": "boot",
+      "target_node_id": "storage_manager",
+      "source_port_id": "boot_boot_out_0",
+      "target_port_id": "storage_manager_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.9,
+      "source_refs": [],
+      "semantic_label": "initializes",
+      "validated": false
+    },
+    {
+      "id": "e_boot_diagnostics",
+      "source_node_id": "boot",
+      "target_node_id": "diagnostics",
+      "source_port_id": "boot_boot_out_0",
+      "target_port_id": "diagnostics_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.9,
+      "source_refs": [],
+      "semantic_label": "initializes",
+      "validated": false
+    },
+    {
+      "id": "e_timer_node_Task_Vibration_Acquisition_trigger_in",
+      "source_node_id": "timer_node",
+      "target_node_id": "Task_Vibration_Acquisition",
+      "source_port_id": "timer_node_event_out_1",
+      "target_port_id": "Task_Vibration_Acquisition_trigger_in_1",
+      "kind": "event",
+      "confidence": 0.78,
+      "source_refs": [],
+      "semantic_label": "triggers",
+      "validated": false
+    },
+    {
+      "id": "e_timer_node_Task_State_Machine_trigger_in",
+      "source_node_id": "timer_node",
+      "target_node_id": "Task_State_Machine",
+      "source_port_id": "timer_node_event_out_1",
+      "target_port_id": "Task_State_Machine_trigger_in_1",
+      "kind": "event",
+      "confidence": 0.78,
+      "source_refs": [],
+      "semantic_label": "triggers",
+      "validated": false
+    },
+    {
+      "id": "e_timer_node_Task_Comms_Modbus_MQTT_trigger_in",
+      "source_node_id": "timer_node",
+      "target_node_id": "Task_Comms_Modbus_MQTT",
+      "source_port_id": "timer_node_event_out_1",
+      "target_port_id": "Task_Comms_Modbus_MQTT_trigger_in_1",
+      "kind": "event",
+      "confidence": 0.78,
+      "source_refs": [],
+      "semantic_label": "triggers",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Vibration_Acquisition_logger_data_in",
+      "source_node_id": "Task_Vibration_Acquisition",
+      "target_node_id": "logger",
+      "source_port_id": "Task_Vibration_Acquisition_data_out_3",
+      "target_port_id": "logger_data_in_0",
+      "kind": "data",
+      "confidence": 0.78,
+      "source_refs": [],
+      "semantic_label": "data_flow",
+      "validated": false
+    },
+    {
+      "id": "e_wifi_mqtt_network_in",
+      "source_node_id": "wifi",
+      "target_node_id": "mqtt",
+      "source_port_id": "wifi_network_out_1",
+      "target_port_id": "mqtt_network_in_0",
+      "kind": "network",
+      "confidence": 0.78,
+      "source_refs": [],
+      "semantic_label": "connects",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Vibration_Acquisition_mqtt_data_in",
+      "source_node_id": "Task_Vibration_Acquisition",
+      "target_node_id": "mqtt",
+      "source_port_id": "Task_Vibration_Acquisition_data_out_3",
+      "target_port_id": "mqtt_data_in_1",
+      "kind": "data",
+      "confidence": 0.78,
+      "source_refs": [],
+      "semantic_label": "data_flow",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Vibration_Acquisition_adc_reader_exec_in",
+      "source_node_id": "Task_Vibration_Acquisition",
+      "target_node_id": "adc_reader",
+      "source_port_id": "Task_Vibration_Acquisition_exec_out_2",
+      "target_port_id": "adc_reader_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.78,
+      "source_refs": [],
+      "semantic_label": "controls",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Vibration_Acquisition_spi_device_data_in",
+      "source_node_id": "Task_Vibration_Acquisition",
+      "target_node_id": "spi_device",
+      "source_port_id": "Task_Vibration_Acquisition_data_out_3",
+      "target_port_id": "spi_device_data_in_1",
+      "kind": "data",
+      "confidence": 0.78,
+      "source_refs": [],
+      "semantic_label": "data_flow",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Vibration_Acquisition_uart_device_data_in",
+      "source_node_id": "Task_Vibration_Acquisition",
+      "target_node_id": "uart_device",
+      "source_port_id": "Task_Vibration_Acquisition_data_out_3",
+      "target_port_id": "uart_device_data_in_1",
+      "kind": "data",
+      "confidence": 0.78,
+      "source_refs": [],
+      "semantic_label": "data_flow",
+      "validated": false
+    },
+    {
+      "id": "e_timer_node_event_handler_event_in",
+      "source_node_id": "timer_node",
+      "target_node_id": "event_handler",
+      "source_port_id": "timer_node_event_out_1",
+      "target_port_id": "event_handler_event_in_0",
+      "kind": "event",
+      "confidence": 0.78,
+      "source_refs": [],
+      "semantic_label": "signals",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Vibration_Acquisition_storage_manager_data_in",
+      "source_node_id": "Task_Vibration_Acquisition",
+      "target_node_id": "storage_manager",
+      "source_port_id": "Task_Vibration_Acquisition_data_out_3",
+      "target_port_id": "storage_manager_data_in_1",
+      "kind": "data",
+      "confidence": 0.78,
+      "source_refs": [],
+      "semantic_label": "data_flow",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Comms_Modbus_MQTT_logger_control",
+      "source_node_id": "Task_Comms_Modbus_MQTT",
+      "target_node_id": "logger",
+      "source_port_id": "Task_Comms_Modbus_MQTT_exec_out_2",
+      "target_port_id": "logger_exec_in_1",
+      "kind": "execution",
+      "confidence": 0.86,
+      "source_refs": [],
+      "semantic_label": "controls",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Comms_Modbus_MQTT_mqtt_control",
+      "source_node_id": "Task_Comms_Modbus_MQTT",
+      "target_node_id": "mqtt",
+      "source_port_id": "Task_Comms_Modbus_MQTT_exec_out_2",
+      "target_port_id": "mqtt_data_in_1",
+      "kind": "execution",
+      "confidence": 0.86,
+      "source_refs": [],
+      "semantic_label": "controls",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Comms_Modbus_MQTT_adc_reader_control",
+      "source_node_id": "Task_Comms_Modbus_MQTT",
+      "target_node_id": "adc_reader",
+      "source_port_id": "Task_Comms_Modbus_MQTT_exec_out_2",
+      "target_port_id": "adc_reader_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.86,
+      "source_refs": [],
+      "semantic_label": "controls",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Comms_Modbus_MQTT_timer_node_control",
+      "source_node_id": "Task_Comms_Modbus_MQTT",
+      "target_node_id": "timer_node",
+      "source_port_id": "Task_Comms_Modbus_MQTT_exec_out_2",
+      "target_port_id": "timer_node_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.86,
+      "source_refs": [],
+      "semantic_label": "controls",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Comms_Modbus_MQTT_spi_device_control",
+      "source_node_id": "Task_Comms_Modbus_MQTT",
+      "target_node_id": "spi_device",
+      "source_port_id": "Task_Comms_Modbus_MQTT_exec_out_2",
+      "target_port_id": "spi_device_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.86,
+      "source_refs": [],
+      "semantic_label": "controls",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Comms_Modbus_MQTT_uart_device_control",
+      "source_node_id": "Task_Comms_Modbus_MQTT",
+      "target_node_id": "uart_device",
+      "source_port_id": "Task_Comms_Modbus_MQTT_exec_out_2",
+      "target_port_id": "uart_device_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.86,
+      "source_refs": [],
+      "semantic_label": "controls",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Comms_Modbus_MQTT_event_handler_control",
+      "source_node_id": "Task_Comms_Modbus_MQTT",
+      "target_node_id": "event_handler",
+      "source_port_id": "Task_Comms_Modbus_MQTT_exec_out_2",
+      "target_port_id": "event_handler_event_in_0",
+      "kind": "execution",
+      "confidence": 0.86,
+      "source_refs": [],
+      "semantic_label": "controls",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Comms_Modbus_MQTT_wifi_control",
+      "source_node_id": "Task_Comms_Modbus_MQTT",
+      "target_node_id": "wifi",
+      "source_port_id": "Task_Comms_Modbus_MQTT_exec_out_2",
+      "target_port_id": "wifi_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.86,
+      "source_refs": [],
+      "semantic_label": "controls",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Comms_Modbus_MQTT_storage_manager_control",
+      "source_node_id": "Task_Comms_Modbus_MQTT",
+      "target_node_id": "storage_manager",
+      "source_port_id": "Task_Comms_Modbus_MQTT_exec_out_2",
+      "target_port_id": "storage_manager_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.86,
+      "source_refs": [],
+      "semantic_label": "controls",
+      "validated": false
+    },
+    {
+      "id": "e_Task_Comms_Modbus_MQTT_diagnostics_control",
+      "source_node_id": "Task_Comms_Modbus_MQTT",
+      "target_node_id": "diagnostics",
+      "source_port_id": "Task_Comms_Modbus_MQTT_exec_out_2",
+      "target_port_id": "diagnostics_exec_in_0",
+      "kind": "execution",
+      "confidence": 0.86,
+      "source_refs": [],
+      "semantic_label": "controls",
+      "validated": false
+    },
+    {
+      "id": "edge_task_comms_to_uart_device_init",
+      "source_node_id": "Task_Comms_Modbus_MQTT",
+      "target_node_id": "uart_device",
+      "kind": "execution",
+      "confidence": 0.72,
+      "source_refs": [],
+      "validated": false
+    }
+  ],
+  "layers": {
+    "physical": [
+      "adc_reader",
+      "spi_device",
+      "uart_device"
+    ],
+    "runtime": [
+      "Task_Vibration_Acquisition",
+      "Task_State_Machine",
+      "Task_Comms_Modbus_MQTT",
+      "timer_node",
+      "event_handler"
+    ],
+    "network": [
+      "mqtt",
+      "wifi"
+    ],
+    "system": [
+      "boot",
+      "logger",
+      "storage_manager",
+      "diagnostics"
+    ]
+  },
+  "partitions": [],
+  "components": [
+    {
+      "id": "main",
+      "path": "main/CMakeLists.txt",
+      "requires": [
+        "esp_driver_gpio",
+        "esp_timer",
+        "esp_wifi",
+        "esp_event",
+        "nvs_flash",
+        "freertos",
+        "log",
+        "esp_driver_i2s",
+        "esp_adc",
+        "esp_driver_uart",
+        "mqtt",
+        "wifi_provisioning"
+      ],
+      "source_files": []
+    }
+  ],
+  "summary": {
+    "headline": "Resolved Modbus RS485 DE GPIO configuration and clarified UART pin bindings.",
+    "node_count": 0,
+    "edge_count": 0,
+    "warnings": [
+      "Cyclic execution path detected involving: boot -> Task_Comms_Modbus_MQTT -> timer_node -> Task_Comms_Modbus_MQTT"
+    ]
+  },
+  "diagrams": {
+    "hld": {
+      "title": "Mech Sentinel PM - High Level Architecture",
+      "mermaid": "graph TD\n    hld_user[\"Mobile App / Web Dashboard\"]\n    hld_cloud[\"MQTT Broker / Cloud Service\"]\n    hld_esp32[\"ESP32 Main Controller\"]\n    hld_adc_reader[\"ADC Reader\"]\n    hld_spi_device[\"SPI Device\"]\n    hld_uart_device[\"UART Device\"]\n    hld_storage_manager[\"Storage Manager\"]\n    hld_wifi[\"WiFi\"]\n    hld_Task_Comms_Modbus_MQTT[\"Task Task_Comms_Modbus_MQTT\"]\n    hld_Task_State_Machine[\"Task Task_State_Machine\"]\n    hld_internet[(Internet)]\n    hld_user <-->|View Data / Configure| hld_cloud\n    hld_cloud <-->|MQTT Messages| hld_esp32\n    hld_esp32 -->|Sensor Data| hld_adc_reader\n    hld_esp32 -->|Peripheral I/O| hld_spi_device\n    hld_esp32 -->|Peripheral I/O| hld_uart_device\n    hld_esp32 -->|Read / Write Config| hld_storage_manager\n    hld_esp32 -->|Network Management| hld_wifi\n    hld_esp32 -->|Firmware Logic| hld_Task_Comms_Modbus_MQTT\n    hld_esp32 -->|Firmware Logic| hld_Task_State_Machine\n    hld_Task_Comms_Modbus_MQTT -->|Control ADC Reader| hld_adc_reader\n    hld_Task_Comms_Modbus_MQTT -->|Control SPI Device| hld_spi_device\n    hld_Task_Comms_Modbus_MQTT -->|Control Storage Manager| hld_storage_manager\n    hld_Task_Comms_Modbus_MQTT -->|Control UART Device| hld_uart_device\n    hld_Task_Comms_Modbus_MQTT -->|Control WiFi| hld_wifi\n    hld_Task_Comms_Modbus_MQTT -->|Invoke UART Device| hld_uart_device\n    hld_wifi -->|Internet Access| hld_internet\n    hld_cloud -->|Cloud Route| hld_internet"
+    },
+    "lld": {
+      "title": "Mech Sentinel PM - Task/Driver Workflow",
+      "mermaid": "flowchart TD\n  subgraph freertos_runtime[\"FreeRTOS\"]\n    Task_Comms_Modbus_MQTT[\"Task Task_Comms_Modbus_MQTT\"]\n    Task_State_Machine[\"Task Task_State_Machine\"]\n    Task_Vibration_Acquisition[\"Task Task_Vibration_Acquisition\"]\n    event_handler[\"Event Handler\"]\n    timer_node[\"Timer\"]\n  end\n  adc_reader[\"ADC Reader\"]\n  spi_device[\"SPI Device\"]\n  uart_device[\"UART Device\"]\n  storage_manager[\"Storage Manager\"]\n  wifi[\"WiFi\"]\n  mqtt[\"MQTT\"]\n  diagnostics[\"Diagnostics\"]\n  logger[\"Logger\"]\n  Task_Comms_Modbus_MQTT --> adc_reader\n  Task_Comms_Modbus_MQTT --> diagnostics\n  Task_Comms_Modbus_MQTT --> event_handler\n  Task_Comms_Modbus_MQTT --> logger\n  Task_Comms_Modbus_MQTT --> mqtt\n  Task_Comms_Modbus_MQTT --> spi_device\n  Task_Comms_Modbus_MQTT --> storage_manager\n  Task_Comms_Modbus_MQTT --> timer_node\n  Task_Comms_Modbus_MQTT --> uart_device\n  Task_Comms_Modbus_MQTT --> wifi\n  Task_Vibration_Acquisition --> adc_reader\n  Task_Vibration_Acquisition --> logger\n  Task_Vibration_Acquisition --> mqtt\n  Task_Vibration_Acquisition --> spi_device\n  Task_Vibration_Acquisition --> storage_manager\n  Task_Vibration_Acquisition --> uart_device\n  timer_node --> Task_Comms_Modbus_MQTT\n  timer_node --> Task_State_Machine\n  timer_node --> Task_Vibration_Acquisition\n  timer_node --> event_handler\n  wifi --> mqtt"
+    },
+    "sequence": {
+      "title": "Boot, driver initialization, acquisition, and communications flow",
+      "mermaid": "sequenceDiagram\n    participant boot as 1. Boot / app_main\n    participant Task_Vibration_Acquisition as 2. Task Task_Vibration_Acquisition\n    participant Task_State_Machine as 3. Task Task_State_Machine\n    participant Task_Comms_Modbus_MQTT as 4. Task Task_Comms_Modbus_MQTT\n    participant logger as 5. Logger\n    participant timer_node as 6. Timer\n    participant spi_device as 7. SPI Device\n    participant uart_device as 8. UART Device\n    participant wifi as 9. WiFi\n    participant storage_manager as 10. Storage Manager\n    participant diagnostics as 11. Diagnostics\n    participant mqtt as 12. MQTT\n    participant event_handler as 13. Event Handler\n    participant adc_reader as 14. ADC Reader\n    boot->>Task_Vibration_Acquisition: spawns\n    boot->>Task_State_Machine: spawns\n    boot->>Task_Comms_Modbus_MQTT: spawns\n    boot->>logger: initializes\n    boot->>timer_node: initializes\n    boot->>spi_device: initializes\n    boot->>uart_device: initializes\n    boot->>wifi: initializes\n    boot->>storage_manager: initializes\n    boot->>diagnostics: initializes\n    boot->>adc_reader: step_30\n    Task_Vibration_Acquisition->>logger: data_flow\n    Task_Vibration_Acquisition->>spi_device: data_flow\n    Task_Vibration_Acquisition->>uart_device: data_flow\n    Task_Vibration_Acquisition->>storage_manager: data_flow\n    Task_Vibration_Acquisition->>mqtt: data_flow\n    Task_Comms_Modbus_MQTT->>logger: controls\n    Task_Comms_Modbus_MQTT->>timer_node: controls\n    Task_Comms_Modbus_MQTT->>spi_device: controls\n    Task_Comms_Modbus_MQTT->>uart_device: controls\n    Task_Comms_Modbus_MQTT->>wifi: controls\n    Task_Comms_Modbus_MQTT->>storage_manager: controls\n    Task_Comms_Modbus_MQTT->>diagnostics: controls\n    Task_Comms_Modbus_MQTT->>mqtt: controls\n    Task_Comms_Modbus_MQTT->>event_handler: controls\n    timer_node->>Task_Vibration_Acquisition: triggers\n    timer_node->>Task_State_Machine: triggers\n    timer_node->>Task_Comms_Modbus_MQTT: triggers\n    timer_node->>event_handler: signals\n    wifi->>mqtt: connects",
+      "participants": [
+        "boot",
+        "Task_Vibration_Acquisition",
+        "Task_State_Machine",
+        "Task_Comms_Modbus_MQTT",
+        "logger",
+        "timer_node",
+        "spi_device",
+        "uart_device",
+        "wifi",
+        "storage_manager",
+        "diagnostics",
+        "mqtt",
+        "event_handler",
+        "adc_reader"
+      ],
+      "generated_from": [
+        "main/entry.c",
+        "firmware/app/app_tasks.c",
+        "firmware/drivers/modbus_stack.c",
+        "firmware/net/wifi_prov_mgr.c",
+        "firmware/net/mqtt_client_mgr.c",
+        "firmware/drivers/adxl355.c",
+        "firmware/drivers/thermal_adc.c",
+        "firmware/app/state_machine.c",
+        "firmware/app/app.c"
+      ]
+    },
+    "hld_graph": {
+      "schema_version": 1,
+      "id": "pir_mech_sentinel_pm-hld",
+      "name": "mech_sentinel_pm topology — HLD",
+      "description": "High-level architecture — ESP32 controller, firmware modules, and integrations",
+      "nodes": [
+        {
+          "id": "hld_user",
+          "node_type": "user_actor",
+          "label": "Mobile App / Web Dashboard",
+          "description": "External user interface for monitoring data and sending configuration.",
+          "ports": [
+            {
+              "id": "hld_user::hld::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "hld_user::hld::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "hld_role": "user"
+          },
+          "visual": {
+            "x": 0.0,
+            "y": -496.0,
+            "layer": 0
+          }
+        },
+        {
+          "id": "hld_cloud",
+          "node_type": "cloud_service",
+          "label": "MQTT Broker / Cloud Service",
+          "description": "External cloud endpoint for command/control and telemetry exchange.",
+          "ports": [
+            {
+              "id": "hld_cloud::hld::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "hld_cloud::hld::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "hld_role": "cloud"
+          },
+          "visual": {
+            "x": 0.0,
+            "y": -232.0,
+            "layer": 0
+          }
+        },
+        {
+          "id": "hld_esp32",
+          "node_type": "system_init",
+          "label": "ESP32 Main Controller",
+          "description": "Main firmware control node coordinating peripherals, storage, and connectivity.",
+          "ports": [
+            {
+              "id": "hld_esp32::hld::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "hld_esp32::hld::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "hld_role": "controller"
+          },
+          "visual": {
+            "x": 0.0,
+            "y": 32.0,
+            "layer": 0
+          }
+        },
+        {
+          "id": "hld_adc_reader",
+          "node_type": "adc_reader",
+          "label": "ADC Reader",
+          "description": "Reads analog values from configured ADC input channels.",
+          "ports": [
+            {
+              "id": "hld_adc_reader::hld::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "hld_adc_reader::hld::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "attenuation": "11db",
+            "sample_rate_hz": 100.0,
+            "hld_role": "peripheral",
+            "source_node_id": "adc_reader"
+          },
+          "execution": {},
+          "visual": {
+            "x": 0.0,
+            "y": 296.0,
+            "layer": 0
+          }
+        },
+        {
+          "id": "hld_spi_device",
+          "node_type": "spi_device",
+          "label": "SPI Device",
+          "description": "Represents an SPI peripheral with mapped bus pins.",
+          "ports": [
+            {
+              "id": "hld_spi_device::hld::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "hld_spi_device::hld::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "host": "SPI2_HOST",
+            "mosi_pin": 23,
+            "miso_pin": 19,
+            "sclk_pin": 18,
+            "cs_pin": 5,
+            "hld_role": "peripheral",
+            "source_node_id": "spi_device"
+          },
+          "execution": {},
+          "visual": {
+            "x": 430.0,
+            "y": -496.0,
+            "layer": 1
+          }
+        },
+        {
+          "id": "hld_uart_device",
+          "node_type": "uart_device",
+          "label": "UART Device",
+          "description": "Represents a UART peripheral with mapped serial pins.",
+          "ports": [
+            {
+              "id": "hld_uart_device::hld::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "hld_uart_device::hld::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "pin_bindings": {
+              "tx": "cfg->gpio_tx",
+              "rx": "cfg->gpio_rx"
+            },
+            "editable_fields": [
+              "pin"
+            ],
+            "hld_role": "peripheral",
+            "source_node_id": "uart_device"
+          },
+          "execution": {},
+          "visual": {
+            "x": 430.0,
+            "y": -232.0,
+            "layer": 1
+          }
+        },
+        {
+          "id": "hld_storage_manager",
+          "node_type": "storage_manager",
+          "label": "Storage Manager",
+          "description": "Persists runtime state and configuration data.",
+          "ports": [
+            {
+              "id": "hld_storage_manager::hld::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "hld_storage_manager::hld::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "backend": "nvs",
+            "namespace": "app",
+            "hld_role": "storage",
+            "source_node_id": "storage_manager"
+          },
+          "execution": {},
+          "visual": {
+            "x": 430.0,
+            "y": 32.0,
+            "layer": 1
+          }
+        },
+        {
+          "id": "hld_wifi",
+          "node_type": "wifi_manager",
+          "label": "WiFi",
+          "description": "Manages Wi-Fi connectivity and network state.",
+          "ports": [
+            {
+              "id": "hld_wifi::hld::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "hld_wifi::hld::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "mode": "station",
+            "hld_role": "connectivity",
+            "source_node_id": "wifi"
+          },
+          "execution": {},
+          "visual": {
+            "x": 430.0,
+            "y": 296.0,
+            "layer": 1
+          }
+        },
+        {
+          "id": "hld_Task_Comms_Modbus_MQTT",
+          "node_type": "rtos_task",
+          "label": "Task Task_Comms_Modbus_MQTT",
+          "description": "Executes RTOS loop logic for Task_Comms_Modbus_MQTT.",
+          "ports": [
+            {
+              "id": "hld_Task_Comms_Modbus_MQTT::hld::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "hld_Task_Comms_Modbus_MQTT::hld::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "task_name": "Task_Comms_Modbus_MQTT",
+            "priority": 5,
+            "stack_size": 6144,
+            "period_ms": 0.0,
+            "hld_role": "runtime",
+            "source_node_id": "Task_Comms_Modbus_MQTT"
+          },
+          "execution": {
+            "priority": 5,
+            "stack_size": 6144,
+            "period_ms": 0.0
+          },
+          "visual": {
+            "x": 860.0,
+            "y": -364.0,
+            "layer": 2
+          }
+        },
+        {
+          "id": "hld_Task_State_Machine",
+          "node_type": "rtos_task",
+          "label": "Task Task_State_Machine",
+          "description": "Executes RTOS loop logic for Task_State_Machine.",
+          "ports": [
+            {
+              "id": "hld_Task_State_Machine::hld::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "hld_Task_State_Machine::hld::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "task_name": "Task_State_Machine",
+            "priority": 5,
+            "stack_size": 6144,
+            "period_ms": 0.0,
+            "hld_role": "runtime",
+            "source_node_id": "Task_State_Machine"
+          },
+          "execution": {
+            "priority": 5,
+            "stack_size": 6144,
+            "period_ms": 0.0
+          },
+          "visual": {
+            "x": 860.0,
+            "y": -100.0,
+            "layer": 2
+          }
+        },
+        {
+          "id": "hld_internet",
+          "node_type": "internet",
+          "label": "Internet",
+          "description": "External network backbone used for cloud transport.",
+          "ports": [
+            {
+              "id": "hld_internet::hld::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "hld_internet::hld::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "hld_role": "internet"
+          },
+          "visual": {
+            "x": 860.0,
+            "y": 164.0,
+            "layer": 2
+          }
+        }
+      ],
+      "connections": [
+        [
+          "hld_user::hld::out",
+          "hld_cloud::hld::in"
+        ],
+        [
+          "hld_cloud::hld::out",
+          "hld_user::hld::in"
+        ],
+        [
+          "hld_cloud::hld::out",
+          "hld_esp32::hld::in"
+        ],
+        [
+          "hld_esp32::hld::out",
+          "hld_cloud::hld::in"
+        ],
+        [
+          "hld_esp32::hld::out",
+          "hld_adc_reader::hld::in"
+        ],
+        [
+          "hld_esp32::hld::out",
+          "hld_spi_device::hld::in"
+        ],
+        [
+          "hld_esp32::hld::out",
+          "hld_uart_device::hld::in"
+        ],
+        [
+          "hld_esp32::hld::out",
+          "hld_storage_manager::hld::in"
+        ],
+        [
+          "hld_esp32::hld::out",
+          "hld_wifi::hld::in"
+        ],
+        [
+          "hld_esp32::hld::out",
+          "hld_Task_Comms_Modbus_MQTT::hld::in"
+        ],
+        [
+          "hld_esp32::hld::out",
+          "hld_Task_State_Machine::hld::in"
+        ],
+        [
+          "hld_Task_Comms_Modbus_MQTT::hld::out",
+          "hld_adc_reader::hld::in"
+        ],
+        [
+          "hld_Task_Comms_Modbus_MQTT::hld::out",
+          "hld_spi_device::hld::in"
+        ],
+        [
+          "hld_Task_Comms_Modbus_MQTT::hld::out",
+          "hld_storage_manager::hld::in"
+        ],
+        [
+          "hld_Task_Comms_Modbus_MQTT::hld::out",
+          "hld_uart_device::hld::in"
+        ],
+        [
+          "hld_Task_Comms_Modbus_MQTT::hld::out",
+          "hld_wifi::hld::in"
+        ],
+        [
+          "hld_wifi::hld::out",
+          "hld_internet::hld::in"
+        ],
+        [
+          "hld_cloud::hld::out",
+          "hld_internet::hld::in"
+        ]
+      ],
+      "layout": {
+        "orientation": "horizontal",
+        "node_width": 280.0,
+        "layer_gap": 150.0,
+        "node_gap": 64.0
+      },
+      "runtime_metadata": {
+        "telemetry_enabled": false,
+        "overlays": {
+          "hld_edge_labels": {
+            "hld_user::hld::out|hld_cloud::hld::in": "View Data / Configure",
+            "hld_cloud::hld::out|hld_user::hld::in": "View Data / Configure",
+            "hld_cloud::hld::out|hld_esp32::hld::in": "MQTT Messages",
+            "hld_esp32::hld::out|hld_cloud::hld::in": "MQTT Messages",
+            "hld_esp32::hld::out|hld_adc_reader::hld::in": "Sensor Data",
+            "hld_esp32::hld::out|hld_spi_device::hld::in": "Peripheral I/O",
+            "hld_esp32::hld::out|hld_uart_device::hld::in": "Peripheral I/O",
+            "hld_esp32::hld::out|hld_storage_manager::hld::in": "Read / Write Config",
+            "hld_esp32::hld::out|hld_wifi::hld::in": "Network Management",
+            "hld_esp32::hld::out|hld_Task_Comms_Modbus_MQTT::hld::in": "Firmware Logic",
+            "hld_esp32::hld::out|hld_Task_State_Machine::hld::in": "Firmware Logic",
+            "hld_Task_Comms_Modbus_MQTT::hld::out|hld_adc_reader::hld::in": "Control ADC Reader",
+            "hld_Task_Comms_Modbus_MQTT::hld::out|hld_spi_device::hld::in": "Control SPI Device",
+            "hld_Task_Comms_Modbus_MQTT::hld::out|hld_storage_manager::hld::in": "Control Storage Manager",
+            "hld_Task_Comms_Modbus_MQTT::hld::out|hld_uart_device::hld::in": "Control UART Device",
+            "hld_Task_Comms_Modbus_MQTT::hld::out|hld_wifi::hld::in": "Control WiFi",
+            "hld_wifi::hld::out|hld_internet::hld::in": "Internet Access",
+            "hld_cloud::hld::out|hld_internet::hld::in": "Cloud Route"
+          },
+          "diagram_view": "hld",
+          "hld_projection": "architecture"
+        }
+      }
+    },
+    "lld_graph": {
+      "schema_version": 1,
+      "id": "pir_mech_sentinel_pm-lld",
+      "name": "mech_sentinel_pm topology — LLD",
+      "description": "Low-level design — FreeRTOS and peripheral/service workflow",
+      "nodes": [
+        {
+          "id": "Task_Comms_Modbus_MQTT",
+          "node_type": "rtos_task",
+          "label": "Task Task_Comms_Modbus_MQTT",
+          "description": "Executes RTOS loop logic for Task_Comms_Modbus_MQTT.",
+          "ports": [
+            {
+              "id": "Task_Comms_Modbus_MQTT::ldd::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "Task_Comms_Modbus_MQTT::ldd::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "task_name": "Task_Comms_Modbus_MQTT",
+            "priority": 5,
+            "stack_size": 6144,
+            "period_ms": 0.0,
+            "lld_workflow": {
+              "role": "freertos",
+              "node_type": "rtos_task"
+            }
+          },
+          "execution": {
+            "priority": 5,
+            "stack_size": 6144,
+            "period_ms": 0.0
+          },
+          "visual": {
+            "x": -560.0,
+            "y": 0.0,
+            "layer": 0
+          }
+        },
+        {
+          "id": "Task_State_Machine",
+          "node_type": "rtos_task",
+          "label": "Task Task_State_Machine",
+          "description": "Executes RTOS loop logic for Task_State_Machine.",
+          "ports": [
+            {
+              "id": "Task_State_Machine::ldd::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "Task_State_Machine::ldd::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "task_name": "Task_State_Machine",
+            "priority": 5,
+            "stack_size": 6144,
+            "period_ms": 0.0,
+            "lld_workflow": {
+              "role": "freertos",
+              "node_type": "rtos_task"
+            }
+          },
+          "execution": {
+            "priority": 5,
+            "stack_size": 6144,
+            "period_ms": 0.0
+          },
+          "visual": {
+            "x": -232.0,
+            "y": 0.0,
+            "layer": 0
+          }
+        },
+        {
+          "id": "Task_Vibration_Acquisition",
+          "node_type": "rtos_task",
+          "label": "Task Task_Vibration_Acquisition",
+          "description": "Executes RTOS loop logic for Task_Vibration_Acquisition.",
+          "ports": [
+            {
+              "id": "Task_Vibration_Acquisition::ldd::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "Task_Vibration_Acquisition::ldd::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "task_name": "Task_Vibration_Acquisition",
+            "priority": 5,
+            "stack_size": 8192,
+            "period_ms": 0.0,
+            "lld_workflow": {
+              "role": "freertos",
+              "node_type": "rtos_task"
+            }
+          },
+          "execution": {
+            "priority": 5,
+            "stack_size": 8192,
+            "period_ms": 0.0
+          },
+          "visual": {
+            "x": 96.0,
+            "y": 0.0,
+            "layer": 0
+          }
+        },
+        {
+          "id": "event_handler",
+          "node_type": "event_handler",
+          "label": "Event Handler",
+          "description": "Queues and dispatches asynchronous firmware events.",
+          "ports": [
+            {
+              "id": "event_handler::ldd::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "event_handler::ldd::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "event_base": "ESP_EVENT_ANY_BASE",
+            "event_id": -1,
+            "lld_workflow": {
+              "role": "freertos",
+              "node_type": "event_handler"
+            }
+          },
+          "execution": {},
+          "visual": {
+            "x": 424.0,
+            "y": 0.0,
+            "layer": 0
+          }
+        },
+        {
+          "id": "timer_node",
+          "node_type": "timer_node",
+          "label": "Timer",
+          "description": "Schedules periodic callbacks for time-based workflow.",
+          "ports": [
+            {
+              "id": "timer_node::ldd::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "timer_node::ldd::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "timer_name": "periodic_timer",
+            "period_ms": 1000.0,
+            "auto_reload": true,
+            "lld_workflow": {
+              "role": "freertos",
+              "node_type": "timer_node"
+            }
+          },
+          "execution": {
+            "period_ms": 1000.0
+          },
+          "visual": {
+            "x": -560.0,
+            "y": 320.0,
+            "layer": 1
+          }
+        },
+        {
+          "id": "adc_reader",
+          "node_type": "adc_reader",
+          "label": "ADC Reader",
+          "description": "Reads analog values from configured ADC input channels.",
+          "ports": [
+            {
+              "id": "adc_reader::ldd::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "adc_reader::ldd::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "attenuation": "11db",
+            "sample_rate_hz": 100.0,
+            "lld_workflow": {
+              "role": "peripheral",
+              "node_type": "adc_reader"
+            }
+          },
+          "execution": {},
+          "visual": {
+            "x": -232.0,
+            "y": 320.0,
+            "layer": 1
+          }
+        },
+        {
+          "id": "spi_device",
+          "node_type": "spi_device",
+          "label": "SPI Device",
+          "description": "Represents an SPI peripheral with mapped bus pins.",
+          "ports": [
+            {
+              "id": "spi_device::ldd::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "spi_device::ldd::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "host": "SPI2_HOST",
+            "mosi_pin": 23,
+            "miso_pin": 19,
+            "sclk_pin": 18,
+            "cs_pin": 5,
+            "lld_workflow": {
+              "role": "peripheral",
+              "node_type": "spi_device"
+            }
+          },
+          "execution": {},
+          "visual": {
+            "x": 96.0,
+            "y": 320.0,
+            "layer": 1
+          }
+        },
+        {
+          "id": "uart_device",
+          "node_type": "uart_device",
+          "label": "UART Device",
+          "description": "Represents a UART peripheral with mapped serial pins.",
+          "ports": [
+            {
+              "id": "uart_device::ldd::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "uart_device::ldd::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "pin_bindings": {
+              "tx": "cfg->gpio_tx",
+              "rx": "cfg->gpio_rx"
+            },
+            "editable_fields": [
+              "pin"
+            ],
+            "lld_workflow": {
+              "role": "peripheral",
+              "node_type": "uart_device"
+            }
+          },
+          "execution": {},
+          "visual": {
+            "x": 424.0,
+            "y": 320.0,
+            "layer": 1
+          }
+        },
+        {
+          "id": "storage_manager",
+          "node_type": "storage_manager",
+          "label": "Storage Manager",
+          "description": "Persists runtime state and configuration data.",
+          "ports": [
+            {
+              "id": "storage_manager::ldd::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "storage_manager::ldd::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "backend": "nvs",
+            "namespace": "app",
+            "lld_workflow": {
+              "role": "service",
+              "node_type": "storage_manager"
+            }
+          },
+          "execution": {},
+          "visual": {
+            "x": -560.0,
+            "y": 640.0,
+            "layer": 2
+          }
+        },
+        {
+          "id": "wifi",
+          "node_type": "wifi_manager",
+          "label": "WiFi",
+          "description": "Manages Wi-Fi connectivity and network state.",
+          "ports": [
+            {
+              "id": "wifi::ldd::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "wifi::ldd::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "mode": "station",
+            "lld_workflow": {
+              "role": "service",
+              "node_type": "wifi_manager"
+            }
+          },
+          "execution": {},
+          "visual": {
+            "x": -232.0,
+            "y": 640.0,
+            "layer": 2
+          }
+        },
+        {
+          "id": "mqtt",
+          "node_type": "mqtt_client",
+          "label": "MQTT",
+          "description": "Publishes and receives MQTT messages on `esp32/sensor`.",
+          "ports": [
+            {
+              "id": "mqtt::ldd::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "mqtt::ldd::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "broker_url": "mqtt://192.168.1.10:1883",
+            "topic": "esp32/sensor",
+            "qos": 0,
+            "lld_workflow": {
+              "role": "service",
+              "node_type": "mqtt_client"
+            }
+          },
+          "execution": {},
+          "visual": {
+            "x": 96.0,
+            "y": 640.0,
+            "layer": 2
+          }
+        },
+        {
+          "id": "logger",
+          "node_type": "logger",
+          "label": "Logger",
+          "description": "Emits structured runtime logs for diagnostics.",
+          "ports": [
+            {
+              "id": "logger::ldd::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "logger::ldd::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "tag": "APP",
+            "level": "info",
+            "lld_workflow": {
+              "role": "service",
+              "node_type": "logger"
+            }
+          },
+          "execution": {},
+          "visual": {
+            "x": 424.0,
+            "y": 640.0,
+            "layer": 2
+          }
+        },
+        {
+          "id": "diagnostics",
+          "node_type": "diagnostics",
+          "label": "Diagnostics",
+          "description": "Collects firmware health and diagnostic telemetry.",
+          "ports": [
+            {
+              "id": "diagnostics::ldd::in",
+              "name": "assoc_in",
+              "direction": "input",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "diagnostics::ldd::out",
+              "name": "assoc_out",
+              "direction": "output",
+              "datatype": "association",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "check_heap": true,
+            "check_stack": true,
+            "lld_workflow": {
+              "role": "service",
+              "node_type": "diagnostics"
+            }
+          },
+          "execution": {},
+          "visual": {
+            "x": -140.0,
+            "y": 960.0,
+            "layer": 3
+          }
+        }
+      ],
+      "connections": [
+        [
+          "timer_node::ldd::out",
+          "Task_Vibration_Acquisition::ldd::in"
+        ],
+        [
+          "timer_node::ldd::out",
+          "Task_State_Machine::ldd::in"
+        ],
+        [
+          "timer_node::ldd::out",
+          "Task_Comms_Modbus_MQTT::ldd::in"
+        ],
+        [
+          "Task_Vibration_Acquisition::ldd::out",
+          "logger::ldd::in"
+        ],
+        [
+          "wifi::ldd::out",
+          "mqtt::ldd::in"
+        ],
+        [
+          "Task_Vibration_Acquisition::ldd::out",
+          "mqtt::ldd::in"
+        ],
+        [
+          "Task_Vibration_Acquisition::ldd::out",
+          "adc_reader::ldd::in"
+        ],
+        [
+          "Task_Vibration_Acquisition::ldd::out",
+          "spi_device::ldd::in"
+        ],
+        [
+          "Task_Vibration_Acquisition::ldd::out",
+          "uart_device::ldd::in"
+        ],
+        [
+          "timer_node::ldd::out",
+          "event_handler::ldd::in"
+        ],
+        [
+          "Task_Vibration_Acquisition::ldd::out",
+          "storage_manager::ldd::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::ldd::out",
+          "logger::ldd::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::ldd::out",
+          "mqtt::ldd::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::ldd::out",
+          "adc_reader::ldd::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::ldd::out",
+          "timer_node::ldd::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::ldd::out",
+          "spi_device::ldd::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::ldd::out",
+          "uart_device::ldd::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::ldd::out",
+          "event_handler::ldd::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::ldd::out",
+          "wifi::ldd::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::ldd::out",
+          "storage_manager::ldd::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::ldd::out",
+          "diagnostics::ldd::in"
+        ]
+      ],
+      "layout": {
+        "orientation": "vertical",
+        "node_width": 280.0,
+        "layer_gap": 120.0,
+        "node_gap": 48.0
+      },
+      "runtime_metadata": {
+        "telemetry_enabled": false,
+        "overlays": {
+          "diagram_view": "ldd",
+          "ldd_edge_labels": {
+            "Task_Comms_Modbus_MQTT::ldd::out|spi_device::ldd::in": "controls",
+            "Task_Comms_Modbus_MQTT::ldd::out|wifi::ldd::in": "controls",
+            "Task_Vibration_Acquisition::ldd::out|mqtt::ldd::in": "data_flow",
+            "Task_Comms_Modbus_MQTT::ldd::out|mqtt::ldd::in": "controls",
+            "timer_node::ldd::out|Task_Vibration_Acquisition::ldd::in": "triggers",
+            "Task_Vibration_Acquisition::ldd::out|uart_device::ldd::in": "data_flow",
+            "timer_node::ldd::out|event_handler::ldd::in": "signals",
+            "Task_Vibration_Acquisition::ldd::out|storage_manager::ldd::in": "data_flow",
+            "Task_Comms_Modbus_MQTT::ldd::out|uart_device::ldd::in": "controls",
+            "Task_Comms_Modbus_MQTT::ldd::out|diagnostics::ldd::in": "controls",
+            "Task_Comms_Modbus_MQTT::ldd::out|logger::ldd::in": "controls",
+            "Task_Vibration_Acquisition::ldd::out|spi_device::ldd::in": "data_flow",
+            "timer_node::ldd::out|Task_Comms_Modbus_MQTT::ldd::in": "triggers",
+            "Task_Comms_Modbus_MQTT::ldd::out|event_handler::ldd::in": "controls",
+            "Task_Vibration_Acquisition::ldd::out|logger::ldd::in": "data_flow",
+            "Task_Comms_Modbus_MQTT::ldd::out|timer_node::ldd::in": "controls",
+            "Task_Vibration_Acquisition::ldd::out|adc_reader::ldd::in": "controls",
+            "Task_Comms_Modbus_MQTT::ldd::out|storage_manager::ldd::in": "controls",
+            "timer_node::ldd::out|Task_State_Machine::ldd::in": "triggers",
+            "wifi::ldd::out|mqtt::ldd::in": "connects",
+            "Task_Comms_Modbus_MQTT::ldd::out|adc_reader::ldd::in": "controls"
+          }
+        }
+      }
+    },
+    "sequence_graph": {
+      "schema_version": 1,
+      "id": "pir_mech_sentinel_pm-sequence",
+      "name": "mech_sentinel_pm topology — Sequence",
+      "description": "Execution and initialization order",
+      "nodes": [
+        {
+          "id": "boot",
+          "node_type": "system_init",
+          "label": "1. Boot / app_main",
+          "description": "Bootstraps firmware startup and initializes core subsystems.",
+          "ports": [
+            {
+              "id": "boot::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "boot::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "target": "esp32s3"
+          },
+          "execution": {},
+          "visual": {
+            "x": 0.0,
+            "y": 80.0,
+            "layer": 0
+          }
+        },
+        {
+          "id": "Task_Vibration_Acquisition",
+          "node_type": "rtos_task",
+          "label": "2. Task Task_Vibration_Acquisition",
+          "description": "Executes RTOS loop logic for Task_Vibration_Acquisition.",
+          "ports": [
+            {
+              "id": "Task_Vibration_Acquisition::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "Task_Vibration_Acquisition::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "task_name": "Task_Vibration_Acquisition",
+            "priority": 5,
+            "stack_size": 8192,
+            "period_ms": 0.0
+          },
+          "execution": {
+            "priority": 5,
+            "stack_size": 8192,
+            "period_ms": 0.0
+          },
+          "visual": {
+            "x": 320.0,
+            "y": 80.0,
+            "layer": 1
+          }
+        },
+        {
+          "id": "Task_State_Machine",
+          "node_type": "rtos_task",
+          "label": "3. Task Task_State_Machine",
+          "description": "Executes RTOS loop logic for Task_State_Machine.",
+          "ports": [
+            {
+              "id": "Task_State_Machine::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "Task_State_Machine::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "task_name": "Task_State_Machine",
+            "priority": 5,
+            "stack_size": 6144,
+            "period_ms": 0.0
+          },
+          "execution": {
+            "priority": 5,
+            "stack_size": 6144,
+            "period_ms": 0.0
+          },
+          "visual": {
+            "x": 640.0,
+            "y": 80.0,
+            "layer": 2
+          }
+        },
+        {
+          "id": "Task_Comms_Modbus_MQTT",
+          "node_type": "rtos_task",
+          "label": "4. Task Task_Comms_Modbus_MQTT",
+          "description": "Executes RTOS loop logic for Task_Comms_Modbus_MQTT.",
+          "ports": [
+            {
+              "id": "Task_Comms_Modbus_MQTT::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "Task_Comms_Modbus_MQTT::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "task_name": "Task_Comms_Modbus_MQTT",
+            "priority": 5,
+            "stack_size": 6144,
+            "period_ms": 0.0
+          },
+          "execution": {
+            "priority": 5,
+            "stack_size": 6144,
+            "period_ms": 0.0
+          },
+          "visual": {
+            "x": 960.0,
+            "y": 80.0,
+            "layer": 3
+          }
+        },
+        {
+          "id": "logger",
+          "node_type": "logger",
+          "label": "5. Logger",
+          "description": "Emits structured runtime logs for diagnostics.",
+          "ports": [
+            {
+              "id": "logger::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "logger::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "tag": "APP",
+            "level": "info"
+          },
+          "execution": {},
+          "visual": {
+            "x": 1280.0,
+            "y": 80.0,
+            "layer": 4
+          }
+        },
+        {
+          "id": "timer_node",
+          "node_type": "timer_node",
+          "label": "6. Timer",
+          "description": "Schedules periodic callbacks for time-based workflow.",
+          "ports": [
+            {
+              "id": "timer_node::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "timer_node::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "timer_name": "periodic_timer",
+            "period_ms": 1000.0,
+            "auto_reload": true
+          },
+          "execution": {
+            "period_ms": 1000.0
+          },
+          "visual": {
+            "x": 1600.0,
+            "y": 80.0,
+            "layer": 5
+          }
+        },
+        {
+          "id": "spi_device",
+          "node_type": "spi_device",
+          "label": "7. SPI Device",
+          "description": "Represents an SPI peripheral with mapped bus pins.",
+          "ports": [
+            {
+              "id": "spi_device::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "spi_device::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "host": "SPI2_HOST",
+            "mosi_pin": 23,
+            "miso_pin": 19,
+            "sclk_pin": 18,
+            "cs_pin": 5
+          },
+          "execution": {},
+          "visual": {
+            "x": 1920.0,
+            "y": 80.0,
+            "layer": 6
+          }
+        },
+        {
+          "id": "uart_device",
+          "node_type": "uart_device",
+          "label": "8. UART Device",
+          "description": "Represents a UART peripheral with mapped serial pins.",
+          "ports": [
+            {
+              "id": "uart_device::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "uart_device::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "pin_bindings": {
+              "tx": "cfg->gpio_tx",
+              "rx": "cfg->gpio_rx"
+            },
+            "editable_fields": [
+              "pin"
+            ]
+          },
+          "execution": {},
+          "visual": {
+            "x": 2240.0,
+            "y": 80.0,
+            "layer": 7
+          }
+        },
+        {
+          "id": "wifi",
+          "node_type": "wifi_manager",
+          "label": "9. WiFi",
+          "description": "Manages Wi-Fi connectivity and network state.",
+          "ports": [
+            {
+              "id": "wifi::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "wifi::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "mode": "station"
+          },
+          "execution": {},
+          "visual": {
+            "x": 2560.0,
+            "y": 80.0,
+            "layer": 8
+          }
+        },
+        {
+          "id": "storage_manager",
+          "node_type": "storage_manager",
+          "label": "10. Storage Manager",
+          "description": "Persists runtime state and configuration data.",
+          "ports": [
+            {
+              "id": "storage_manager::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "storage_manager::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "backend": "nvs",
+            "namespace": "app"
+          },
+          "execution": {},
+          "visual": {
+            "x": 2880.0,
+            "y": 80.0,
+            "layer": 9
+          }
+        },
+        {
+          "id": "diagnostics",
+          "node_type": "diagnostics",
+          "label": "11. Diagnostics",
+          "description": "Collects firmware health and diagnostic telemetry.",
+          "ports": [
+            {
+              "id": "diagnostics::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "diagnostics::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "check_heap": true,
+            "check_stack": true
+          },
+          "execution": {},
+          "visual": {
+            "x": 3200.0,
+            "y": 80.0,
+            "layer": 10
+          }
+        },
+        {
+          "id": "mqtt",
+          "node_type": "mqtt_client",
+          "label": "12. MQTT",
+          "description": "Publishes and receives MQTT messages on `esp32/sensor`.",
+          "ports": [
+            {
+              "id": "mqtt::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "mqtt::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "broker_url": "mqtt://192.168.1.10:1883",
+            "topic": "esp32/sensor",
+            "qos": 0
+          },
+          "execution": {},
+          "visual": {
+            "x": 3520.0,
+            "y": 80.0,
+            "layer": 11
+          }
+        },
+        {
+          "id": "event_handler",
+          "node_type": "event_handler",
+          "label": "13. Event Handler",
+          "description": "Queues and dispatches asynchronous firmware events.",
+          "ports": [
+            {
+              "id": "event_handler::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "event_handler::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "event_base": "ESP_EVENT_ANY_BASE",
+            "event_id": -1
+          },
+          "execution": {},
+          "visual": {
+            "x": 3840.0,
+            "y": 80.0,
+            "layer": 12
+          }
+        },
+        {
+          "id": "adc_reader",
+          "node_type": "adc_reader",
+          "label": "14. ADC Reader",
+          "description": "Reads analog values from configured ADC input channels.",
+          "ports": [
+            {
+              "id": "adc_reader::in",
+              "name": "in",
+              "direction": "input",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            },
+            {
+              "id": "adc_reader::out",
+              "name": "out",
+              "direction": "output",
+              "datatype": "any",
+              "required": false,
+              "multiplicity": "one"
+            }
+          ],
+          "properties": {
+            "attenuation": "11db",
+            "sample_rate_hz": 100.0
+          },
+          "execution": {},
+          "visual": {
+            "x": 4160.0,
+            "y": 80.0,
+            "layer": 13
+          }
+        }
+      ],
+      "connections": [
+        [
+          "boot::out",
+          "Task_Vibration_Acquisition::in"
+        ],
+        [
+          "boot::out",
+          "Task_State_Machine::in"
+        ],
+        [
+          "boot::out",
+          "Task_Comms_Modbus_MQTT::in"
+        ],
+        [
+          "boot::out",
+          "logger::in"
+        ],
+        [
+          "boot::out",
+          "timer_node::in"
+        ],
+        [
+          "boot::out",
+          "spi_device::in"
+        ],
+        [
+          "boot::out",
+          "uart_device::in"
+        ],
+        [
+          "boot::out",
+          "wifi::in"
+        ],
+        [
+          "boot::out",
+          "storage_manager::in"
+        ],
+        [
+          "boot::out",
+          "diagnostics::in"
+        ],
+        [
+          "Task_Vibration_Acquisition::out",
+          "logger::in"
+        ],
+        [
+          "Task_Vibration_Acquisition::out",
+          "spi_device::in"
+        ],
+        [
+          "Task_Vibration_Acquisition::out",
+          "uart_device::in"
+        ],
+        [
+          "Task_Vibration_Acquisition::out",
+          "storage_manager::in"
+        ],
+        [
+          "Task_Vibration_Acquisition::out",
+          "mqtt::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::out",
+          "logger::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::out",
+          "timer_node::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::out",
+          "spi_device::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::out",
+          "uart_device::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::out",
+          "wifi::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::out",
+          "storage_manager::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::out",
+          "diagnostics::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::out",
+          "mqtt::in"
+        ],
+        [
+          "Task_Comms_Modbus_MQTT::out",
+          "event_handler::in"
+        ],
+        [
+          "timer_node::out",
+          "Task_Vibration_Acquisition::in"
+        ],
+        [
+          "timer_node::out",
+          "Task_State_Machine::in"
+        ],
+        [
+          "timer_node::out",
+          "Task_Comms_Modbus_MQTT::in"
+        ],
+        [
+          "timer_node::out",
+          "event_handler::in"
+        ],
+        [
+          "wifi::out",
+          "mqtt::in"
+        ],
+        [
+          "boot::out",
+          "adc_reader::in"
+        ]
+      ],
+      "layout": {
+        "orientation": "horizontal",
+        "node_width": 0.0,
+        "layer_gap": 0.0,
+        "node_gap": 0.0
+      }
+    }
+  },
+  "change_log": [],
+  "unresolved": [
+    {
+      "kind": "gpio_number_missing",
+      "file": "firmware/drivers/modbus_stack.c",
+      "line": 74,
+      "symbol": "cfg->gpio_de / cfg->gpio_tx / cfg->gpio_rx",
+      "hint": "UART TX/RX and RS485 DE GPIO numbers are provided via modbus_stack_cfg_t at runtime; search for where cfg is constructed (likely app_config.h or board_config.h)."
+    },
+    {
+      "kind": "llm_node_rejected",
+      "message": "Rejected refine node modbus_rs485_de (gpio_output) because it has no file-backed evidence",
+      "node_id": "modbus_rs485_de",
+      "node_type": "gpio_output",
+      "strict_evidence": true
+    },
+    {
+      "kind": "llm_edge_rejected",
+      "message": "Rejected refine edge edge_task_comms_to_rs485_de_init because source/target nodes are not evidence-backed",
+      "edge_id": "edge_task_comms_to_rs485_de_init",
+      "strict_evidence": true
+    }
+  ],
+  "graph_version": 3,
+  "generation": {
+    "mode": "hybrid_refine",
+    "model": "local_openai_proxy/gpt-5.2",
+    "triggered_by": "agent_turn",
+    "analyzed_at_ms": 1786263145402,
+    "input_files": [
+      "CMakeLists.txt",
+      "firmware/app/app.c",
+      "firmware/app/app.h",
+      "firmware/app/app_tasks.c",
+      "firmware/app/app_tasks.h",
+      "firmware/app/state_machine.c",
+      "firmware/app/state_machine.h",
+      "firmware/configs/app_config.h",
+      "firmware/configs/board_config.h",
+      "firmware/configs/build_config.h",
+      "firmware/configs/platform_config.h",
+      "firmware/drivers/adxl355.c",
+      "firmware/drivers/adxl355.h",
+      "firmware/drivers/inmp441.c",
+      "firmware/drivers/inmp441.h",
+      "firmware/drivers/modbus_stack.c",
+      "firmware/drivers/modbus_stack.h",
+      "firmware/drivers/status_led_ws2812.c",
+      "firmware/drivers/status_led_ws2812.h",
+      "firmware/drivers/thermal_adc.c",
+      "firmware/drivers/thermal_adc.h",
+      "firmware/dsp/vibration_metrics.c",
+      "firmware/dsp/vibration_metrics.h",
+      "firmware/net/mqtt_client_mgr.c",
+      "firmware/net/mqtt_client_mgr.h",
+      "firmware/net/wifi_prov_mgr.c",
+      "firmware/net/wifi_prov_mgr.h",
+      "firmware/utils/helpers/helpers.c",
+      "firmware/utils/helpers/helpers.h",
+      "firmware/utils/logger/logger.c",
+      "firmware/utils/logger/logger.h",
+      "firmware/utils/psram_alloc.c",
+      "firmware/utils/psram_alloc.h",
+      "firmware/utils/ringbuf_psram.c",
+      "firmware/utils/ringbuf_psram.h",
+      "main/CMakeLists.txt",
+      "main/entry.c",
+      "main/firmgen_sources.cmake",
+      "main/idf_component.yml",
+      "sdkconfig",
+      "sdkconfig.defaults"
+    ],
+    "token_usage": {
+      "prompt_tokens": 5417,
+      "completion_tokens": 1883
+    }
+  },
+  "sync_metadata": {
+    "project_file": "",
+    "content_hash": "",
+    "pending_patches": [],
+    "last_diff": {
+      "from_revision": "9d4d0b878a819615de4860dc8de2a7b4",
+      "to_revision": "66d596888e6273513ae935fb1b0aaa5a",
+      "nodes_added": [
+        "Task_Vibration_Acquisition",
+        "Task_State_Machine",
+        "Task_Comms_Modbus_MQTT",
+        "timer_node"
+      ],
+      "nodes_removed": [],
+      "nodes_changed": [
+        "mqtt",
+        "uart_device"
+      ],
+      "edges_added": [
+        "e_Task_Comms_Modbus_MQTT_mqtt_control",
+        "e_timer_node_Task_Vibration_Acquisition_trigger_in",
+        "e_Task_Vibration_Acquisition_spi_device_data_in",
+        "e_boot_Task_State_Machine",
+        "e_Task_Vibration_Acquisition_uart_device_data_in",
+        "e_Task_Vibration_Acquisition_adc_reader_exec_in",
+        "e_timer_node_Task_Comms_Modbus_MQTT_trigger_in",
+        "e_Task_Comms_Modbus_MQTT_logger_control",
+        "e_Task_Comms_Modbus_MQTT_storage_manager_control",
+        "e_timer_node_event_handler_event_in",
+        "e_Task_Comms_Modbus_MQTT_timer_node_control",
+        "e_Task_Comms_Modbus_MQTT_diagnostics_control",
+        "e_timer_node_Task_State_Machine_trigger_in",
+        "e_Task_Comms_Modbus_MQTT_adc_reader_control",
+        "e_Task_Comms_Modbus_MQTT_uart_device_control",
+        "e_Task_Comms_Modbus_MQTT_spi_device_control",
+        "e_boot_timer_node",
+        "e_boot_Task_Comms_Modbus_MQTT",
+        "e_Task_Vibration_Acquisition_mqtt_data_in",
+        "edge_task_comms_to_uart_device_init",
+        "e_Task_Vibration_Acquisition_storage_manager_data_in",
+        "e_boot_Task_Vibration_Acquisition",
+        "e_Task_Comms_Modbus_MQTT_event_handler_control",
+        "e_Task_Vibration_Acquisition_logger_data_in",
+        "e_Task_Comms_Modbus_MQTT_wifi_control"
+      ],
+      "edges_removed": [
+        "e_spi_device_storage_manager_data_in",
+        "e_spi_device_mqtt_data_in",
+        "e_spi_device_logger_data_in",
+        "e_event_handler_adc_reader_exec_in",
+        "edge_wifi_to_event_handler",
+        "edge_wifi_to_mqtt",
+        "edge_wifi_to_storage_manager",
+        "e_uart_device_spi_device_data_in",
+        "e_spi_device_event_handler_event_in",
+        "e_spi_device_uart_device_data_in"
+      ]
+    }
+  },
+  "validation_state": {
+    "valid": true,
+    "error_count": 0,
+    "warning_count": 1,
+    "validated_at_ms": 1786263145402
+  }
+}

@@ -1,0 +1,732 @@
+{
+  "schema_version": "1.0.0",
+  "view": "wiring",
+  "revision": "66d596888e6273513ae935fb1b0aaa5a",
+  "graph_version": 3,
+  "generated_at_ms": 1786263145404,
+  "graph": {
+    "schema_version": 1,
+    "id": "pir_mech_sentinel_pm",
+    "name": "mech_sentinel_pm topology",
+    "description": "Resolved Modbus RS485 DE GPIO configuration and clarified UART pin bindings.",
+    "nodes": [
+      {
+        "id": "boot",
+        "node_type": "system_init",
+        "label": "Boot / app_main",
+        "description": "Bootstraps firmware startup and initializes core subsystems.",
+        "ports": [
+          {
+            "id": "boot_boot_out_0",
+            "name": "boot_out",
+            "direction": "output",
+            "datatype": "execution",
+            "required": true,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "target": "esp32s3"
+        },
+        "execution": {},
+        "visual": {
+          "x": 0.0,
+          "y": -500.0,
+          "layer": 0
+        }
+      },
+      {
+        "id": "Task_Vibration_Acquisition",
+        "node_type": "rtos_task",
+        "label": "Task Task_Vibration_Acquisition",
+        "description": "Executes RTOS loop logic for Task_Vibration_Acquisition.",
+        "ports": [
+          {
+            "id": "Task_Vibration_Acquisition_exec_in_0",
+            "name": "exec_in",
+            "direction": "input",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "Task_Vibration_Acquisition_trigger_in_1",
+            "name": "trigger_in",
+            "direction": "input",
+            "datatype": "event",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "Task_Vibration_Acquisition_exec_out_2",
+            "name": "exec_out",
+            "direction": "output",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "Task_Vibration_Acquisition_data_out_3",
+            "name": "data_out",
+            "direction": "output",
+            "datatype": "signal",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "task_name": "Task_Vibration_Acquisition",
+          "priority": 5,
+          "stack_size": 8192,
+          "period_ms": 0.0
+        },
+        "execution": {
+          "priority": 5,
+          "stack_size": 8192,
+          "period_ms": 0.0
+        },
+        "visual": {
+          "x": 0.0,
+          "y": -300.0,
+          "layer": 0
+        }
+      },
+      {
+        "id": "Task_State_Machine",
+        "node_type": "rtos_task",
+        "label": "Task Task_State_Machine",
+        "description": "Executes RTOS loop logic for Task_State_Machine.",
+        "ports": [
+          {
+            "id": "Task_State_Machine_exec_in_0",
+            "name": "exec_in",
+            "direction": "input",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "Task_State_Machine_trigger_in_1",
+            "name": "trigger_in",
+            "direction": "input",
+            "datatype": "event",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "Task_State_Machine_exec_out_2",
+            "name": "exec_out",
+            "direction": "output",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "Task_State_Machine_data_out_3",
+            "name": "data_out",
+            "direction": "output",
+            "datatype": "signal",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "task_name": "Task_State_Machine",
+          "priority": 5,
+          "stack_size": 6144,
+          "period_ms": 0.0
+        },
+        "execution": {
+          "priority": 5,
+          "stack_size": 6144,
+          "period_ms": 0.0
+        },
+        "visual": {
+          "x": 0.0,
+          "y": -100.0,
+          "layer": 0
+        }
+      },
+      {
+        "id": "Task_Comms_Modbus_MQTT",
+        "node_type": "rtos_task",
+        "label": "Task Task_Comms_Modbus_MQTT",
+        "description": "Executes RTOS loop logic for Task_Comms_Modbus_MQTT.",
+        "ports": [
+          {
+            "id": "Task_Comms_Modbus_MQTT_exec_in_0",
+            "name": "exec_in",
+            "direction": "input",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "Task_Comms_Modbus_MQTT_trigger_in_1",
+            "name": "trigger_in",
+            "direction": "input",
+            "datatype": "event",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "Task_Comms_Modbus_MQTT_exec_out_2",
+            "name": "exec_out",
+            "direction": "output",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "Task_Comms_Modbus_MQTT_data_out_3",
+            "name": "data_out",
+            "direction": "output",
+            "datatype": "signal",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "task_name": "Task_Comms_Modbus_MQTT",
+          "priority": 5,
+          "stack_size": 6144,
+          "period_ms": 0.0
+        },
+        "execution": {
+          "priority": 5,
+          "stack_size": 6144,
+          "period_ms": 0.0
+        },
+        "visual": {
+          "x": 0.0,
+          "y": 100.0,
+          "layer": 0
+        }
+      },
+      {
+        "id": "logger",
+        "node_type": "logger",
+        "label": "Logger",
+        "description": "Emits structured runtime logs for diagnostics.",
+        "ports": [
+          {
+            "id": "logger_data_in_0",
+            "name": "data_in",
+            "direction": "input",
+            "datatype": "signal",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "logger_exec_in_1",
+            "name": "exec_in",
+            "direction": "input",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "tag": "APP",
+          "level": "info"
+        },
+        "execution": {},
+        "visual": {
+          "x": 0.0,
+          "y": 300.0,
+          "layer": 0
+        }
+      },
+      {
+        "id": "mqtt",
+        "node_type": "mqtt_client",
+        "label": "MQTT",
+        "description": "Publishes and receives MQTT messages on `esp32/sensor`.",
+        "ports": [
+          {
+            "id": "mqtt_network_in_0",
+            "name": "network_in",
+            "direction": "input",
+            "datatype": "network",
+            "required": true,
+            "multiplicity": "one"
+          },
+          {
+            "id": "mqtt_data_in_1",
+            "name": "data_in",
+            "direction": "input",
+            "datatype": "payload",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "mqtt_publish_out_2",
+            "name": "publish_out",
+            "direction": "output",
+            "datatype": "mqtt_message",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "broker_url": "mqtt://192.168.1.10:1883",
+          "topic": "esp32/sensor",
+          "qos": 0
+        },
+        "execution": {},
+        "visual": {
+          "x": 0.0,
+          "y": -400.0,
+          "layer": 1
+        }
+      },
+      {
+        "id": "adc_reader",
+        "node_type": "adc_reader",
+        "label": "ADC Reader",
+        "description": "Reads analog values from configured ADC input channels.",
+        "ports": [
+          {
+            "id": "adc_reader_exec_in_0",
+            "name": "exec_in",
+            "direction": "input",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "adc_reader_data_out_1",
+            "name": "data_out",
+            "direction": "output",
+            "datatype": "signal",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "attenuation": "11db",
+          "sample_rate_hz": 100.0
+        },
+        "execution": {},
+        "visual": {
+          "x": 0.0,
+          "y": -200.0,
+          "layer": 1
+        }
+      },
+      {
+        "id": "timer_node",
+        "node_type": "timer_node",
+        "label": "Timer",
+        "description": "Schedules periodic callbacks for time-based workflow.",
+        "ports": [
+          {
+            "id": "timer_node_exec_in_0",
+            "name": "exec_in",
+            "direction": "input",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "timer_node_event_out_1",
+            "name": "event_out",
+            "direction": "output",
+            "datatype": "event",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "timer_name": "periodic_timer",
+          "period_ms": 1000.0,
+          "auto_reload": true
+        },
+        "execution": {
+          "period_ms": 1000.0
+        },
+        "visual": {
+          "x": 0.0,
+          "y": 0.0,
+          "layer": 1
+        }
+      },
+      {
+        "id": "spi_device",
+        "node_type": "spi_device",
+        "label": "SPI Device",
+        "description": "Represents an SPI peripheral with mapped bus pins.",
+        "ports": [
+          {
+            "id": "spi_device_exec_in_0",
+            "name": "exec_in",
+            "direction": "input",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "spi_device_data_in_1",
+            "name": "data_in",
+            "direction": "input",
+            "datatype": "signal",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "spi_device_data_out_2",
+            "name": "data_out",
+            "direction": "output",
+            "datatype": "signal",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "host": "SPI2_HOST",
+          "mosi_pin": 23,
+          "miso_pin": 19,
+          "sclk_pin": 18,
+          "cs_pin": 5
+        },
+        "execution": {},
+        "visual": {
+          "x": 0.0,
+          "y": 200.0,
+          "layer": 1
+        }
+      },
+      {
+        "id": "uart_device",
+        "node_type": "uart_device",
+        "label": "UART Device",
+        "description": "Represents a UART peripheral with mapped serial pins.",
+        "ports": [
+          {
+            "id": "uart_device_exec_in_0",
+            "name": "exec_in",
+            "direction": "input",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "uart_device_data_in_1",
+            "name": "data_in",
+            "direction": "input",
+            "datatype": "signal",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "uart_device_data_out_2",
+            "name": "data_out",
+            "direction": "output",
+            "datatype": "signal",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "pin_bindings": {
+            "tx": "cfg->gpio_tx",
+            "rx": "cfg->gpio_rx"
+          },
+          "editable_fields": [
+            "pin"
+          ]
+        },
+        "execution": {},
+        "visual": {
+          "x": 0.0,
+          "y": -400.0,
+          "layer": 2
+        }
+      },
+      {
+        "id": "event_handler",
+        "node_type": "event_handler",
+        "label": "Event Handler",
+        "description": "Queues and dispatches asynchronous firmware events.",
+        "ports": [
+          {
+            "id": "event_handler_event_in_0",
+            "name": "event_in",
+            "direction": "input",
+            "datatype": "event",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "event_handler_event_out_1",
+            "name": "event_out",
+            "direction": "output",
+            "datatype": "event",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "event_handler_exec_out_2",
+            "name": "exec_out",
+            "direction": "output",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "event_base": "ESP_EVENT_ANY_BASE",
+          "event_id": -1
+        },
+        "execution": {},
+        "visual": {
+          "x": 0.0,
+          "y": -200.0,
+          "layer": 2
+        }
+      },
+      {
+        "id": "wifi",
+        "node_type": "wifi_manager",
+        "label": "WiFi",
+        "description": "Manages Wi-Fi connectivity and network state.",
+        "ports": [
+          {
+            "id": "wifi_exec_in_0",
+            "name": "exec_in",
+            "direction": "input",
+            "datatype": "execution",
+            "required": true,
+            "multiplicity": "one"
+          },
+          {
+            "id": "wifi_network_out_1",
+            "name": "network_out",
+            "direction": "output",
+            "datatype": "network",
+            "required": true,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "mode": "station"
+        },
+        "execution": {},
+        "visual": {
+          "x": 0.0,
+          "y": 0.0,
+          "layer": 2
+        }
+      },
+      {
+        "id": "storage_manager",
+        "node_type": "storage_manager",
+        "label": "Storage Manager",
+        "description": "Persists runtime state and configuration data.",
+        "ports": [
+          {
+            "id": "storage_manager_exec_in_0",
+            "name": "exec_in",
+            "direction": "input",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "storage_manager_data_in_1",
+            "name": "data_in",
+            "direction": "input",
+            "datatype": "signal",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "storage_manager_data_out_2",
+            "name": "data_out",
+            "direction": "output",
+            "datatype": "signal",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "backend": "nvs",
+          "namespace": "app"
+        },
+        "execution": {},
+        "visual": {
+          "x": 0.0,
+          "y": 200.0,
+          "layer": 2
+        }
+      },
+      {
+        "id": "diagnostics",
+        "node_type": "diagnostics",
+        "label": "Diagnostics",
+        "description": "Collects firmware health and diagnostic telemetry.",
+        "ports": [
+          {
+            "id": "diagnostics_exec_in_0",
+            "name": "exec_in",
+            "direction": "input",
+            "datatype": "execution",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "diagnostics_data_out_1",
+            "name": "data_out",
+            "direction": "output",
+            "datatype": "signal",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "check_heap": true,
+          "check_stack": true
+        },
+        "execution": {},
+        "visual": {
+          "x": 0.0,
+          "y": -100.0,
+          "layer": 3
+        }
+      }
+    ],
+    "connections": [
+      [
+        "boot_boot_out_0",
+        "Task_Vibration_Acquisition_exec_in_0"
+      ],
+      [
+        "boot_boot_out_0",
+        "Task_State_Machine_exec_in_0"
+      ],
+      [
+        "boot_boot_out_0",
+        "Task_Comms_Modbus_MQTT_exec_in_0"
+      ],
+      [
+        "boot_boot_out_0",
+        "logger_exec_in_1"
+      ],
+      [
+        "boot_boot_out_0",
+        "timer_node_exec_in_0"
+      ],
+      [
+        "boot_boot_out_0",
+        "spi_device_exec_in_0"
+      ],
+      [
+        "boot_boot_out_0",
+        "uart_device_exec_in_0"
+      ],
+      [
+        "boot_boot_out_0",
+        "wifi_exec_in_0"
+      ],
+      [
+        "boot_boot_out_0",
+        "storage_manager_exec_in_0"
+      ],
+      [
+        "boot_boot_out_0",
+        "diagnostics_exec_in_0"
+      ],
+      [
+        "timer_node_event_out_1",
+        "Task_Vibration_Acquisition_trigger_in_1"
+      ],
+      [
+        "timer_node_event_out_1",
+        "Task_State_Machine_trigger_in_1"
+      ],
+      [
+        "timer_node_event_out_1",
+        "Task_Comms_Modbus_MQTT_trigger_in_1"
+      ],
+      [
+        "Task_Vibration_Acquisition_data_out_3",
+        "logger_data_in_0"
+      ],
+      [
+        "wifi_network_out_1",
+        "mqtt_network_in_0"
+      ],
+      [
+        "Task_Vibration_Acquisition_data_out_3",
+        "mqtt_data_in_1"
+      ],
+      [
+        "Task_Vibration_Acquisition_exec_out_2",
+        "adc_reader_exec_in_0"
+      ],
+      [
+        "Task_Vibration_Acquisition_data_out_3",
+        "spi_device_data_in_1"
+      ],
+      [
+        "Task_Vibration_Acquisition_data_out_3",
+        "uart_device_data_in_1"
+      ],
+      [
+        "timer_node_event_out_1",
+        "event_handler_event_in_0"
+      ],
+      [
+        "Task_Vibration_Acquisition_data_out_3",
+        "storage_manager_data_in_1"
+      ],
+      [
+        "Task_Comms_Modbus_MQTT_exec_out_2",
+        "logger_exec_in_1"
+      ],
+      [
+        "Task_Comms_Modbus_MQTT_exec_out_2",
+        "mqtt_data_in_1"
+      ],
+      [
+        "Task_Comms_Modbus_MQTT_exec_out_2",
+        "adc_reader_exec_in_0"
+      ],
+      [
+        "Task_Comms_Modbus_MQTT_exec_out_2",
+        "timer_node_exec_in_0"
+      ],
+      [
+        "Task_Comms_Modbus_MQTT_exec_out_2",
+        "spi_device_exec_in_0"
+      ],
+      [
+        "Task_Comms_Modbus_MQTT_exec_out_2",
+        "uart_device_exec_in_0"
+      ],
+      [
+        "Task_Comms_Modbus_MQTT_exec_out_2",
+        "event_handler_event_in_0"
+      ],
+      [
+        "Task_Comms_Modbus_MQTT_exec_out_2",
+        "wifi_exec_in_0"
+      ],
+      [
+        "Task_Comms_Modbus_MQTT_exec_out_2",
+        "storage_manager_exec_in_0"
+      ],
+      [
+        "Task_Comms_Modbus_MQTT_exec_out_2",
+        "diagnostics_exec_in_0"
+      ]
+    ],
+    "layout": {
+      "orientation": "",
+      "node_width": 0.0,
+      "layer_gap": 0.0,
+      "node_gap": 0.0
+    }
+  },
+  "title": "Wiring Topology"
+}

@@ -1,0 +1,523 @@
+{
+  "schema_version": "1.0.0",
+  "view": "hld",
+  "revision": "66d596888e6273513ae935fb1b0aaa5a",
+  "graph_version": 3,
+  "generated_at_ms": 1786263145405,
+  "graph": {
+    "schema_version": 1,
+    "id": "pir_mech_sentinel_pm-hld",
+    "name": "mech_sentinel_pm topology — HLD",
+    "description": "High-level architecture — ESP32 controller, firmware modules, and integrations",
+    "nodes": [
+      {
+        "id": "hld_user",
+        "node_type": "user_actor",
+        "label": "Mobile App / Web Dashboard",
+        "description": "External user interface for monitoring data and sending configuration.",
+        "ports": [
+          {
+            "id": "hld_user::hld::in",
+            "name": "assoc_in",
+            "direction": "input",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "hld_user::hld::out",
+            "name": "assoc_out",
+            "direction": "output",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "hld_role": "user"
+        },
+        "visual": {
+          "x": 0.0,
+          "y": -496.0,
+          "layer": 0
+        }
+      },
+      {
+        "id": "hld_cloud",
+        "node_type": "cloud_service",
+        "label": "MQTT Broker / Cloud Service",
+        "description": "External cloud endpoint for command/control and telemetry exchange.",
+        "ports": [
+          {
+            "id": "hld_cloud::hld::in",
+            "name": "assoc_in",
+            "direction": "input",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "hld_cloud::hld::out",
+            "name": "assoc_out",
+            "direction": "output",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "hld_role": "cloud"
+        },
+        "visual": {
+          "x": 0.0,
+          "y": -232.0,
+          "layer": 0
+        }
+      },
+      {
+        "id": "hld_esp32",
+        "node_type": "system_init",
+        "label": "ESP32 Main Controller",
+        "description": "Main firmware control node coordinating peripherals, storage, and connectivity.",
+        "ports": [
+          {
+            "id": "hld_esp32::hld::in",
+            "name": "assoc_in",
+            "direction": "input",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "hld_esp32::hld::out",
+            "name": "assoc_out",
+            "direction": "output",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "hld_role": "controller"
+        },
+        "visual": {
+          "x": 0.0,
+          "y": 32.0,
+          "layer": 0
+        }
+      },
+      {
+        "id": "hld_adc_reader",
+        "node_type": "adc_reader",
+        "label": "ADC Reader",
+        "description": "Reads analog values from configured ADC input channels.",
+        "ports": [
+          {
+            "id": "hld_adc_reader::hld::in",
+            "name": "assoc_in",
+            "direction": "input",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "hld_adc_reader::hld::out",
+            "name": "assoc_out",
+            "direction": "output",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "attenuation": "11db",
+          "sample_rate_hz": 100.0,
+          "hld_role": "peripheral",
+          "source_node_id": "adc_reader"
+        },
+        "execution": {},
+        "visual": {
+          "x": 0.0,
+          "y": 296.0,
+          "layer": 0
+        }
+      },
+      {
+        "id": "hld_spi_device",
+        "node_type": "spi_device",
+        "label": "SPI Device",
+        "description": "Represents an SPI peripheral with mapped bus pins.",
+        "ports": [
+          {
+            "id": "hld_spi_device::hld::in",
+            "name": "assoc_in",
+            "direction": "input",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "hld_spi_device::hld::out",
+            "name": "assoc_out",
+            "direction": "output",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "host": "SPI2_HOST",
+          "mosi_pin": 23,
+          "miso_pin": 19,
+          "sclk_pin": 18,
+          "cs_pin": 5,
+          "hld_role": "peripheral",
+          "source_node_id": "spi_device"
+        },
+        "execution": {},
+        "visual": {
+          "x": 430.0,
+          "y": -496.0,
+          "layer": 1
+        }
+      },
+      {
+        "id": "hld_uart_device",
+        "node_type": "uart_device",
+        "label": "UART Device",
+        "description": "Represents a UART peripheral with mapped serial pins.",
+        "ports": [
+          {
+            "id": "hld_uart_device::hld::in",
+            "name": "assoc_in",
+            "direction": "input",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "hld_uart_device::hld::out",
+            "name": "assoc_out",
+            "direction": "output",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "pin_bindings": {
+            "tx": "cfg->gpio_tx",
+            "rx": "cfg->gpio_rx"
+          },
+          "editable_fields": [
+            "pin"
+          ],
+          "hld_role": "peripheral",
+          "source_node_id": "uart_device"
+        },
+        "execution": {},
+        "visual": {
+          "x": 430.0,
+          "y": -232.0,
+          "layer": 1
+        }
+      },
+      {
+        "id": "hld_storage_manager",
+        "node_type": "storage_manager",
+        "label": "Storage Manager",
+        "description": "Persists runtime state and configuration data.",
+        "ports": [
+          {
+            "id": "hld_storage_manager::hld::in",
+            "name": "assoc_in",
+            "direction": "input",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "hld_storage_manager::hld::out",
+            "name": "assoc_out",
+            "direction": "output",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "backend": "nvs",
+          "namespace": "app",
+          "hld_role": "storage",
+          "source_node_id": "storage_manager"
+        },
+        "execution": {},
+        "visual": {
+          "x": 430.0,
+          "y": 32.0,
+          "layer": 1
+        }
+      },
+      {
+        "id": "hld_wifi",
+        "node_type": "wifi_manager",
+        "label": "WiFi",
+        "description": "Manages Wi-Fi connectivity and network state.",
+        "ports": [
+          {
+            "id": "hld_wifi::hld::in",
+            "name": "assoc_in",
+            "direction": "input",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "hld_wifi::hld::out",
+            "name": "assoc_out",
+            "direction": "output",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "mode": "station",
+          "hld_role": "connectivity",
+          "source_node_id": "wifi"
+        },
+        "execution": {},
+        "visual": {
+          "x": 430.0,
+          "y": 296.0,
+          "layer": 1
+        }
+      },
+      {
+        "id": "hld_Task_Comms_Modbus_MQTT",
+        "node_type": "rtos_task",
+        "label": "Task Task_Comms_Modbus_MQTT",
+        "description": "Executes RTOS loop logic for Task_Comms_Modbus_MQTT.",
+        "ports": [
+          {
+            "id": "hld_Task_Comms_Modbus_MQTT::hld::in",
+            "name": "assoc_in",
+            "direction": "input",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "hld_Task_Comms_Modbus_MQTT::hld::out",
+            "name": "assoc_out",
+            "direction": "output",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "task_name": "Task_Comms_Modbus_MQTT",
+          "priority": 5,
+          "stack_size": 6144,
+          "period_ms": 0.0,
+          "hld_role": "runtime",
+          "source_node_id": "Task_Comms_Modbus_MQTT"
+        },
+        "execution": {
+          "priority": 5,
+          "stack_size": 6144,
+          "period_ms": 0.0
+        },
+        "visual": {
+          "x": 860.0,
+          "y": -364.0,
+          "layer": 2
+        }
+      },
+      {
+        "id": "hld_Task_State_Machine",
+        "node_type": "rtos_task",
+        "label": "Task Task_State_Machine",
+        "description": "Executes RTOS loop logic for Task_State_Machine.",
+        "ports": [
+          {
+            "id": "hld_Task_State_Machine::hld::in",
+            "name": "assoc_in",
+            "direction": "input",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "hld_Task_State_Machine::hld::out",
+            "name": "assoc_out",
+            "direction": "output",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "task_name": "Task_State_Machine",
+          "priority": 5,
+          "stack_size": 6144,
+          "period_ms": 0.0,
+          "hld_role": "runtime",
+          "source_node_id": "Task_State_Machine"
+        },
+        "execution": {
+          "priority": 5,
+          "stack_size": 6144,
+          "period_ms": 0.0
+        },
+        "visual": {
+          "x": 860.0,
+          "y": -100.0,
+          "layer": 2
+        }
+      },
+      {
+        "id": "hld_internet",
+        "node_type": "internet",
+        "label": "Internet",
+        "description": "External network backbone used for cloud transport.",
+        "ports": [
+          {
+            "id": "hld_internet::hld::in",
+            "name": "assoc_in",
+            "direction": "input",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          },
+          {
+            "id": "hld_internet::hld::out",
+            "name": "assoc_out",
+            "direction": "output",
+            "datatype": "association",
+            "required": false,
+            "multiplicity": "one"
+          }
+        ],
+        "properties": {
+          "hld_role": "internet"
+        },
+        "visual": {
+          "x": 860.0,
+          "y": 164.0,
+          "layer": 2
+        }
+      }
+    ],
+    "connections": [
+      [
+        "hld_user::hld::out",
+        "hld_cloud::hld::in"
+      ],
+      [
+        "hld_cloud::hld::out",
+        "hld_user::hld::in"
+      ],
+      [
+        "hld_cloud::hld::out",
+        "hld_esp32::hld::in"
+      ],
+      [
+        "hld_esp32::hld::out",
+        "hld_cloud::hld::in"
+      ],
+      [
+        "hld_esp32::hld::out",
+        "hld_adc_reader::hld::in"
+      ],
+      [
+        "hld_esp32::hld::out",
+        "hld_spi_device::hld::in"
+      ],
+      [
+        "hld_esp32::hld::out",
+        "hld_uart_device::hld::in"
+      ],
+      [
+        "hld_esp32::hld::out",
+        "hld_storage_manager::hld::in"
+      ],
+      [
+        "hld_esp32::hld::out",
+        "hld_wifi::hld::in"
+      ],
+      [
+        "hld_esp32::hld::out",
+        "hld_Task_Comms_Modbus_MQTT::hld::in"
+      ],
+      [
+        "hld_esp32::hld::out",
+        "hld_Task_State_Machine::hld::in"
+      ],
+      [
+        "hld_Task_Comms_Modbus_MQTT::hld::out",
+        "hld_adc_reader::hld::in"
+      ],
+      [
+        "hld_Task_Comms_Modbus_MQTT::hld::out",
+        "hld_spi_device::hld::in"
+      ],
+      [
+        "hld_Task_Comms_Modbus_MQTT::hld::out",
+        "hld_storage_manager::hld::in"
+      ],
+      [
+        "hld_Task_Comms_Modbus_MQTT::hld::out",
+        "hld_uart_device::hld::in"
+      ],
+      [
+        "hld_Task_Comms_Modbus_MQTT::hld::out",
+        "hld_wifi::hld::in"
+      ],
+      [
+        "hld_wifi::hld::out",
+        "hld_internet::hld::in"
+      ],
+      [
+        "hld_cloud::hld::out",
+        "hld_internet::hld::in"
+      ]
+    ],
+    "layout": {
+      "orientation": "horizontal",
+      "node_width": 280.0,
+      "layer_gap": 150.0,
+      "node_gap": 64.0
+    },
+    "runtime_metadata": {
+      "telemetry_enabled": false,
+      "overlays": {
+        "hld_edge_labels": {
+          "hld_user::hld::out|hld_cloud::hld::in": "View Data / Configure",
+          "hld_cloud::hld::out|hld_user::hld::in": "View Data / Configure",
+          "hld_cloud::hld::out|hld_esp32::hld::in": "MQTT Messages",
+          "hld_esp32::hld::out|hld_cloud::hld::in": "MQTT Messages",
+          "hld_esp32::hld::out|hld_adc_reader::hld::in": "Sensor Data",
+          "hld_esp32::hld::out|hld_spi_device::hld::in": "Peripheral I/O",
+          "hld_esp32::hld::out|hld_uart_device::hld::in": "Peripheral I/O",
+          "hld_esp32::hld::out|hld_storage_manager::hld::in": "Read / Write Config",
+          "hld_esp32::hld::out|hld_wifi::hld::in": "Network Management",
+          "hld_esp32::hld::out|hld_Task_Comms_Modbus_MQTT::hld::in": "Firmware Logic",
+          "hld_esp32::hld::out|hld_Task_State_Machine::hld::in": "Firmware Logic",
+          "hld_Task_Comms_Modbus_MQTT::hld::out|hld_adc_reader::hld::in": "Control ADC Reader",
+          "hld_Task_Comms_Modbus_MQTT::hld::out|hld_spi_device::hld::in": "Control SPI Device",
+          "hld_Task_Comms_Modbus_MQTT::hld::out|hld_storage_manager::hld::in": "Control Storage Manager",
+          "hld_Task_Comms_Modbus_MQTT::hld::out|hld_uart_device::hld::in": "Control UART Device",
+          "hld_Task_Comms_Modbus_MQTT::hld::out|hld_wifi::hld::in": "Control WiFi",
+          "hld_wifi::hld::out|hld_internet::hld::in": "Internet Access",
+          "hld_cloud::hld::out|hld_internet::hld::in": "Cloud Route"
+        },
+        "diagram_view": "hld",
+        "hld_projection": "architecture"
+      }
+    }
+  },
+  "mermaid": "graph TD\n    hld_user[\"Mobile App / Web Dashboard\"]\n    hld_cloud[\"MQTT Broker / Cloud Service\"]\n    hld_esp32[\"ESP32 Main Controller\"]\n    hld_adc_reader[\"ADC Reader\"]\n    hld_spi_device[\"SPI Device\"]\n    hld_uart_device[\"UART Device\"]\n    hld_storage_manager[\"Storage Manager\"]\n    hld_wifi[\"WiFi\"]\n    hld_Task_Comms_Modbus_MQTT[\"Task Task_Comms_Modbus_MQTT\"]\n    hld_Task_State_Machine[\"Task Task_State_Machine\"]\n    hld_internet[(Internet)]\n    hld_user <-->|View Data / Configure| hld_cloud\n    hld_cloud <-->|MQTT Messages| hld_esp32\n    hld_esp32 -->|Sensor Data| hld_adc_reader\n    hld_esp32 -->|Peripheral I/O| hld_spi_device\n    hld_esp32 -->|Peripheral I/O| hld_uart_device\n    hld_esp32 -->|Read / Write Config| hld_storage_manager\n    hld_esp32 -->|Network Management| hld_wifi\n    hld_esp32 -->|Firmware Logic| hld_Task_Comms_Modbus_MQTT\n    hld_esp32 -->|Firmware Logic| hld_Task_State_Machine\n    hld_Task_Comms_Modbus_MQTT -->|Control ADC Reader| hld_adc_reader\n    hld_Task_Comms_Modbus_MQTT -->|Control SPI Device| hld_spi_device\n    hld_Task_Comms_Modbus_MQTT -->|Control Storage Manager| hld_storage_manager\n    hld_Task_Comms_Modbus_MQTT -->|Control UART Device| hld_uart_device\n    hld_Task_Comms_Modbus_MQTT -->|Control WiFi| hld_wifi\n    hld_Task_Comms_Modbus_MQTT -->|Invoke UART Device| hld_uart_device\n    hld_wifi -->|Internet Access| hld_internet\n    hld_cloud -->|Cloud Route| hld_internet",
+  "title": "Mech Sentinel PM - High Level Architecture"
+}
