@@ -174,13 +174,16 @@ Generate full C code including:
 
 ### 1. Strategic Prompt Planning & Task List
 FirmGen automatically decomposed the master prompt into 17 execution steps, managing dependencies, pin assertions, and driver abstractions[cite: 2].
-* **Planning Phase:** ![Planning Phase](assets/FirmGenPlanning.jpg)
-* **Generated Execution Plan:** ![Generated Execution Plan](assets/FirmGenTaskList.jpg)
+* **Planning Phase:** <img width="1508" height="726" alt="FirmGenPlanning" src="https://github.com/user-attachments/assets/82cf08cb-3100-4523-a29b-8b68a54aa403" />
+
+* **Generated Execution Plan:** <img width="664" height="724" alt="FirmGenTaskList" src="https://github.com/user-attachments/assets/2f4cdccf-3863-4752-a932-4018fec3fd27" />
+
 
 ### 2. Generated Firmware Topology & High-Level Architecture (HLD)
 FirmGen synthesized a 14-node, 31-connection interactive firmware topology map establishing data bindings between physical pins, DMA channels, FreeRTOS tasks, and cloud/SCADA endpoints[cite: 2].
-* **High-Level Architecture (HLD):** ![High-Level Architecture](assets/FirmGenHLD.jpg)
-* **Wiring Topology Graph:** ![Wiring Topology Graph](assets/FirmGenFirmwareTree.jpg)
+* **High-Level Architecture (HLD):** <img width="1493" height="818" alt="FirmGenHLD" src="https://github.com/user-attachments/assets/4b8570db-238b-4ebc-983e-f75d350e8e4c" />
+* **Wiring Topology Graph:** <img width="1478" height="814" alt="FirmGenFirmwareTree" src="https://github.com/user-attachments/assets/d9fe6b58-a969-4999-8480-a3ba6ea12493" />
+
 
 ---
 
