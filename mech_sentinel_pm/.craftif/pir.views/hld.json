@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0.0",
   "view": "hld",
-  "revision": "66d596888e6273513ae935fb1b0aaa5a",
-  "graph_version": 3,
-  "generated_at_ms": 1786263145405,
+  "revision": "261e30a55eb08081bcfa50dfe6421151",
+  "graph_version": 4,
+  "generated_at_ms": 1786463314352,
   "graph": {
     "schema_version": 1,
     "id": "pir_mech_sentinel_pm-hld",
@@ -457,6 +457,10 @@
       ],
       [
         "hld_Task_Comms_Modbus_MQTT::hld::out",
+        "hld_uart_device::hld::in"
+      ],
+      [
+        "hld_Task_Comms_Modbus_MQTT::hld::out",
         "hld_adc_reader::hld::in"
       ],
       [
@@ -466,10 +470,6 @@
       [
         "hld_Task_Comms_Modbus_MQTT::hld::out",
         "hld_storage_manager::hld::in"
-      ],
-      [
-        "hld_Task_Comms_Modbus_MQTT::hld::out",
-        "hld_uart_device::hld::in"
       ],
       [
         "hld_Task_Comms_Modbus_MQTT::hld::out",
@@ -505,19 +505,19 @@
           "hld_esp32::hld::out|hld_wifi::hld::in": "Network Management",
           "hld_esp32::hld::out|hld_Task_Comms_Modbus_MQTT::hld::in": "Firmware Logic",
           "hld_esp32::hld::out|hld_Task_State_Machine::hld::in": "Firmware Logic",
+          "hld_Task_Comms_Modbus_MQTT::hld::out|hld_uart_device::hld::in": "Invoke UART Device",
           "hld_Task_Comms_Modbus_MQTT::hld::out|hld_adc_reader::hld::in": "Control ADC Reader",
           "hld_Task_Comms_Modbus_MQTT::hld::out|hld_spi_device::hld::in": "Control SPI Device",
           "hld_Task_Comms_Modbus_MQTT::hld::out|hld_storage_manager::hld::in": "Control Storage Manager",
-          "hld_Task_Comms_Modbus_MQTT::hld::out|hld_uart_device::hld::in": "Control UART Device",
           "hld_Task_Comms_Modbus_MQTT::hld::out|hld_wifi::hld::in": "Control WiFi",
           "hld_wifi::hld::out|hld_internet::hld::in": "Internet Access",
           "hld_cloud::hld::out|hld_internet::hld::in": "Cloud Route"
         },
-        "diagram_view": "hld",
-        "hld_projection": "architecture"
+        "hld_projection": "architecture",
+        "diagram_view": "hld"
       }
     }
   },
-  "mermaid": "graph TD\n    hld_user[\"Mobile App / Web Dashboard\"]\n    hld_cloud[\"MQTT Broker / Cloud Service\"]\n    hld_esp32[\"ESP32 Main Controller\"]\n    hld_adc_reader[\"ADC Reader\"]\n    hld_spi_device[\"SPI Device\"]\n    hld_uart_device[\"UART Device\"]\n    hld_storage_manager[\"Storage Manager\"]\n    hld_wifi[\"WiFi\"]\n    hld_Task_Comms_Modbus_MQTT[\"Task Task_Comms_Modbus_MQTT\"]\n    hld_Task_State_Machine[\"Task Task_State_Machine\"]\n    hld_internet[(Internet)]\n    hld_user <-->|View Data / Configure| hld_cloud\n    hld_cloud <-->|MQTT Messages| hld_esp32\n    hld_esp32 -->|Sensor Data| hld_adc_reader\n    hld_esp32 -->|Peripheral I/O| hld_spi_device\n    hld_esp32 -->|Peripheral I/O| hld_uart_device\n    hld_esp32 -->|Read / Write Config| hld_storage_manager\n    hld_esp32 -->|Network Management| hld_wifi\n    hld_esp32 -->|Firmware Logic| hld_Task_Comms_Modbus_MQTT\n    hld_esp32 -->|Firmware Logic| hld_Task_State_Machine\n    hld_Task_Comms_Modbus_MQTT -->|Control ADC Reader| hld_adc_reader\n    hld_Task_Comms_Modbus_MQTT -->|Control SPI Device| hld_spi_device\n    hld_Task_Comms_Modbus_MQTT -->|Control Storage Manager| hld_storage_manager\n    hld_Task_Comms_Modbus_MQTT -->|Control UART Device| hld_uart_device\n    hld_Task_Comms_Modbus_MQTT -->|Control WiFi| hld_wifi\n    hld_Task_Comms_Modbus_MQTT -->|Invoke UART Device| hld_uart_device\n    hld_wifi -->|Internet Access| hld_internet\n    hld_cloud -->|Cloud Route| hld_internet",
-  "title": "Mech Sentinel PM - High Level Architecture"
+  "mermaid": "graph TD\n    hld_user[\"Mobile App / Web Dashboard\"]\n    hld_cloud[\"MQTT Broker / Cloud Service\"]\n    hld_esp32[\"ESP32 Main Controller\"]\n    hld_adc_reader[\"ADC Reader\"]\n    hld_spi_device[\"SPI Device\"]\n    hld_uart_device[\"UART Device\"]\n    hld_storage_manager[\"Storage Manager\"]\n    hld_wifi[\"WiFi\"]\n    hld_Task_Comms_Modbus_MQTT[\"Task Task_Comms_Modbus_MQTT\"]\n    hld_Task_State_Machine[\"Task Task_State_Machine\"]\n    hld_internet[(Internet)]\n    hld_user <-->|View Data / Configure| hld_cloud\n    hld_cloud <-->|MQTT Messages| hld_esp32\n    hld_esp32 -->|Sensor Data| hld_adc_reader\n    hld_esp32 -->|Peripheral I/O| hld_spi_device\n    hld_esp32 -->|Peripheral I/O| hld_uart_device\n    hld_esp32 -->|Read / Write Config| hld_storage_manager\n    hld_esp32 -->|Network Management| hld_wifi\n    hld_esp32 -->|Firmware Logic| hld_Task_Comms_Modbus_MQTT\n    hld_esp32 -->|Firmware Logic| hld_Task_State_Machine\n    hld_Task_Comms_Modbus_MQTT -->|Invoke UART Device| hld_uart_device\n    hld_Task_Comms_Modbus_MQTT -->|Control ADC Reader| hld_adc_reader\n    hld_Task_Comms_Modbus_MQTT -->|Control SPI Device| hld_spi_device\n    hld_Task_Comms_Modbus_MQTT -->|Control Storage Manager| hld_storage_manager\n    hld_Task_Comms_Modbus_MQTT -->|Control UART Device| hld_uart_device\n    hld_Task_Comms_Modbus_MQTT -->|Control WiFi| hld_wifi\n    hld_wifi -->|Internet Access| hld_internet\n    hld_cloud -->|Cloud Route| hld_internet",
+  "title": "MechSentinel PM — High Level Architecture"
 }

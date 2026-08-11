@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0.0",
   "view": "lld",
-  "revision": "66d596888e6273513ae935fb1b0aaa5a",
-  "graph_version": 3,
-  "generated_at_ms": 1786263145406,
+  "revision": "261e30a55eb08081bcfa50dfe6421151",
+  "graph_version": 4,
+  "generated_at_ms": 1786463314352,
   "graph": {
     "schema_version": 1,
     "id": "pir_mech_sentinel_pm-lld",
@@ -629,33 +629,33 @@
     "runtime_metadata": {
       "telemetry_enabled": false,
       "overlays": {
-        "diagram_view": "ldd",
         "ldd_edge_labels": {
-          "Task_Comms_Modbus_MQTT::ldd::out|spi_device::ldd::in": "controls",
-          "Task_Comms_Modbus_MQTT::ldd::out|wifi::ldd::in": "controls",
-          "Task_Vibration_Acquisition::ldd::out|mqtt::ldd::in": "data_flow",
-          "Task_Comms_Modbus_MQTT::ldd::out|mqtt::ldd::in": "controls",
-          "timer_node::ldd::out|Task_Vibration_Acquisition::ldd::in": "triggers",
-          "Task_Vibration_Acquisition::ldd::out|uart_device::ldd::in": "data_flow",
-          "timer_node::ldd::out|event_handler::ldd::in": "signals",
-          "Task_Vibration_Acquisition::ldd::out|storage_manager::ldd::in": "data_flow",
-          "Task_Comms_Modbus_MQTT::ldd::out|uart_device::ldd::in": "controls",
-          "Task_Comms_Modbus_MQTT::ldd::out|diagnostics::ldd::in": "controls",
-          "Task_Comms_Modbus_MQTT::ldd::out|logger::ldd::in": "controls",
-          "Task_Vibration_Acquisition::ldd::out|spi_device::ldd::in": "data_flow",
-          "timer_node::ldd::out|Task_Comms_Modbus_MQTT::ldd::in": "triggers",
-          "Task_Comms_Modbus_MQTT::ldd::out|event_handler::ldd::in": "controls",
           "Task_Vibration_Acquisition::ldd::out|logger::ldd::in": "data_flow",
-          "Task_Comms_Modbus_MQTT::ldd::out|timer_node::ldd::in": "controls",
+          "Task_Vibration_Acquisition::ldd::out|mqtt::ldd::in": "data_flow",
           "Task_Vibration_Acquisition::ldd::out|adc_reader::ldd::in": "controls",
+          "Task_Vibration_Acquisition::ldd::out|spi_device::ldd::in": "data_flow",
+          "Task_Comms_Modbus_MQTT::ldd::out|mqtt::ldd::in": "controls",
+          "Task_Comms_Modbus_MQTT::ldd::out|timer_node::ldd::in": "controls",
+          "Task_Comms_Modbus_MQTT::ldd::out|event_handler::ldd::in": "controls",
+          "Task_Comms_Modbus_MQTT::ldd::out|spi_device::ldd::in": "controls",
           "Task_Comms_Modbus_MQTT::ldd::out|storage_manager::ldd::in": "controls",
+          "Task_Vibration_Acquisition::ldd::out|storage_manager::ldd::in": "data_flow",
+          "Task_Comms_Modbus_MQTT::ldd::out|logger::ldd::in": "controls",
+          "Task_Comms_Modbus_MQTT::ldd::out|adc_reader::ldd::in": "controls",
+          "Task_Comms_Modbus_MQTT::ldd::out|wifi::ldd::in": "controls",
+          "Task_Comms_Modbus_MQTT::ldd::out|diagnostics::ldd::in": "controls",
+          "timer_node::ldd::out|event_handler::ldd::in": "signals",
+          "Task_Vibration_Acquisition::ldd::out|uart_device::ldd::in": "data_flow",
+          "Task_Comms_Modbus_MQTT::ldd::out|uart_device::ldd::in": "controls",
+          "timer_node::ldd::out|Task_Vibration_Acquisition::ldd::in": "triggers",
+          "timer_node::ldd::out|Task_Comms_Modbus_MQTT::ldd::in": "triggers",
           "timer_node::ldd::out|Task_State_Machine::ldd::in": "triggers",
-          "wifi::ldd::out|mqtt::ldd::in": "connects",
-          "Task_Comms_Modbus_MQTT::ldd::out|adc_reader::ldd::in": "controls"
-        }
+          "wifi::ldd::out|mqtt::ldd::in": "connects"
+        },
+        "diagram_view": "ldd"
       }
     }
   },
-  "mermaid": "flowchart TD\n  subgraph freertos_runtime[\"FreeRTOS\"]\n    Task_Comms_Modbus_MQTT[\"Task Task_Comms_Modbus_MQTT\"]\n    Task_State_Machine[\"Task Task_State_Machine\"]\n    Task_Vibration_Acquisition[\"Task Task_Vibration_Acquisition\"]\n    event_handler[\"Event Handler\"]\n    timer_node[\"Timer\"]\n  end\n  adc_reader[\"ADC Reader\"]\n  spi_device[\"SPI Device\"]\n  uart_device[\"UART Device\"]\n  storage_manager[\"Storage Manager\"]\n  wifi[\"WiFi\"]\n  mqtt[\"MQTT\"]\n  diagnostics[\"Diagnostics\"]\n  logger[\"Logger\"]\n  Task_Comms_Modbus_MQTT --> adc_reader\n  Task_Comms_Modbus_MQTT --> diagnostics\n  Task_Comms_Modbus_MQTT --> event_handler\n  Task_Comms_Modbus_MQTT --> logger\n  Task_Comms_Modbus_MQTT --> mqtt\n  Task_Comms_Modbus_MQTT --> spi_device\n  Task_Comms_Modbus_MQTT --> storage_manager\n  Task_Comms_Modbus_MQTT --> timer_node\n  Task_Comms_Modbus_MQTT --> uart_device\n  Task_Comms_Modbus_MQTT --> wifi\n  Task_Vibration_Acquisition --> adc_reader\n  Task_Vibration_Acquisition --> logger\n  Task_Vibration_Acquisition --> mqtt\n  Task_Vibration_Acquisition --> spi_device\n  Task_Vibration_Acquisition --> storage_manager\n  Task_Vibration_Acquisition --> uart_device\n  timer_node --> Task_Comms_Modbus_MQTT\n  timer_node --> Task_State_Machine\n  timer_node --> Task_Vibration_Acquisition\n  timer_node --> event_handler\n  wifi --> mqtt",
-  "title": "Mech Sentinel PM - Task/Driver Workflow"
+  "mermaid": "flowchart TD\n  subgraph freertos_runtime[\"FreeRTOS\"]\n    Task_Comms_Modbus_MQTT[\"Task Task_Comms_Modbus_MQTT\"]\n    Task_State_Machine[\"Task Task_State_Machine\"]\n    Task_Vibration_Acquisition[\"Task Task_Vibration_Acquisition\"]\n    event_handler[\"Event Handler\"]\n    timer_node[\"Timer\"]\n  end\n  adc_reader[\"ADC Reader\"]\n  spi_device[\"SPI Device\"]\n  uart_device[\"UART Device\"]\n  storage_manager[\"Storage Manager\"]\n  wifi[\"WiFi\"]\n  mqtt[\"MQTT\"]\n  diagnostics[\"Diagnostics\"]\n  logger[\"Logger\"]\n  Task_Comms_Modbus_MQTT --> uart_device\n  Task_Comms_Modbus_MQTT --> adc_reader\n  Task_Comms_Modbus_MQTT --> diagnostics\n  Task_Comms_Modbus_MQTT --> event_handler\n  Task_Comms_Modbus_MQTT --> logger\n  Task_Comms_Modbus_MQTT --> mqtt\n  Task_Comms_Modbus_MQTT --> spi_device\n  Task_Comms_Modbus_MQTT --> storage_manager\n  Task_Comms_Modbus_MQTT --> timer_node\n  Task_Comms_Modbus_MQTT --> wifi\n  Task_Vibration_Acquisition --> adc_reader\n  Task_Vibration_Acquisition --> logger\n  Task_Vibration_Acquisition --> mqtt\n  Task_Vibration_Acquisition --> spi_device\n  Task_Vibration_Acquisition --> storage_manager\n  Task_Vibration_Acquisition --> uart_device\n  timer_node --> Task_Comms_Modbus_MQTT\n  timer_node --> Task_State_Machine\n  timer_node --> Task_Vibration_Acquisition\n  timer_node --> event_handler\n  wifi --> mqtt",
+  "title": "MechSentinel PM — Runtime Workflow"
 }

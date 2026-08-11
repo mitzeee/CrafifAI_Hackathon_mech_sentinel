@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0.0",
   "view": "sequence",
-  "revision": "66d596888e6273513ae935fb1b0aaa5a",
-  "graph_version": 3,
-  "generated_at_ms": 1786263145406,
+  "revision": "261e30a55eb08081bcfa50dfe6421151",
+  "graph_version": 4,
+  "generated_at_ms": 1786463314353,
   "graph": {
     "schema_version": 1,
     "id": "pir_mech_sentinel_pm-sequence",
@@ -645,5 +645,5 @@
     }
   },
   "mermaid": "sequenceDiagram\n    participant boot as 1. Boot / app_main\n    participant Task_Vibration_Acquisition as 2. Task Task_Vibration_Acquisition\n    participant Task_State_Machine as 3. Task Task_State_Machine\n    participant Task_Comms_Modbus_MQTT as 4. Task Task_Comms_Modbus_MQTT\n    participant logger as 5. Logger\n    participant timer_node as 6. Timer\n    participant spi_device as 7. SPI Device\n    participant uart_device as 8. UART Device\n    participant wifi as 9. WiFi\n    participant storage_manager as 10. Storage Manager\n    participant diagnostics as 11. Diagnostics\n    participant mqtt as 12. MQTT\n    participant event_handler as 13. Event Handler\n    participant adc_reader as 14. ADC Reader\n    boot->>Task_Vibration_Acquisition: spawns\n    boot->>Task_State_Machine: spawns\n    boot->>Task_Comms_Modbus_MQTT: spawns\n    boot->>logger: initializes\n    boot->>timer_node: initializes\n    boot->>spi_device: initializes\n    boot->>uart_device: initializes\n    boot->>wifi: initializes\n    boot->>storage_manager: initializes\n    boot->>diagnostics: initializes\n    boot->>adc_reader: step_30\n    Task_Vibration_Acquisition->>logger: data_flow\n    Task_Vibration_Acquisition->>spi_device: data_flow\n    Task_Vibration_Acquisition->>uart_device: data_flow\n    Task_Vibration_Acquisition->>storage_manager: data_flow\n    Task_Vibration_Acquisition->>mqtt: data_flow\n    Task_Comms_Modbus_MQTT->>logger: controls\n    Task_Comms_Modbus_MQTT->>timer_node: controls\n    Task_Comms_Modbus_MQTT->>spi_device: controls\n    Task_Comms_Modbus_MQTT->>uart_device: controls\n    Task_Comms_Modbus_MQTT->>wifi: controls\n    Task_Comms_Modbus_MQTT->>storage_manager: controls\n    Task_Comms_Modbus_MQTT->>diagnostics: controls\n    Task_Comms_Modbus_MQTT->>mqtt: controls\n    Task_Comms_Modbus_MQTT->>event_handler: controls\n    timer_node->>Task_Vibration_Acquisition: triggers\n    timer_node->>Task_State_Machine: triggers\n    timer_node->>Task_Comms_Modbus_MQTT: triggers\n    timer_node->>event_handler: signals\n    wifi->>mqtt: connects",
-  "title": "Boot, driver initialization, acquisition, and communications flow"
+  "title": "Boot + acquisition + Modbus/MQTT operational flow"
 }

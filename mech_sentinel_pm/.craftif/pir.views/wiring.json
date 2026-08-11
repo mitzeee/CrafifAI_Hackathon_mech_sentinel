@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0.0",
   "view": "wiring",
-  "revision": "66d596888e6273513ae935fb1b0aaa5a",
-  "graph_version": 3,
-  "generated_at_ms": 1786263145404,
+  "revision": "261e30a55eb08081bcfa50dfe6421151",
+  "graph_version": 4,
+  "generated_at_ms": 1786463314351,
   "graph": {
     "schema_version": 1,
     "id": "pir_mech_sentinel_pm",
     "name": "mech_sentinel_pm topology",
-    "description": "Resolved Modbus RS485 DE GPIO configuration and clarified UART pin bindings.",
+    "description": "Resolved indirect gpio_config usage for Modbus RS485 DE and refreshed sequence diagram.",
     "nodes": [
       {
         "id": "boot",
