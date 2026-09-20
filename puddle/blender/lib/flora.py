@@ -58,20 +58,20 @@ def _clump(name, mats, count, height, width_ratio, tilt_lo, tilt_hi,
 
 def pal():
     return dict(
-        olive=kit.mat('fl_olive', '#6E7A3E', roughness=0.82),
-        olive_dk=kit.mat('fl_olive_dk', '#4E5C30', roughness=0.85),
-        green=kit.mat('fl_green', '#5E7040', roughness=0.80),
-        green_dk=kit.mat('fl_green_dk', '#3E4F2C', roughness=0.86),
-        ochre=kit.mat('fl_ochre', '#B5822E', roughness=0.84),
+        olive=kit.mat('fl_olive', '#6C7E2E', roughness=0.82),
+        olive_dk=kit.mat('fl_olive_dk', '#41551E', roughness=0.85),
+        green=kit.mat('fl_green', '#55742C', roughness=0.80),
+        green_dk=kit.mat('fl_green_dk', '#2E4419', roughness=0.86),
+        ochre=kit.mat('fl_ochre', '#C5811A', roughness=0.84),
         ochre_dk=kit.mat('fl_ochre_dk', '#8E6526', roughness=0.86),
-        gold=kit.mat('fl_gold', '#A89250', roughness=0.85),
+        gold=kit.mat('fl_gold', '#B39433', roughness=0.85),
         dry=kit.mat('fl_dry', '#8A7A46', roughness=0.88),
         rust=kit.mat('fl_rust', '#8C5A2A', roughness=0.86),
-        moss=kit.mat('fl_moss', '#5A6B36', roughness=0.90),
+        moss=kit.mat('fl_moss', '#4F6B22', roughness=0.90),
         moss_lt=kit.mat('fl_moss_lt', '#74864A', roughness=0.90),
         bark=kit.mat('fl_bark', '#5A4A38', roughness=0.92),
         birch=kit.mat('fl_birch', '#C3C0B4', roughness=0.84),
-        pad=kit.mat('fl_pad', '#4F6338', roughness=0.62),
+        pad=kit.mat('fl_pad', '#456B26', roughness=0.62),
         cattail=kit.mat('fl_cattail', '#6B4A2E', roughness=0.84),
         algae=kit.mat('fl_algae', '#5E6B36', roughness=0.70),
     )
@@ -177,16 +177,27 @@ def algae_mat(name, P, r=7.0, seed=0):
 
 # -------------------------------------------------------------- scatter ----
 
+def _seg_dist(px, py, ax, ay, bx, by):
+    vx, vy = bx - ax, by - ay
+    L2 = vx * vx + vy * vy
+    t = 0.0 if L2 == 0 else max(0.0, min(1.0, ((px - ax) * vx + (py - ay) * vy) / L2))
+    return math.hypot(px - (ax + vx * t), py - (ay + vy * t))
+
+
 def bank(terrain_z, water_level, count=340, r_in=40, r_out=175, seed=5,
-         autumn=0.0, P=None, avoid=None):
+         autumn=0.0, P=None, avoid=None, corridor=None):
     """
     Dress the bank. Plants pick themselves by how far above the waterline they
     sit: sedge and cattail wade at the margin, grass and shrub hold the dry
     ground, ferns and moss take the damp band behind them.
 
     `avoid` is (x, y, radius): keep this disc clear of planting. Plants here
-    are 90+ units across, so a camera dropped in the bank ends up INSIDE a
-    shrub and renders a black frame.
+    are big, so a camera dropped in the bank ends up INSIDE a shrub and
+    renders a black frame.
+
+    `corridor` is (ax, ay, bx, by, width): keep a lane clear along a segment.
+    This is how supply routes get cut through the reed belt -- the land
+    missions need a track, and the track is the mission.
 
     Returns instanced copies -- linked duplicates share mesh data, so 340
     plants cost 8 meshes.
@@ -222,6 +233,8 @@ def bank(terrain_z, water_level, count=340, r_in=40, r_out=175, seed=5,
         rr = rng.uniform(r_in, r_out)
         x, y = math.cos(a) * rr, math.sin(a) * rr
         if avoid and math.hypot(x - avoid[0], y - avoid[1]) < avoid[2]:
+            continue
+        if corridor and _seg_dist(x, y, *corridor[:4]) < corridor[4]:
             continue
         z = terrain_z(x, y)
         d = z - water_level

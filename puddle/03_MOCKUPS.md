@@ -1,66 +1,72 @@
-# THE DRYING — mock-ups
+# BRACKWATER — mock-ups
 
-## Pass 2 — the wetland  (`assets/mockups_wetland/`)
+## Pass 3 — the missions  (`assets/mockups_missions/`)
 
-The real setting: a big, deep pool sunk in marsh, walled by a standing forest of sedge and
-cattail, skinned with lily pads and algae. Eight views.
+One image per mission archetype, because each vehicle is its own mission with its own verb
+(design doc §6). Dressed with the shipped glTF assets.
 
-| Shot | What it shows |
-|---|---|
-| `reed_channel` | **The signature image.** The Ark threading a pass between two reed stands — a green canyon with cattails overhead. This is the game |
-| `wetland_dawn` | The open pool at first light, lily pads, reed wall as coastline |
-| `through_the_reeds` | Hidden in the margin, watching a hull cross the water through a screen of blades. Foreground goes soft |
-| `marsh_standoff` | Both haulers, one light. The Reedfolk pod looks like it *grew here*; the Combine can looks like it washed in |
-| `bank_assault` | Armour working a mossy bank under the reed line — the Act III shore war |
-| `the_heron` | The Grey Judge wades in. Legs like towers, a shadow across the pool. Cannot be fought |
-| `autumn_drying` | Late season. Ochre reeds, water pulled back, the Ark aground in silt |
-| `bridge_through_reeds` | From the Ark's bridge, reed wall to starboard, contact fine on the bow |
+| Shot | Mission | The verb |
+|---|---|---|
+| `m_supply_land` | **Land logistics** — truck + rickshaw on the bank track at dusk | Route, timing, not being seen. No guns |
+| `m_cargo_water` | **Water logistics** — hauler running a reed pass, loaded and slow | Same job, no cover, nowhere to run |
+| `m_recon_sub` | **Reconnaissance** — half-surfaced off the enemy slipway | Watch, count, come home. Firing ends the mission |
+| `m_strike_bomber` | **Strategic strike** — bomber over the far bank, bay open, escort high | Hit what the enemy cannot move |
+| `m_intercept_fighter` | **Air intercept** — breaking up their flight over open water | Defend a truck that is somewhere else |
+| `m_armour_push` | **Ground action** — tank and bike taking bank | Take and hold, so the convoys run |
+| `m_rain_run` | **Weather** — a hull running in a downpour | Rain hides a convoy and grounds the aircraft |
 
-### On the foliage clock
-`autumn_drying` and the green shots are the same scene at different points on the clock. The reed
-wall goes green → gold → ochre → dead straw as the water falls, so the act structure is legible
-from any camera angle without a single UI element. This is the strongest thing the wetland
-setting bought us, and it is already implemented (`autumn` parameter in `scene.wetland`).
+**Half of these have no gun.** That is the design, not an omission — logistics and recon are
+stealth problems, and the quiet/loud split in §6 is what keeps eight missions from collapsing
+into one shooter with eight skins.
+
+`m_rain_run` is the weather argument made visually: the pool does not dry up, so seasons and
+weather are there for texture and tactics — rain collapses visibility, which is exactly what a
+smuggler wants and exactly what grounds an air force.
 
 ---
 
-## Pass 1 — the parking lot  (`assets/mockups/`)  — superseded
+## Pass 2 — the wetland  (`assets/mockups_wetland/`)
 
-Kept for the record. Thirteen views of the earlier tarmac setting, including the four-panel
-`clockstrip` that demonstrates waterline retreat and tide-mark banding. **The clock strip's
-mechanic still holds** — only its dressing changed — and it remains the clearest single
-demonstration of the core idea. Worth re-shooting in the marsh.
+Eight views establishing the setting: the open pool, `reed_channel` (a hull threading a green
+canyon — still the signature image), the marsh standoff, a bank assault, the heron macro event,
+late-season colour, and a bridge view.
+
+## Pass 1 — the parking lot  (`assets/mockups/`) — superseded
+Kept for the record only. Wrong setting, and built around the retired evaporation clock.
 
 ---
 
 ## What is real here, and what is faked
 
-**Real:**
-- Every vehicle is the shipped glTF asset at true game scale.
-- Shoreline banding and plant placement are both computed from `water_level`: plants root only
-  where the water is shallower than ~5 units, so the reed belt genuinely advances as the pool
-  retreats.
-- Foliage colour is driven by one `autumn` parameter, matching the act structure.
+**Real:** every vehicle is the shipped glTF at true game scale; flora places itself by height
+above the waterline so the reed belt is computed, not painted; foliage colour runs off one
+`autumn` parameter matching the seasonal reed cycle; the supply track is a real cleared corridor
+through the reed belt.
 
 **Faked — do not read these as solved:**
 - **Water is a stand-in.** A faceted sum-of-sines surface, not the Gerstner + interactive
-  ripple-buffer system in design doc §8.1. Wakes are placed geometry. **The hero water feature is
-  not in these pictures because it is not built.** Treat M1 as unproven.
-- **No crews.** No finger-tall men anywhere. This is still the biggest gap — crews would change
-  the sense of scale in every frame.
-- **No VFX** (spray, smoke, muzzle flash, silt) and **no UI**, including on the bridge view.
+  ripple-buffer system in §8.1. Wakes are placed geometry. **The hero water feature is not in
+  these pictures because it is not built.** Treat M1 as unproven.
+- **No crews.** Still the biggest gap — finger-tall men would change the scale read in every frame.
+- **No UI**, no muzzle flash, no smoke, no spray, no silt.
 - The heron is two legs and a shadow. There is no bird.
+- Stealth is not visualised at all. No detection cones, no patrol routes, no alert states — and
+  since half the missions *are* stealth, that is the most important thing still missing.
 - Renders are Blender Cycles, not Godot. Colour will shift on the way across.
 
-## Note on method
-There is **no image-generation model available in this environment** — these are rendered in
-Blender from the actual game assets. That has an upside (what you see is the real build, and it
-cannot drift from it) and a real limit: these are previews, not painted concept art. If you want
-diffusion-style key art, the art bible §11 shot list doubles as a prompt list to take elsewhere.
+## On the washed-out look (fixed in this pass)
+The earlier sets were flat for three stacking reasons: a haze volume over the whole frame, a
+strong ambient fill against a weak sun, and a high exposure on a Standard view transform. Fixed at
+source — haze cut roughly 60%, sun energy raised and world strength cut so the key-to-ambient
+ratio produces real shadows, palettes re-saturated, and a contrast S-curve with a true black point
+added via `render.grade()`.
+
+Worth recording: several earlier lighting edits were **silent no-ops** — a whitespace mismatch
+meant the presets never actually changed, so every "brighter" render until now came only from
+exposure and grade. The presets are live now.
 
 ## Next
 1. Crews.
-2. Re-shoot the four-panel clock strip in the marsh, with the foliage turning.
-3. Bomber and submarine (design doc §6) — the two biggest unbuilt roles.
-4. Underwater: drowned leaf forest, silt, larvae. The submarine has no picture yet.
-5. Act IV — the Return. The best moment in the game has no image.
+2. Stealth visualisation — detection, patrol lines, alert states.
+3. The war map (§7.1) — the screen between missions, which has no picture at all.
+4. Underwater for the recon mission: drowned leaf forest, silt, larvae.

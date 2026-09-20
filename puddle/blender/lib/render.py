@@ -95,7 +95,7 @@ def dof(cam, distance, fstop=2.0):
     return cam
 
 
-def shot(path, res=(900, 600), samples=24, exposure=0.45):
+def shot(path, res=(900, 600), samples=24, exposure=0.26):
     scn = bpy.context.scene
     scn.render.engine = 'CYCLES'
     scn.cycles.device = 'CPU'
@@ -113,3 +113,29 @@ def shot(path, res=(900, 600), samples=24, exposure=0.45):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     bpy.ops.render.render(write_still=True)
     return path
+
+
+def grade(contrast=0.21, black=0.004, gamma=1.03):
+    """
+    Contrast grade via the view transform's own curve mapping.
+
+    Flat renders came from stacking three flattening things -- a haze volume
+    over the whole frame, a strong ambient fill, and a high exposure on a
+    Standard transform. Light and palette are fixed at source; this sets a
+    true black point and puts an S-curve back.
+
+    (Blender 5 moved the compositor to scene.compositing_node_group, so the
+    old scene.node_tree route is gone; view_settings.curve_mapping does the
+    same job here with no node plumbing.)
+    """
+    vs = bpy.context.scene.view_settings
+    vs.use_curve_mapping = True
+    cm = vs.curve_mapping
+    c = cm.curves[3]
+    c.points[0].location = (black, 0.0)
+    c.points[-1].location = (1.0, 1.0)
+    c.points.new(0.30, max(0.0, 0.30 - contrast * 0.30))
+    c.points.new(0.72, min(1.0, 0.72 + contrast * 0.24))
+    cm.update()
+    vs.gamma = gamma
+    return vs

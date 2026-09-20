@@ -1,50 +1,51 @@
-# THE DRYING
-### *A war fought in a puddle, against a clock made of sunlight.*
+# BRACKWATER
+### *A war fought in a wetland, by men the size of a fingernail.*
 
-> Working title. Alternates: **TARMAC SEA**, **BRACKWATER**, **A War Called Tuesday**.
+> Working title — **"THE DRYING" is retired**, since the pool no longer dries. Alternates:
+> **THE STANDING FOREST**, **MIREFRONT**, **REEDWAR**. Your call.
 > Engine: **Godot 4 (Forward+)**. Scope: medium, single-player first, co-op-ready architecture.
 
 ---
 
 ## 1. The One-Line Pitch
 
-**Carrier Command in a puddle, on an evaporation clock.**
+**Eight missions, eight machines, one wetland — and half of them have no gun.**
 
-You are the captain of a scavenged cargo hauler — the *Ark* — crewed by finger-tall men, fighting
-a total war across a chain of rain puddles in a supermarket parking lot. You don't watch the war
-from a map. You *sit in every seat*: the bridge, the fighter cockpit, the bomb bay, the tank
-turret, the motorcycle saddle. And the whole theater of war is evaporating under your feet.
+Two tribes of finger-tall men hold opposite shores of a deep marsh pool. You are whoever the war
+needs today: the driver running rations up a mud track at dusk, the submarine commander counting
+hulls through a periscope, the bomber pilot with one precious ball bearing, the fighter pilot
+whose job is not to survive but to make sure a truck somewhere else does.
+
+The machines are built from what the marsh gave them and what washed into it — a crushed drink can
+for a hull, a bottle cap for a turret, a matchstick for a fork leg, watch gears for road wheels.
 
 ---
 
-## 2. Why This Shape (the "better operation" answer)
+## 2. Shape: a campaign of missions, one vehicle each
 
-The original brief was an **anthology**: cargo captain, fighter, bomber, tank, motorcycle, "and
-various other roles." Anthologies have a known failure mode — six shallow minigames stitched by a
-mission-select menu, none of them deep, none of them connected, and the player never feels like a
-*commander*, only a tourist.
+**Every vehicle is its own mission type, with its own verb.** You do not fly a generic war in a
+generic machine; you are handed a job, and the job comes with the vehicle that does it.
 
-**The fix: make the cargo ship the hub, not a level.**
+| Mission | Vehicle | Verb | What failure costs |
+|---|---|---|---|
+| **Land logistics** | Supply truck | Sneak rations and raw material up the bank track | The front goes hungry |
+| **Light courier** | Auto-rickshaw | Thread a reed pass a truck cannot | Orders arrive late, or never |
+| **Water logistics** | Cargo hauler | Run supplies across the pool, loaded and slow | A season's materiel on the bottom |
+| **Reconnaissance** | Submarine | Watch, count, listen, come home unseen | You bomb blind |
+| **Strategic strike** | Bomber | Destroy what the enemy cannot move | Their war machine keeps running |
+| **Air intercept** | Fighter | Break up their flight before it reaches your convoy | Your convoy dies, not you |
+| **Ground action** | Tank | Take and hold the bank so convoys can run | The route closes |
+| **Scout / harass** | Motorcycle | Find the patrol line, and be somewhere else | You drive into it next time |
 
-The hauler is your mobile base. It carries the fighters in its deck bays, the bombers on its
-spine, the tanks in its hold, the bikes on its gunwale rails. Every other role is *launched from
-it*. That single change converts six disconnected missions into one continuous, escalating
-operation:
+**Half the missions have no guns.** That is the point. Logistics and recon are stealth problems —
+route, timing, weather, and not being seen — not combat problems. A game where the truck run is as
+tense as the bombing run is a more interesting game than one where it is a loading screen.
 
-| Anthology (original) | Carrier model (recommended) |
-|---|---|
-| Menu → pick role → play mission → menu | One unbroken world; you walk from the bridge to the flight deck |
-| Roles are thematically related | Roles are **mechanically interdependent** — the bomber needs the fighter's escort, the fighter needs the ship's fuel, the ship needs the tank to take the shore battery that's shelling it |
-| No strategic layer | The ship's position *is* the strategic layer |
-| Nothing at stake between missions | Losses are permanent; a pilot who dies is gone, a hull that sinks stays sunk |
-| Can't do co-op | Drop-in co-op falls out for free: one captain, one pilot, one gunner, same ship |
-
-**The verb is possession, not selection.** Every vehicle you own is an AI-crewed unit running its
-orders right now. At any moment you slam into any one of them and take the stick. The war does not
-pause while you fly. That tension — *what is going wrong somewhere else while I'm doing this?* —
-is the game.
-
-**The second fix: give the roles a reason to exist in sequence.** See §4.
+> **Design note, honestly flagged.** An earlier draft of this document argued *against* the
+> mission anthology and proposed a carrier model instead — the hauler as a hub that launches every
+> other vehicle. That was overridden, and correctly: it collapsed eight distinct jobs into one
+> machine and lost exactly the variety that makes the premise work. What survives from it is the
+> one idea worth keeping — **interdependence** — and §4 is how it is kept without a carrier.
 
 ---
 
@@ -107,176 +108,204 @@ controls, telegraphed with a few seconds of warning:
 
 ---
 
-## 4. The Clock: Evaporation as Core Mechanic
+## 4. The Spine: the supply line, not a clock
 
-**Water level is the master variable of the entire game.** One float, `water_level`, drives
-navigability, terrain, unit viability, faction strategy, and the campaign's act structure.
+**The pool never dries up.** Earlier drafts made evaporation the master variable and the campaign
+a doomsday clock. That is cut. A deep wetland pool is permanent, and a war fought around one needs
+a spine made of something the players actually control.
+
+**That spine is materiel.** Every mission feeds or starves another mission:
 
 ```
-SPRING  ████████████████████  1.00   THE FLOOD      green, high, cold
-EARLY   ██████████████        0.70   THE SHALLOWS   full growth, first margins
-HIGH    ███████               0.35   THE DRYING     ochre, cracked silt, stranding
-LATE    ██                    0.10   THE THROAT     dead reed, remnant pools
+        RECON  ──reveals──►  STRIKE  ──destroys──►  enemy strategic assets
+     (submarine)              (bomber)                      │
+          ▲                      ▲                          │ weakens
+          │                      │ needs escort             ▼
+          │                  INTERCEPT                enemy raids on YOUR convoys
+          │                   (fighter)                      │
+          │                      ▲                           │ threatens
+          │                      │ protects                   ▼
+     GROUND ACTION ──opens──►  LOGISTICS  ──────supplies──► everything above
+        (tank)                (truck · rickshaw · hauler)
 ```
 
-> **OPEN DECISION — the clock's timescale.** The original draft ran the whole war across one
-> day, which works for a rain puddle on tarmac. A *big, deep* wetland pool does not evaporate in
-> an afternoon, and a one-day clock now strains belief.
->
-> **Recommendation: stretch the clock to a season** — spring melt through late-summer drought.
-> Every mechanic below survives untouched; only the labels change. And it buys something the
-> day-clock could never have: **the vegetation changes with the clock.** The reed wall goes green
-> → gold → ochre → dead straw as the water falls. The act structure becomes visible in the
-> foliage, not just the shoreline. The mock-ups already render this (`autumn_drying`), and it is
-> the best-looking thing in the set.
->
-> Cost: permadeath and fatigue read differently over months than over hours, and "one desperate
-> day" is a cleaner pitch than "one long summer". **Your call before the full design doc.**
+Read it as a loop. Recon reveals targets; without it the bomber area-bombs and mostly misses.
+Strikes wreck the enemy's pump house, granary and slipway, which cuts the raids they can mount
+against your convoys. Fewer raids means your logistics get through. Supply that gets through buys
+the armour that opens the next route. **And the enemy is running the same loop against you.**
 
-As the level falls:
-- Navigable channels close. Your hauler gets **stranded** if you plan badly. This is the single
-  most important strategic decision in the game: *where will my ship be when the water leaves?*
-- Shoals surface and become land bridges. Tanks and bikes gain ground the navy loses.
-- Sunken wrecks emerge — salvage, and cover.
-- Deep water shrinks to a few basins. Submarines are lethal early, trapped late.
+### 4.1 Why this is better than the clock
+- Every vehicle is load-bearing. Skip recon for three missions and the bombing goes blind — you
+  feel the gap without being told.
+- It creates real strategic choice without a strategy layer: *which* mission you fly personally.
+- It gives failure a texture. A lost convoy is not a lost life bar, it is armour you don't have
+  next week.
+- It survives a permanent pool.
 
-**This is why the roles exist in sequence.** It isn't a menu of six toys, it's a war whose
-dominant arm *changes underneath you*:
+### 4.2 You cannot be everywhere
+Each turn of the war offers several missions. **You fly one; the AI resolves the rest, worse than
+you would.** That pressure — *what is going wrong somewhere else while I'm doing this?* — was the
+single best thing about the discarded carrier model, and it transplants cleanly.
 
-| Act | Water | Foliage | Dominant arms | The feeling |
-|---|---|---|---|---|
-| **I — The Flood** | 1.00 → 0.70 | Deep green, rising | Hauler, submarine, torpedo boats | Naval. Open water. Grand. |
-| **II — The Shallows** | 0.70 → 0.35 | Full growth, first gold | Aircraft, combined arms, first land bridges | Everything at once. Peak complexity. |
-| **III — The Drying** | 0.35 → 0.10 | Ochre, cracking, dying | Tanks, bikes, artillery. The ship is beached and becomes a fortress. | Desperate, dusty, land war over a dying sea |
-| **IV — The Return** *(conditional)* | 0.10 → 1.00 in 90 seconds | Flattened, drowned | Survival | A storm crest. Everything on the floor drowns. Everything that floats is saved. Your beached hauler either refloats or is crushed. |
+### 4.3 Seasons and weather: flavour and complexity, never a clock
+Weather changes how a mission is fought, not how long the war lasts.
 
-Act IV triggers only if the player has completed the Reedfolk seeding objectives, or on a scripted
-campaign beat. It is the game's best moment: total reversal, in ninety seconds, of everything you
-spent three hours adapting to.
+| Condition | Effect |
+|---|---|
+| **Rain** | Visibility collapses. The best smuggling window in the game, and aircraft are grounded |
+| **Dawn mist** | Cover on the water, useless on land. Convoys move at first light for a reason |
+| **Wind** | Chop on the pool, aircraft grounded, and the reed wall bends — sightlines open that were closed |
+| **Night** | Cover for everyone, including the patrol you cannot see |
+| **Algae bloom** | Chokes channels in high summer. Routes close; the hauler reroutes long |
+| **Hard frost** | Margins freeze. New land routes open where boats used to run |
+
+### 4.4 The reed cycle — the map's slow variable
+What the water level used to do, **vegetation** now does better. The reed wall grows and dies back
+across the year:
+
+| Season | Reed state | What it means |
+|---|---|---|
+| **Spring** | New growth, low and sparse | Open sightlines. Everything is exposed. Armour's season |
+| **Summer** | Dense, tall, green | Maximum cover. Passes close. Smuggling's season |
+| **Autumn** | Gold, thinning | Cover degrading week by week. Routes reopen |
+| **Winter** | Dead straw, flattened | The marsh is naked. Long sightlines, new routes, nowhere to hide |
+
+Cover, routes and sightlines all change — but nothing is *dying*, so there is no doomsday pressure
+and no forced ending. The art system for this already exists (one `autumn` parameter).
 
 ---
 
 ## 5. The Two Tribes
 
-Not red vs blue. They disagree about *the puddle itself*, which is what makes the clock thematic.
+Not red vs blue. They disagree about *what the marsh is for*, and every supply route, pump
+house and burned reed bed is an argument in that disagreement.
 
 ### 5.1 The Windward Combine — "Tinmen"
-**West shore. Industrial. Metal. They want the puddle gone.**
+**West shore. Industrial. Metal. They want the marsh put to work.**
 
 Scavengers of machine detritus — screws, foil, springs, circuit board, staples, razor blades.
 Riveted plate hulls, coal-black smoke, sodium-orange running lights, gunmetal and rust. They
-believe standing water is a disease; their great work is **the Drainage**, a pump-and-channel
-project to empty the lot forever and inherit dry, defensible tarmac. They will win the war and
-end the world, and they are entirely sincere about it.
+believe the marsh is raw material going to waste. Their great work is **the Reclamation**: pump
+the margins, channel the flow, cut the reed, and turn shoreline into buildable, defensible,
+*productive* ground. They are not trying to kill the pool — they are trying to industrialise
+everything around it, and they are entirely sincere that this is progress.
 
 - **Doctrine:** heavy, slow, armored, artillery-forward. Wins the late acts.
 - **Signature unit:** *The Siphon* — a pump barge. A support unit that is also a weapon: parked in
-  an enemy harbor it lowers local water level, beaching their fleet.
+  an enemy harbour it drops the local margin, beaching their fleet and killing the reed cover
+  they were hiding in.
 - **Palette:** gunmetal, oxide red, sodium orange, cold white sparks.
 
 ### 5.2 The Reedfolk — "Mirefolk"
-**East shore. Organic. Grown. They want the puddle kept.**
+**East shore. Organic. Grown. They want the marsh left as it is.**
 
 Builders from seed pods, beeswax, chitin, resin, amber, waxed leaf, spider silk. Hulls are grown
-and lacquered, not welded. They seed the water with algae mats to slow evaporation and cut the
-sun. They believe the puddle is a living thing and the tribes are its passengers. They are also
-willing to drown a thousand Tinmen to prove it.
+and lacquered, not welded. They seed algae mats, plant reed, and cultivate the cover they
+fight from. They believe the marsh is a living thing and the tribes are its passengers. They are
+also willing to drown a thousand Tinmen to prove it.
 
 - **Doctrine:** fast, light, amphibious, swarming. Wins the early acts.
-- **Signature unit:** *The Bloom* — an algae seeder. Support that slows the global clock,
-  contests the Combine's Drainage, and blinds air recon with green haze.
+- **Signature unit:** *The Bloom* — an algae seeder. Support that grows new cover where there was
+  none, chokes channels the Combine depends on, and blinds air recon with green haze.
 - **Palette:** amber, waxy green, bone-white chitin, resin gold, dark honey.
 
 ### 5.3 Why it works
-The faction asymmetry maps directly onto the clock. The Combine is *trying to advance the act
-structure*; the Reedfolk are *trying to hold it back*. Every skirmish is also a fight over what
-time it is.
+The asymmetry maps onto the reed cycle (§4.4), which is the map's slow variable. The Combine wants
+the marsh **cut and open** — clear fields of fire, hard routes, no cover for smugglers. The
+Reedfolk want it **dense and grown** — cover everywhere, channels that only they can read. So
+every burned reed bed and every seeded bloom is both tribes editing the battlefield toward the
+shape that suits them. That is a live, two-sided terrain war, and it never has to end.
 
 ---
 
-## 6. Roles — The Seats
+## 6. The Missions
 
-All roles share one control philosophy: **full manual control, forgiving physics, arcade-sim.**
-Not a study sim. You should be able to fly the fighter in ten seconds and still have a skill
-ceiling in ten hours.
+One control philosophy across all of them: **full manual control, forgiving physics, arcade-sim.**
+Learnable in ten seconds, a skill ceiling in ten hours. Not a study sim.
 
-### Confirmed from brief
+Missions split into two families that play nothing alike.
 
-**1. Cargo Hauler Captain — *the Ark*** *(the hub role)*
-Command the bridge of a scavenged bottle-cap-and-plate hauler. Helm, throttle, ballast, damage
-control, launch/recovery ops, and the tactical table. Slow, huge, vulnerable, and carrying
-everything you own. Ballast is a real verb — flooding tanks lets you cross under a low wire or
-sit stable in a bow wave; pumping out lets you clear a shoal. Beaching is survivable but the
-ship becomes a fixed fortress until Act IV.
+### 6.A Quiet missions — logistics and recon
+No guns, or guns you should not fire. The verbs are **route, timing, concealment and load**. These
+are tension games, and they are half the campaign.
 
-**2. Fighter Pilot**
-Rubber-band-and-stretched-membrane interceptor launched off the hauler's rail. Duties: air
-superiority, strafing landing craft, escorting bombers, and **intercepting the neutral fauna**
-(dragonflies are the apex air predator of this world and will eat both tribes' aircraft). Fast,
-fragile, spectacular; a knife fight at three inches' altitude, with the water surface as a wall.
+**1. Supply truck — land logistics**
+Rations and raw material up the bank track to the front. Slow, loud, loaded, defenceless. You
+choose the route (the short exposed track or the long covered one), the hour (mist, rain, night)
+and the load (heavy and slow, or light and twice as many runs). Getting seen is not instant death —
+it starts a chase you are certain to lose unless you planned for it.
 
-**3. Bomber Pilot**
-Slow, heavy, two-seat. You fly it *or* you drop from it; in co-op, one player does each. Targets:
-shore batteries, pump works, the enemy hauler, causeways. Ordnance is scavenged: matchhead
-incendiaries, staple sticks, a single precious ball-bearing "bunker buster." Bombing a water
-target produces a real, persistent ripple wave that shoves boats — **ordnance is a naval weapon.**
+**2. Auto-rickshaw — light courier**
+Three wheels, no armour, no gun, and the only thing in the fleet that threads a reed pass a truck
+cannot. Small urgent loads: medicine, orders, a single passenger who matters. Fast and fragile —
+this is the one you take when the truck route has already been cut.
 
-**4. Tank Operator**
-Shore war. Treads on tarmac, grit, gravel, wet mud that behaves differently at different water
-levels. Slow turret traverse, satisfying weight, hull-down play behind cigarette filters and
-bottle caps. Wades to a fixed depth — and that depth is a live tactical question every act.
+**3. Cargo hauler — water logistics**
+The same job across the pool, loaded and slow, with no cover but the reed line and nowhere to run.
+Ballast is a real verb: trim down to pass under a fallen stem, pump out to clear a shoal. Beaching
+is survivable and ruinous.
 
-**5. Motorcycle Soldier**
-The speed and spectacle role. Recon, courier, sabotage, harassment. A meniscus-skimming bike
-that can **ride the surface tension itself** if you keep the throttle above a threshold — lose
-speed over deep water and you sink. Wake spray, lean, drift, jumps off gravel ramps. This is the
-role that goes in the trailer.
+**4. Submarine — reconnaissance**
+Go under to watch, count, listen and come home. The win condition is **information**, not kills —
+and firing the torpedoes ends the mission. What recon reveals is what the bomber can aim at
+(§4); skip it and the strike missions go blind.
 
-### Recommended additions
+**5. Motorcycle — scout and harass**
+Find the patrol line, map it, and be somewhere else. The speed role, and the trailer role. Rides
+the meniscus above a threshold speed; lose speed over deep water and you sink.
 
-**6. Submarine Commander** *(strongest addition)*
-The puddle has *depth*, and nobody expects it. A sealed pill-capsule hull below the silt line.
-Down there: drowned leaf forests, a sunken bottle cap as a wreck to hide under, silt clouds,
-algae kelp, mosquito larvae the size of submarines, and the pressure-dark of the deep basin.
-Ties into the clock perfectly — dominant in Act I, hunted and trapped in Act III as the basin
-shrinks around it.
+### 6.B Loud missions — combat
+The verbs are **aim, manoeuvre and commit**.
 
-**7. Combat Engineer / Salvage Crew**
-Third-person, on foot. Pontoon causeways, field repairs, cutting an enemy channel, towing wrecks,
-and operating the pumps. The role that *changes the map.* Also the tutorial for the economy.
+**6. Bomber — strategic strike**
+Slow, heavy, two-seat. Goes deep across the pool to hit what the enemy cannot move: pump works,
+slipways, granaries, the far hauler at anchor. Ordnance is scavenged — matchhead incendiaries,
+staple sticks, one precious ball-bearing. Dead without escort, and blind without recon.
 
-**8. Artillery Spotter**
-Two-part role — call from a high point (a curb, a cinderblock), or serve the gun. Arcing fire
-across the whole theater. In co-op this is the best two-player role in the game.
+**7. Fighter — air intercept**
+Break up their flight before it reaches your convoy. Note the framing: **you are not defending
+yourself, you are defending a truck somewhere else.** Also the only answer to the dragonflies,
+which are the apex air predator here and eat both tribes' aircraft.
 
-**9. AA Gunner**
-Short, tense, defensive turret sessions aboard the hauler under air attack. Not a campaign role —
-an *interrupt*. You're on the bridge, klaxon sounds, you sprint to a gun.
+**8. Tank — ground action**
+Take and hold bank so the convoys can run. Slow turret, satisfying weight, hull-down behind
+mossy rock and fallen stems. Wades to a fixed depth, and the reed cycle (§4.4) decides every
+season whether that ground is covered or naked.
 
-**10. Rescue Coxswain**
-A role with no gun. Pull survivors out of the water before the oil ignites or the larvae find
-them. Recovered crew return as veterans — this is where the permanent-loss system gets teeth.
+### 6.C Supporting roles *(later, if the eight above land)*
+Combat engineer (causeways, repairs, cutting a channel — the role that *changes the map*),
+artillery spotter, AA gunner as an interrupt rather than a mission, rescue coxswain.
 
 ### Deliberately cut
-Infantry FPS (dilutes the vehicle identity, triples the animation budget), and any role that
-can't be launched from or supported by the hauler.
+Infantry FPS — it dilutes the vehicle identity and triples the animation budget.
+
+### The mission-variety test
+The eight above must feel like eight games, not one game with eight skins. If the truck run plays
+like the tank run with less armour, **cut the truck** rather than ship a reskin. The quiet/loud
+split in §6.A/§6.B is the safeguard: a mission with no gun cannot accidentally become a shooter.
 
 ---
 
 ## 7. Systems
 
-### 7.1 Possession & Command
-- Every owned unit is an autonomous agent with an order queue. The AI is competent, not brilliant.
-- **Tactical Table:** pause-light strategic view from the hauler's bridge. Issue orders, then
-  *dive into* any unit. Transition is a continuous camera move, never a load screen.
-- **Hot-seat urgency:** you cannot be everywhere. The AI will lose fights you should have flown.
-  This is the intended pressure, not a flaw to patch out.
-- **Ghost handoff:** when you leave a unit, the AI resumes from exactly your state and heading.
+### 7.1 The war map and mission select
+- Between missions you sit over a **war map** of the marsh: your shore, theirs, the routes, the
+  known strategic assets, the current reed state and the weather forecast.
+- Each turn offers several missions. **You fly one. The AI resolves the rest, worse than you
+  would** (§4.2). The map shows you exactly what you are choosing to let go badly.
+- Recon progressively reveals the enemy half of the map. Unrevealed assets cannot be targeted.
+- No unit possession-swapping mid-mission — that belonged to the discarded carrier model. One
+  mission, one vehicle, start to finish.
 
-### 7.2 Economy — Salvage
-No currency. You scavenge **Scrap** (Combine) / **Resin** (Reedfolk) from debris, wrecks, and
-captured caches. Spend at the hauler's workshop on hull refits, ordnance, and replacement crew.
-As the water falls, new wrecks surface — **the clock is also the economy's release schedule.**
+### 7.2 Economy — Supply and Materiel
+Two stocks, and the whole campaign runs on them.
+
+- **Rations** keep units in the field. Run out and formations weaken, then desert.
+- **Materiel** (Scrap for the Combine, Resin for the Reedfolk) buys hulls, ordnance and repairs.
+
+Logistics missions *deliver* both; combat missions *consume* them; strike missions *deny* them to
+the enemy. There is no currency and no shop — what you delivered last week is what you are flying
+this week. A convoy lost is not an abstract penalty, it is the escort fighter you do not have.
 
 ### 7.3 Scale — the critical production note
 **Do not build at true miniature scale.** A hauler 4 cm long with Godot's default gravity and
@@ -293,9 +322,10 @@ Sell the miniature-ness entirely through *presentation*:
 This one decision saves weeks of physics debugging.
 
 ### 7.4 Permanence
-Crew are named and die permanently. Hulls that sink stay on the seabed for the whole campaign as
-navigable wrecks. Terrain damage from the Rolling God persists. The parking lot at 18:00 is a
-visibly different place from the parking lot at 06:00, and it's your fault.
+Crew are named and die permanently. Hulls that sink stay on the bed for the whole campaign as
+navigable wrecks. Burned reed beds stay burned until the next growing season; cut channels stay
+cut; a wrecked pump house is rubble for months. The marsh at the end of a campaign is a visibly
+different place from the marsh at the start, and it is your fault.
 
 ---
 
@@ -359,14 +389,15 @@ what makes drop-in co-op a later config change rather than a rewrite.
 |---|---|---|---|
 | **M0** | Grey Sea | Godot project, flat water plane, one box boat, buoyancy, camera | Does a box on water feel good? |
 | **M1** | Wake | Interactive ripple buffer, wakes, shore fade, `water_level` as a live global | Does lowering one slider visibly change the world? |
-| **M2** | Two Seats | Hauler + fighter, full manual control, launch and recovery, possession swap | **Hard gate — are these two fun?** |
+| **M2** | Two Missions | One quiet mission (supply truck) and one loud (fighter), full manual control, start to finish | **Hard gate — is the truck run as tense as the dogfight?** |
 | **M3** | War | AI units, orders, tactical table, combat, damage, salvage economy | Is it a game? |
-| **M4** | The Clock | Full act structure, stranding, land bridges, tank + bike + bomber | Does the war change shape as it dries? |
+| **M4** | The Loop | War map, supply/materiel stocks, recon-reveals-strike chain, AI resolving the missions you skip | Does skipping recon visibly hurt the next bombing run? |
 | **M5** | The Look | Art bible applied, tilt-shift, VFX, audio, macro event director | Screenshot test |
 | **M6** | The Lot | All 8 theaters, campaign, permanence, Act IV, submarine + engineer | Ship |
 
-**Vertical slice = M0–M2 + Theater 1.** One puddle, hauler and fighter, one enemy hauler, one
-dropping water level. If that is fun for ten minutes, the rest of this document is worth building.
+**Vertical slice = M0–M2.** One stretch of marsh, one supply run and one intercept. If the *truck
+mission* is fun for ten minutes with no gun on it, the rest of this document is worth building.
+If it is not, the whole quiet/loud split is in question and better to know in week three.
 
 ---
 
@@ -379,12 +410,16 @@ outside a Controller node.**
 ---
 
 ## 11. Open Questions
-1. Player faction: fixed (Combine campaign only) or both? *Recommendation: Combine campaign ships
-   first — the "win the war, kill the world" arc is stronger. Reedfolk in a second campaign.*
-2. Does Act IV end the game or reset the clock? *Recommendation: reset once, then never again.*
-3. Named-crew permadeath — full ironman or one resurrection? *Recommendation: Rescue Coxswain
-   exists precisely so permadeath has a counterplay. Keep it brutal.*
-4. Art render style — **pending reference screenshot.**
+1. **Title.** "The Drying" is retired with the clock. **BRACKWATER** is the working replacement.
+2. **Does the campaign end?** With no clock there is no forced ending. *Recommendation: a
+   territorial win condition — hold every route on the pool for one full season — plus an
+   open "endless marsh" mode. It needs to be winnable, not merely survivable.*
+3. **Player faction:** Combine campaign first, Reedfolk second? *Recommendation: yes. The
+   Reclamation arc is the stronger story and the Combine's scavenged kit is the better tutorial.*
+4. **How punishing is a failed convoy?** *Recommendation: painful but never a dead end — the
+   next mission gets harder, not impossible.*
+5. **Named-crew permadeath** — full ironman, or the rescue coxswain as counterplay? *Recommendation:
+   keep it brutal, keep the counterplay.*
 
 ---
 

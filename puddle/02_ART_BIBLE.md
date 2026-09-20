@@ -1,4 +1,6 @@
-# THE DRYING — Art Bible
+# BRACKWATER — Art Bible
+
+> Retitled: "The Drying" is retired along with the evaporation clock. The pool is permanent.
 
 > **Status:** locked. §2 resolved against the reference frame. First procedural asset pass is
 > built and exported — see `blender/README.md` and `assets/reference/fleet_sheet.png`.
@@ -101,11 +103,15 @@ Rendered *huge and cropped* — a heron is two tower-legs and a shadow that swal
 Never show the whole creature; always partial, always too big for the frame. The Grey Judge is
 terrifying precisely because you cannot see all of it.
 
-### 4.5 The Foliage Clock
-The reed wall carries the act structure in its colour: deep green at the flood, full growth with
-first gold in the shallows, ochre and cracking in the drying, dead straw at the end. This is the
-single cheapest, strongest way to tell the player what time it is — cheaper than UI, and visible
-from any camera angle.
+### 4.5 The Reed Cycle
+The reed wall carries the season in its colour and density — sparse new green in spring, dense
+tall green in summer, thinning gold in autumn, flattened straw in winter. This is the cheapest,
+strongest way to tell the player where they are in the year, and it is gameplay as well as art:
+dense reed is cover and closed routes, dead reed is long sightlines and new ones (design doc
+§4.4). One `autumn` parameter drives both.
+
+**No withering.** The marsh cycles; it never dies. Avoid any treatment that reads as drought,
+cracked earth or a dying world — the pool is permanent and the art must not imply otherwise.
 
 ---
 

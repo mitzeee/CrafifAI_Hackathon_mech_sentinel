@@ -178,11 +178,16 @@ def rocks(count, radius_in, radius_out, level, seed=11, smin=1.2, smax=7.0):
 
 ACTS = {
     # act        sun colour  energy  sun elev/azim   world colour  strength
-    'dawn':     ('#FFD2A0', 2.1, (14, 118), '#7E8C99', 1.05),
-    'noon':     ('#FFF2DC', 4.2, (56, 44),  '#9DA8B0', 1.30),
-    'drying':   ('#FFE0AE', 4.6, (38, -36), '#B3A78E', 1.45),
-    'storm':    ('#CFCBD8', 1.1, (22, -80), '#4E525C', 0.75),
-    'grate':    ('#C9D6E0', 0.8, (72, 10),  '#2E3338', 0.45),
+    # Key-to-ambient RATIO decides whether a frame reads flat. A big soft
+    # world light with a weak sun is exactly what "washed out" looks like,
+    # so these run a strong sun against a restrained sky.
+    'dawn':     ('#FFC98C', 7.5, (19, 118), '#6E8090', 1.30),
+    'noon':     ('#FFF0D2', 11.0, (54, 44), '#8496A4', 1.45),
+    'drying':   ('#FFD89A', 11.5, (36, -36), '#A89878', 1.55),
+    'dusk':     ('#FF9A54', 12.0, (11, -128), '#5A6478', 1.85),
+    'rain':     ('#B9C4CC', 4.6, (34, -70), '#65737C', 2.30),
+    'storm':    ('#C6C2D2', 3.6, (22, -80), '#454954', 0.80),
+    'grate':    ('#C9D6E0', 7.0, (70, 10), '#49525E', 0.85),
 }
 
 
@@ -210,7 +215,7 @@ def light(act='dawn', target=(0, 0, 0)):
 
     # cool bounce off the sky into the shadows
     f = bpy.data.lights.new('fill', 'AREA')
-    f.energy = 220000 if act != 'grate' else 70000
+    f.energy = 70000 if act != 'grate' else 26000
     f.size = 180
     f.color = kit.srgb('#A8BCCC')[:3]
     fo = bpy.data.objects.new('fill', f)
@@ -220,7 +225,7 @@ def light(act='dawn', target=(0, 0, 0)):
     return o
 
 
-def haze(density=0.0016, color='#B9B0A0', size=520):
+def haze(density=0.0006, color='#B9B0A0', size=520):
     """Atmospheric perspective. Cheap at low density, and the depth cue that
     makes a 300-unit puddle read as a sea."""
     m = bpy.data.materials.new('_haze')
@@ -283,7 +288,8 @@ def wetland_z(x, y, radius=112, depth=17.0, seed=3):
 
 
 def wetland(size=420, cell=3.4, radius=112, depth=17.0, water_level=0.0,
-            seed=3, autumn=0.0, plants=380, flora_mod=None, avoid=None):
+            seed=3, autumn=0.0, plants=380, flora_mod=None, avoid=None,
+            corridor=None):
     """Terrain + dressed banks. Returns (terrain, plant_objects)."""
     mats = [kit.mat('_wl_deep', '#33372A', roughness=0.95),
             kit.mat('_wl_silt', '#434429', roughness=0.94),
@@ -321,12 +327,12 @@ def wetland(size=420, cell=3.4, radius=112, depth=17.0, water_level=0.0,
         ps = fl.bank(lambda x, y: wetland_z(x, y, radius, depth, seed),
                      water_level, count=plants, r_in=radius * 0.36,
                      r_out=radius * 1.55, seed=seed * 7, autumn=autumn,
-                     avoid=avoid)
+                     avoid=avoid, corridor=corridor)
     return ob, ps
 
 
 def marsh_water(size=460, cell=2.6, level=0.0, amp=0.16, seed=1,
-                color='#2B3A31'):
+                color='#22332A'):
     """
     Deep tannin-stained marsh water: darker and far less transmissive than a
     rain puddle, so the surface carries the sky and the depth reads as depth.
@@ -373,3 +379,76 @@ def floaters(fl, P, level, count=26, r_in=30, r_out=100, seed=9):
         ob.scale = (s, s, s)
         out.append(ob)
     return out
+
+
+def mud_track(a, b, width=9.0, terrain_z=None, seed=2):
+    """A worn supply route: bare mud with two wheel ruts, laid on the bank."""
+    import random
+    rng = random.Random(seed)
+    tz = terrain_z or (lambda x, y: wetland_z(x, y))
+    ax, ay = a
+    bx, by = b
+    vx, vy = bx - ax, by - ay
+    L = math.hypot(vx, vy)
+    ux, uy = vx / L, vy / L
+    px, py = -uy, ux
+    mud = kit.mat('_track_mud', '#584C36', roughness=0.95)
+    rut = kit.mat('_track_rut', '#463C2A', roughness=0.94)
+    out = []
+    steps = max(4, int(L / 12))
+    for i in range(steps):
+        t0, t1 = i / steps, (i + 1) / steps
+        x0, y0 = ax + vx * t0, ay + vy * t0
+        x1, y1 = ax + vx * t1, ay + vy * t1
+        w0 = width * rng.uniform(0.85, 1.15)
+        w1 = width * rng.uniform(0.85, 1.15)
+        z = (tz(x0, y0) + tz(x1, y1)) / 2 + 0.16
+        out.append(kit.plate(f'track_{i}', [
+            (x0 + px * w0, y0 + py * w0), (x1 + px * w1, y1 + py * w1),
+            (x1 - px * w1, y1 - py * w1), (x0 - px * w0, y0 - py * w0)],
+            0.22, loc=(0, 0, z), material=mud))
+        for side in (-1, 1):
+            r = width * 0.34 * side
+            out.append(kit.plate(f'rut_{i}_{side}', [
+                (x0 + px * (r + 0.9), y0 + py * (r + 0.9)),
+                (x1 + px * (r + 0.9), y1 + py * (r + 0.9)),
+                (x1 + px * (r - 0.9), y1 + py * (r - 0.9)),
+                (x0 + px * (r - 0.9), y0 + py * (r - 0.9))],
+                0.10, loc=(0, 0, z + 0.14), material=rut))
+    return out
+
+
+def rain(count=1100, bounds=230, top=150, level=0.0, seed=4, length=7.0,
+         rings=40):
+    """
+    Falling rain as thin streaks plus impact rings on the water.
+
+    Seasons are flavour and complexity, not a doomsday clock: rain cuts
+    visibility, grounds aircraft and makes the water dangerous, but the pool
+    does not dry up.
+    """
+    import random
+    rng = random.Random(seed)
+    m = kit.mat('_rain', '#C6D2D6', roughness=0.25, alpha=0.40)
+    bm = bmesh.new()
+    for _ in range(count):
+        x = rng.uniform(-bounds, bounds)
+        y = rng.uniform(-bounds, bounds)
+        z = rng.uniform(level, top)
+        w = rng.uniform(0.09, 0.20)
+        L = length * rng.uniform(0.6, 1.5)
+        lean = rng.uniform(-0.9, 0.9)
+        vs = [bm.verts.new((x - w, y, z)), bm.verts.new((x + w, y, z)),
+              bm.verts.new((x + w + lean, y + lean * 0.4, z - L)),
+              bm.verts.new((x - w + lean, y + lean * 0.4, z - L))]
+        bm.faces.new(vs)
+    streaks = kit._finish('rain', bm, m, weld=0)
+    kit.flat(streaks)
+    rm = kit.mat('_rain_ring', '#BFC9C6', roughness=0.4, alpha=0.30)
+    for i in range(rings):
+        rr = rng.uniform(0.9, 3.2)
+        kit.tube(f"rring_{i}", kit.arc((rng.uniform(-bounds * 0.6, bounds * 0.6),
+                                   rng.uniform(-bounds * 0.6, bounds * 0.6), 0),
+                                  rr, 0, math.tau, steps=10, z=level + 0.12),
+                 0.22, sides=4, material=rm)
+    return streaks

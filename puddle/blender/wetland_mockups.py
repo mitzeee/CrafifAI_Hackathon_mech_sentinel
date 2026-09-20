@@ -24,10 +24,10 @@ def shot(fn):
 
 
 def _base(s, fl, level, autumn, plants=300, seed=3, water='#2B3A31',
-          avoid=None):
+          avoid=None, corridor=None):
     P = fl.pal()
     s.wetland(water_level=level, autumn=autumn, plants=plants, seed=seed,
-              flora_mod=fl, avoid=avoid)
+              flora_mod=fl, avoid=avoid, corridor=corridor)
     s.marsh_water(level=level, color=water)
     return P
 
@@ -108,7 +108,7 @@ def reed_channel(s, kit, render, fl):
     s.wake((-2, -14), yaw, length=52)
     s.light('noon')
     s.haze(0.0014, color='#AFB9A8')
-    render.camera_at((16, -196, 54), (0, 6, 16), lens=44)
+    render.camera_at((14, -124, 38), (0, 4, 13), lens=44)
 
 
 # ---------------------------------------------------------------- W4 ------
@@ -212,6 +212,173 @@ def bridge_through_reeds(s, kit, render, fl):
     render.camera_at((0, -7.2, 6.6), (0, 70, 4), lens=30)
 
 
+def enemy_base(kit, palette, x, y, z, rot=0.0, scale=1.0):
+    """
+    A strategic target on the far bank: fuel drums, a pump house, a slipway
+    and a mast. This is what the bomber is for -- things the enemy cannot move.
+    """
+    C = palette.combine()
+    N = palette.neutral()
+    R2 = palette.reedfolk()
+    out = []
+    c, s2 = math.cos(rot), math.sin(rot)
+
+    def at(lx, ly, lz):
+        return (x + lx * c - ly * s2, y + lx * s2 + ly * c, z + lz)
+
+    for i, (lx, ly, r) in enumerate(((-9, 4, 3.4), (-2, 7, 3.0), (5, 3, 3.6))):
+        out.append(kit.crimped_disc(f'eb_tank{i}', r * scale, 4.2 * scale,
+                                    flutes=15, flute_depth=0.09,
+                                    loc=at(lx * scale, ly * scale, 2.1 * scale),
+                                    material=R2['amber'] if i % 2 else C['rust']))
+    out.append(kit.box('eb_shed', (14 * scale, 9 * scale, 5.5 * scale),
+                       loc=at(8 * scale, -7 * scale, 2.7 * scale),
+                       rot=(0, 0, rot), material=R2['honey']))
+    out.append(kit.box('eb_roof', (15.5 * scale, 10 * scale, 0.9 * scale),
+                       loc=at(8 * scale, -7 * scale, 5.8 * scale),
+                       rot=(0, 0, rot), material=R2['wax_green']))
+    out.append(kit.tube('eb_pipe', [at(-12 * scale, 2 * scale, 4.0 * scale),
+                                    at(2 * scale, -4 * scale, 4.0 * scale),
+                                    at(9 * scale, -6 * scale, 4.6 * scale)],
+                        0.9 * scale, sides=6, material=N['zinc']))
+    out.append(kit.tube('eb_mast', [at(-14 * scale, -9 * scale, 0),
+                                    at(-14 * scale, -9 * scale, 22 * scale)],
+                        0.6 * scale, sides=5, taper=lambda t: 1 - 0.5 * t,
+                        material=R2['bark']))
+    for i in range(3):                      # slipway planks down to the water
+        out.append(kit.box(f'eb_slip{i}', (11 * scale, 2.2 * scale, 0.5 * scale),
+                           loc=at(16 * scale, (2 + i * 3) * scale,
+                                  (0.6 - i * 0.5) * scale),
+                           rot=(0, 0, rot), material=N['match_wood']))
+    return out
+
+
+# ======================= MISSIONS ==========================================
+# Each vehicle is its own mission type with its own verb (design doc S6).
+
+@shot
+def m_supply_land(s, kit, render, fl):
+    """LAND LOGISTICS. Truck and rickshaw running rations and raw material up
+    the bank track at dusk. No guns. The mission is route, timing and not
+    being seen."""
+    P = _base(s, fl, 0.0, autumn=0.35, plants=300, seed=21,
+              avoid=(46, -164, 46), corridor=(-40, -158, 72, -66, 17))
+    s.mud_track((-40, -158), (72, -66), width=12)
+    s.place('truck_combine', loc=(16, -112, 2.6), rot_z=R(39), scale=2.4)
+    s.place('rickshaw_combine', loc=(-10, -134, 2.4), rot_z=R(39), scale=2.4)
+    s.light('dusk')
+    s.haze(0.0005, color='#9E8A78')
+    render.camera_at((42, -152, 15), (4, -116, 5), lens=46)
+
+
+@shot
+def m_cargo_water(s, kit, render, fl):
+    """WATER LOGISTICS. The hauler running dark through a reed pass, loaded
+    and slow. Same job as the truck, different medium and a worse escape."""
+    P = _base(s, fl, 0.0, autumn=0.15, plants=210, seed=5,
+              avoid=(14, -124, 70))
+    s.floaters(fl, P, 0.0, count=20, r_in=26, r_out=72)
+    for side in (-1, 1):
+        for i in range(9):
+            c = fl.sedge(f'ch_{side}_{i}', P, 58 + (i % 3) * 28,
+                         seed=200 + side * 13 + i)
+            c.location = (side * (48 + (i % 2) * 14), -70 + i * 20, -3)
+            c.rotation_euler = (0, 0, i * 0.9)
+        for i in range(4):
+            c = fl.cattail(f'cc_{side}_{i}', P, 92 + i * 20, seed=300 + i)
+            c.location = (side * (62 + (i % 2) * 10), -50 + i * 38, -3)
+    yaw = R(2)
+    s.place('hauler_combine', loc=(-2, -18, 0), rot_z=yaw)
+    s.wake((-2, -18), yaw, length=46)
+    s.light('dawn')
+    s.haze(0.0010, color='#9FB0A8')
+    render.camera_at((14, -124, 38), (0, 4, 13), lens=44)
+
+
+@shot
+def m_recon_sub(s, kit, render, fl):
+    """RECONNAISSANCE. Periscope up off the enemy slipway, counting hulls.
+    Firing ends the mission; the win condition is getting home unseen."""
+    P = _base(s, fl, 0.0, autumn=0.2, plants=280, seed=33, avoid=(18, -40, 44))
+    s.floaters(fl, P, 0.0, count=24, r_in=26, r_out=88)
+    enemy_base(kit, __import__('palette'), 26, 104, 1.0, rot=R(-18), scale=1.5)
+    s.place('hauler_reedfolk', loc=(-16, 78, 0), rot_z=R(196))
+    # half-surfaced and close: a recon mission reads as sail-and-periscope,
+    # but the hull has to be legible or the shot is just a post in the water
+    s.place('sub_combine', loc=(8, 4, -0.7), rot_z=R(12), scale=2.3)
+    s.light('noon')
+    s.haze(0.0008, color='#A6B4B0')
+    render.camera_at((15, -28, 6), (9, 54, 9), lens=48)
+
+
+@shot
+def m_strike_bomber(s, kit, render, fl):
+    """STRATEGIC STRIKE. Over the far bank with the bay open. Slow, heavy,
+    and dead without escort."""
+    P = _base(s, fl, 0.0, autumn=0.25, plants=300, seed=41, avoid=(-6, -70, 46))
+    s.floaters(fl, P, 0.0, count=18, r_in=30, r_out=86)
+    enemy_base(kit, __import__('palette'), 4, 112, 1.0, rot=R(8), scale=1.9)
+    s.place('bomber_combine', loc=(2, 26, 46), rot_z=R(4), pitch=R(-4),
+            roll=R(9), scale=2.6)
+    s.place('fighter_combine', loc=(-30, 52, 60), rot_z=R(-12), roll=R(22),
+            scale=2.0)
+    s.light('noon')
+    s.haze(0.0010, color='#A8B4BA')
+    render.camera_at((-26, -66, 60), (4, 66, 34), lens=46)
+
+
+@shot
+def m_intercept_fighter(s, kit, render, fl):
+    """AIR INTERCEPT. Break up the enemy flight before it reaches the convoy.
+    Fast, fragile, and fought a few inches above the water."""
+    P = _base(s, fl, 0.0, autumn=0.15, plants=260, seed=47, avoid=(-20, -58, 46))
+    s.floaters(fl, P, 0.0, count=22, r_in=28, r_out=90)
+    s.place('fighter_combine', loc=(-8, 6, 26), rot_z=R(28), pitch=R(6),
+            roll=R(-38), scale=2.6)
+    s.place('fighter_combine', loc=(34, 46, 34), rot_z=R(-142), roll=R(30),
+            scale=2.2)
+    s.place('fighter_combine', loc=(52, 66, 44), rot_z=R(-150), roll=R(18),
+            scale=2.0)
+    s.place('hauler_reedfolk', loc=(22, 86, 0), rot_z=R(200))
+    s.light('noon')
+    s.haze(0.0009, color='#A8B6BC')
+    render.camera_at((-20, -58, 30), (6, 40, 30), lens=44)
+
+
+@shot
+def m_armour_push(s, kit, render, fl):
+    """ARMOUR. Taking and holding ground on the bank so the convoys can run."""
+    P = _base(s, fl, -5.0, autumn=0.45, plants=320, seed=13,
+              avoid=(16, -30, 42))
+    s.floaters(fl, P, -5.0, count=14, r_in=24, r_out=62)
+    s.place('tank_combine', loc=(-18, -58, 1.0), rot_z=R(14), scale=2.2)
+    s.place('bike_combine', loc=(22, -70, 1.4), rot_z=R(-34), scale=2.2)
+    yaw = R(104)
+    s.place('hauler_combine', loc=(-58, -6, -5.0), rot_z=yaw)
+    s.wake((-58, -6), yaw, length=44, level=-5.0)
+    s.light('noon')
+    s.haze(0.0010, color='#A6AE98')
+    render.camera_at((16, -30, 17), (-6, -56, 4), lens=46)
+
+
+@shot
+def m_rain_run(s, kit, render, fl):
+    """
+    WEATHER. Rain does not drain the pool -- it cuts visibility, grounds the
+    aircraft and hides a convoy. Season is flavour and complexity, not a clock.
+    """
+    P = _base(s, fl, 0.0, autumn=0.3, plants=280, seed=53, avoid=(24, -46, 44),
+              water='#1E2A26')
+    s.floaters(fl, P, 0.0, count=20, r_in=28, r_out=84)
+    yaw = R(-24)
+    s.place('hauler_combine', loc=(-14, 18, 0), rot_z=yaw)
+    s.wake((-14, 18), yaw, length=44)
+    s.rain(count=1500, bounds=150, top=120, rings=60)
+    s.light('rain')
+    s.haze(0.0030, color='#8E9AA0', size=300)
+    render.camera_at((24, -46, 16), (-12, 22, 8), lens=48)
+
+
 RES = (1280, 720)
 
 
@@ -221,6 +388,7 @@ import sys, math; sys.path.insert(0,"lib"); sys.path.insert(0,"assets"); sys.pat
 import kit, scene, render, flora, wetland_mockups as W
 kit.reset()
 W.SHOTS["{name}"](scene, kit, render, flora)
+render.grade()
 render.shot(r"{outdir}/{name}.png", res={RES}, samples={samples})
 print("DONE", "{name}", kit.tris())
 '''

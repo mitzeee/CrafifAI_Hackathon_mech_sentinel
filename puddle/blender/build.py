@@ -13,8 +13,9 @@ import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ASSETS = ['hauler_combine', 'fighter_combine', 'tank_combine', 'bike_combine',
-          'hauler_reedfolk', 'props_kit']
+ASSETS = ['hauler_combine', 'hauler_reedfolk', 'sub_combine', 'bomber_combine',
+          'fighter_combine', 'tank_combine', 'truck_combine',
+          'rickshaw_combine', 'bike_combine', 'props_kit']
 
 
 def build_one(name):
