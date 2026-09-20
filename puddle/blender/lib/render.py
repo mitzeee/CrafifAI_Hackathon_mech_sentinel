@@ -71,6 +71,21 @@ def camera(target=(0, 0, 0), dist=42, azim=38, elev=26, lens=75):
     return co
 
 
+def camera_at(loc, look_at, lens=32, roll=0.0):
+    """Camera placed in the world (cockpit / bridge views), not orbiting."""
+    cd = bpy.data.cameras.new('cam')
+    cd.lens = lens
+    co = bpy.data.objects.new('cam', cd)
+    co.location = loc
+    bpy.context.collection.objects.link(co)
+    q = (Vector(look_at) - Vector(loc)).to_track_quat('-Z', 'Y')
+    e = q.to_euler()
+    e.rotate_axis('Z', roll)
+    co.rotation_euler = e
+    bpy.context.scene.camera = co
+    return co
+
+
 def shot(path, res=(900, 600), samples=24):
     scn = bpy.context.scene
     scn.render.engine = 'CYCLES'
