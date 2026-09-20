@@ -1,8 +1,7 @@
 # THE DRYING — Art Bible
 
-> **Status:** §2 (Render Style) is **PENDING** the reference screenshot. Everything else below is
-> locked and safe to produce against — the content language, faction identity, asset taxonomy and
-> world look do not change based on which render style we pick.
+> **Status:** locked. §2 resolved against the reference frame. First procedural asset pass is
+> built and exported — see `blender/README.md` and `assets/reference/fleet_sheet.png`.
 
 ---
 
@@ -16,18 +15,29 @@ in a gutter, it doesn't belong in the game.
 
 ---
 
-## 2. Render Style — ⏸ PENDING REFERENCE
+## 2. Render Style — LOCKED
 
-*Locked once the screenshot arrives. These are the variables it decides:*
+**Faceted low-poly naturalism.** Cheap geometry, flat shading, flat colour; lighting and
+composition carry the image.
 
-- Texture treatment (hand-painted / PBR / flat vertex color)
-- Poly density and silhouette chunkiness
-- Lighting model (stylized ramp vs. physical)
-- Outline treatment (none / inked / rim)
-- Color saturation ceiling
-- Whether materials read as *toy* or as *real object shot close*
+| Variable | Decision |
+|---|---|
+| **Shading** | **Flat / hard-edged everywhere.** Faceting is the look, not a budget compromise. Smoothing groups are the exception, used only where a Reedfolk hull must read as a grown compound curve |
+| **Geometry** | Low, chunky, readable. 6–14 segments on round forms. A pebble is 40–120 tris; a hero hull is ~3k |
+| **Texture** | **None.** Flat per-material colour, one material per real-world substance. Wear and decals come later as a separate pass, never as a base requirement |
+| **Metalness** | Deliberately restrained. High-spec metal reads as a different game — the Combine's "metal" sells through faceted silhouette and value contrast, not reflections |
+| **Saturation** | Low. Muted, dusty, earthbound. Faded brick red, olive, ochre, bone grey. No pure hues |
+| **Lighting** | Soft warm key (overcast-through-cloud), cool sky fill, warm ground bounce. Gentle shadows, strong AO, mild haze with distance |
+| **Outlines** | None. Silhouette separation comes from value, not ink |
+| **Post** | Slight vignette, filmic curve with lifted blacks, moderate DoF |
+| **Camera** | High third-person, 20–30° elevation, 55–70 mm. Close to the reference framing |
 
-Everything from §3 onward is style-agnostic and can go into production now.
+### The tilt-shift revision
+The original §3 called extreme tilt-shift non-negotiable. **That was wrong for this style.**
+Faceted low-poly already reads as *constructed* — stacking aggressive miniature-faking on top
+over-eggs it and makes the world read as a toy rather than a place. Use **moderate** depth of
+field, and carry the sense of scale on macro reference props, particulate air and fast small
+water instead. §3.1 below is amended accordingly.
 
 ---
 
@@ -35,16 +45,17 @@ Everything from §3 onward is style-agnostic and can go into production now.
 
 These four sell "miniature world" harder than any texture decision:
 
-1. **Tilt-shift depth of field, always on.** Oversized circle of confusion, a narrow band of
-   focus, heavy bokeh top and bottom of frame. This is the single most important visual in the
-   game. Budget for it in M1, not M5.
+1. **Moderate depth of field** — amended, see §2. A soft falloff at the far edge of the theater,
+   not an oversized circle of confusion. The faceted style is already doing the "this is a
+   constructed miniature" work; let it.
 2. **Atmosphere is always particulate.** Dust motes, pollen, spray, midges, steam. The air is
    never empty. Macro photography always has stuff floating in it.
 3. **Water moves fast and small.** High-frequency, low-amplitude ripples. Slow rolling ocean
    swells instantly read as "full scale" and destroy the illusion.
 4. **Macro reference objects in every shot.** A staple. A sand grain. A hair. A bottle cap. The
    player must never lose the sense of how small this is — you do that by keeping a *known object*
-   in frame.
+   in frame. With the tilt-shift dialled back this is now the **primary** scale cue, which is why
+   the prop kit was built in the first asset pass rather than last.
 
 ---
 
@@ -230,4 +241,12 @@ To be generated once §2 is locked. Each of these is a specific, framed image, n
 
 ---
 
-*Pending: reference screenshot → §2 → concept generation.*
+## 12. Build status
+
+First procedural pass is complete and exported to glTF: both faction haulers, the Combine
+fighter, tank and motorcycle, and a nine-piece found-object prop kit — ~10.5k tris total. Every
+model is generated from Python (`blender/`), so silhouettes stay editable by changing a number
+rather than by re-sculpting.
+
+Still unbuilt from §6: bomber, submarine, combat engineer, artillery, AA gunner, rescue coxswain,
+and the crews. Still unbuilt from §4: the theater environment kits.
