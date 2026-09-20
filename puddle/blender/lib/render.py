@@ -86,7 +86,16 @@ def camera_at(loc, look_at, lens=32, roll=0.0):
     return co
 
 
-def shot(path, res=(900, 600), samples=24):
+def dof(cam, distance, fstop=2.0):
+    """Moderate depth of field -- the art bible's amended section 2 call.
+    Used to push a foreground screen of reeds soft, not to fake tilt-shift."""
+    cam.data.dof.use_dof = True
+    cam.data.dof.focus_distance = distance
+    cam.data.dof.aperture_fstop = fstop
+    return cam
+
+
+def shot(path, res=(900, 600), samples=24, exposure=0.45):
     scn = bpy.context.scene
     scn.render.engine = 'CYCLES'
     scn.cycles.device = 'CPU'
@@ -94,10 +103,12 @@ def shot(path, res=(900, 600), samples=24):
     scn.cycles.use_denoising = True
     scn.render.resolution_x, scn.render.resolution_y = res
     scn.render.film_transparent = False
-    scn.view_settings.view_transform = 'Filmic' if 'Filmic' in [
-        v.name for v in scn.view_settings.bl_rna.properties['view_transform'].enum_items
-    ] else 'AgX'
+    # 'Standard' rather than AgX/Filmic: a game engine's output is punchier
+    # than a film transform, and under a reed canopy AgX crushes everything
+    # to mud. Exposure lifts the shadowed interiors.
+    scn.view_settings.view_transform = 'Standard'
     scn.view_settings.look = 'None'
+    scn.view_settings.exposure = exposure
     scn.render.filepath = path
     os.makedirs(os.path.dirname(path), exist_ok=True)
     bpy.ops.render.render(write_still=True)

@@ -52,13 +52,23 @@ is the game.
 
 ### 3.1 Setting
 
-A supermarket parking lot, 6:00 AM, after a night of heavy rain. Eight puddles. To the men who
-live in them, this is an archipelago the size of a continent. A chain of shallow seas linked by
-tire-rut rivers, separated by asphalt deserts, and draining — always draining — toward the storm
-grate at the low end of the lot.
+**A wetland.** A big, deep pool sunk in marsh — ringed by sedge and cattail that stand over it
+like a coastline of trees, floored with silt and drowned leaf-fall, skinned with lily pads and
+algae, and walled in every direction by vibrant shrub, grass and mossy rock.
 
-Nobody tiny knows what the lot is. The tribes have cosmology for it. The white painted lines are
-*the Bonelands*. The grate is *the Throat*. A passing car is *the Rolling God*.
+To the men who live in it this is an inland sea, and the reed beds around it are forest. The pool
+connects to smaller pans and boggy channels through reed passes that open and close with the
+water. Everything drains, eventually, toward the outflow at the low end of the marsh.
+
+Nobody tiny knows what the marsh is. The tribes have cosmology for it. The reed wall is *the
+Standing Forest*. The outflow is *the Throat*. A wading heron is *the Grey Judge*.
+
+> **Setting note.** An earlier draft set this in a supermarket parking lot. The wetland is better
+> on every axis: it justifies the Reedfolk's whole material language, it gives the Combine's
+> scavenged human litter the weight of something *foreign* that washed in, and it turns the
+> shoreline into a living wall instead of a kerb. The found-object rule survives intact — marsh
+> litter is bottle caps, fishing line, shotgun wadding, a lost lure — but it now sits alongside
+> seed pods, thorn, chitin and reed.
 
 ### 3.2 The Eight Theaters
 
@@ -67,30 +77,31 @@ They connect via rivulets that are navigable only at high water.
 
 | # | Theater | Character | Signature hazard |
 |---|---|---|---|
-| 1 | **The Shallows** | Tutorial sea. Wide, calm, ankle-deep, gravel islands. | None. Teaching water. |
-| 2 | **Oilslick** | Iridescent rainbow film over black water. | Fire spreads across the surface; no swimming |
-| 3 | **The Crack** | A tarmac fissure, deep and narrow, a canyon-fjord. | Ambush topology, no air maneuvering room |
-| 4 | **Tyre Rut Delta** | Braided channels in a truck tread print. | Channels close as the water drops — you can get stranded |
-| 5 | **Cigarette Reef** | Shallow, littered with filters and a crushed can. | Cover-dense, tank country, terrible for aircraft |
-| 6 | **The Lens** | A puddle under a discarded bottle. Sunlight focuses through the glass. | A moving beam of lethal heat; burns your hull, boils the water |
-| 7 | **Drain Mouth** | The current pulls. Everything flows toward the Throat. | Undertow; losing power means losing the ship |
-| 8 | **The Throat** | The storm grate. Endgame. Dark, echoing, vertical. | Everything |
+| 1 | **The Open Pool** | The deep centre. Wide, dark, lily-skinned. Home water. | None. Teaching water. |
+| 2 | **The Reed Channel** | A pass between two reed stands — a green canyon. | Ambush topology; no room to manoeuvre aircraft |
+| 3 | **Scum Bloom** | Decaying algae mat over black anoxic water. | Flammable marsh gas; nothing survives in the water |
+| 4 | **The Braid** | A boggy delta of shifting channels in silt. | Channels close as the water drops — you strand |
+| 5 | **The Snag Reef** | Fallen sticks, snail shells, a drowned lure. Shallow. | Cover-dense, tank country, terrible for aircraft |
+| 6 | **The Lens** | A discarded bottle half-sunk at the margin, focusing sun. | A moving beam of lethal heat; burns hulls, boils water |
+| 7 | **The Sluice** | The outflow creek. The current pulls, always. | Undertow; losing power means losing the ship |
+| 8 | **The Throat** | The culvert the marsh drains into. Endgame. Dark, vertical. | Everything |
 
 ### 3.3 The Macro World as Weather
 
 The human-scale world is not scenery, it's the **weather system** — acts of god neither tribe
 controls, telegraphed with a few seconds of warning:
 
-- **The Rolling God** — a car crosses the lot. A pressure wave, then a bow wave that capsizes
-  anything not bow-on. Tread-print craters reshape the map permanently.
-- **The Boot** — a pedestrian. A crushing footfall, then a spreading circular wave.
-- **Sun Rake** — the sun clears the roofline. Evaporation rate doubles. The clock accelerates.
+- **The Grey Judge** — a heron wades in. Legs like towers, a shadow that crosses the whole pool,
+  and a strike that takes a ship and its crew out of the world. Cannot be fought. You get the
+  shadow as warning, and a few seconds to scatter.
+- **The Wading Beast** — a deer or boar crosses. Displaced water, a wall of silt, permanent new
+  channels stamped into the bed.
+- **Reed Wind** — the standing forest bends. Chop, driven spray, aircraft grounded, visibility gone.
 - **The Lens Beam** — see Theater 6. Slow, inevitable, survivable if you read it.
-- **Oil Bloom** — a parked car drips. Spreading slick: flammable, kills swimmers, blinds sonar.
-- **Cigarette Fall** — a lit butt hits the water. A meteor. Steam, fire, then a permanent island.
+- **Scum Bloom** — algae goes anoxic and spreads. Flammable, kills swimmers, blinds sonar.
 - **The Rain Return** — see §4, Act IV. The apocalypse and the salvation.
-- **Ant Column** — a foraging trail crosses the shore. Neutral, hostile to everything, unkillable
-  in bulk. A moving wall you route around.
+- **Frog Fall** — a frog enters the water. A meteor strike, then a predator in your sea lane.
+- **Dragonfly** — apex air predator. Eats both tribes' aircraft. The fighter's real job.
 - **Strider Flock** — water striders skating the meniscus. Neutral until provoked. Beautiful.
 - **Larvae Bloom** — mosquito larvae in the deep water. The submarine's problem.
 
@@ -102,11 +113,25 @@ controls, telegraphed with a few seconds of warning:
 navigability, terrain, unit viability, faction strategy, and the campaign's act structure.
 
 ```
-06:00  ████████████████████  1.00   FLOOD
-10:00  ██████████████        0.70   SHALLOWS
-14:00  ███████               0.35   DRYING
-18:00  ██                    0.10   THE THROAT
+SPRING  ████████████████████  1.00   THE FLOOD      green, high, cold
+EARLY   ██████████████        0.70   THE SHALLOWS   full growth, first margins
+HIGH    ███████               0.35   THE DRYING     ochre, cracked silt, stranding
+LATE    ██                    0.10   THE THROAT     dead reed, remnant pools
 ```
+
+> **OPEN DECISION — the clock's timescale.** The original draft ran the whole war across one
+> day, which works for a rain puddle on tarmac. A *big, deep* wetland pool does not evaporate in
+> an afternoon, and a one-day clock now strains belief.
+>
+> **Recommendation: stretch the clock to a season** — spring melt through late-summer drought.
+> Every mechanic below survives untouched; only the labels change. And it buys something the
+> day-clock could never have: **the vegetation changes with the clock.** The reed wall goes green
+> → gold → ochre → dead straw as the water falls. The act structure becomes visible in the
+> foliage, not just the shoreline. The mock-ups already render this (`autumn_drying`), and it is
+> the best-looking thing in the set.
+>
+> Cost: permadeath and fatigue read differently over months than over hours, and "one desperate
+> day" is a cleaner pitch than "one long summer". **Your call before the full design doc.**
 
 As the level falls:
 - Navigable channels close. Your hauler gets **stranded** if you plan badly. This is the single
@@ -118,12 +143,12 @@ As the level falls:
 **This is why the roles exist in sequence.** It isn't a menu of six toys, it's a war whose
 dominant arm *changes underneath you*:
 
-| Act | Water | Dominant arms | The feeling |
-|---|---|---|---|
-| **I — The Flood** | 1.00 → 0.70 | Hauler, submarine, torpedo boats | Naval. Open water. Grand. |
-| **II — The Shallows** | 0.70 → 0.35 | Aircraft, combined arms, first land bridges | Everything at once. Peak complexity. |
-| **III — The Drying** | 0.35 → 0.10 | Tanks, bikes, artillery. The ship is beached and becomes a fortress. | Desperate, dusty, land war over a dying sea |
-| **IV — The Return** *(conditional)* | 0.10 → 1.00 in 90 seconds | Survival | A flash flood. Everything on the floor drowns. Everything that floats is saved. Your beached hauler either refloats or is crushed. |
+| Act | Water | Foliage | Dominant arms | The feeling |
+|---|---|---|---|---|
+| **I — The Flood** | 1.00 → 0.70 | Deep green, rising | Hauler, submarine, torpedo boats | Naval. Open water. Grand. |
+| **II — The Shallows** | 0.70 → 0.35 | Full growth, first gold | Aircraft, combined arms, first land bridges | Everything at once. Peak complexity. |
+| **III — The Drying** | 0.35 → 0.10 | Ochre, cracking, dying | Tanks, bikes, artillery. The ship is beached and becomes a fortress. | Desperate, dusty, land war over a dying sea |
+| **IV — The Return** *(conditional)* | 0.10 → 1.00 in 90 seconds | Flattened, drowned | Survival | A storm crest. Everything on the floor drowns. Everything that floats is saved. Your beached hauler either refloats or is crushed. |
 
 Act IV triggers only if the player has completed the Reedfolk seeding objectives, or on a scripted
 campaign beat. It is the game's best moment: total reversal, in ninety seconds, of everything you

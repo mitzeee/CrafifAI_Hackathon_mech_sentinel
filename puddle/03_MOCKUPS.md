@@ -1,87 +1,66 @@
-# THE DRYING — mock-ups, pass 1
+# THE DRYING — mock-ups
 
-Thirteen framed views of the game. Every one is dressed with the **shipped
-assets** (`assets/glb/`) in a scene built from the design doc's own numbers —
-so these are previews of the actual build, not a parallel concept-art track
-that can quietly drift from it.
+## Pass 2 — the wetland  (`assets/mockups_wetland/`)
 
-Regenerate any shot with `cd blender && python3 mockups.py <outdir> <shot>`.
+The real setting: a big, deep pool sunk in marsh, walled by a standing forest of sedge and
+cattail, skinned with lily pads and algae. Eight views.
+
+| Shot | What it shows |
+|---|---|
+| `reed_channel` | **The signature image.** The Ark threading a pass between two reed stands — a green canyon with cattails overhead. This is the game |
+| `wetland_dawn` | The open pool at first light, lily pads, reed wall as coastline |
+| `through_the_reeds` | Hidden in the margin, watching a hull cross the water through a screen of blades. Foreground goes soft |
+| `marsh_standoff` | Both haulers, one light. The Reedfolk pod looks like it *grew here*; the Combine can looks like it washed in |
+| `bank_assault` | Armour working a mossy bank under the reed line — the Act III shore war |
+| `the_heron` | The Grey Judge wades in. Legs like towers, a shadow across the pool. Cannot be fought |
+| `autumn_drying` | Late season. Ochre reeds, water pulled back, the Ark aground in silt |
+| `bridge_through_reeds` | From the Ark's bridge, reed wall to starboard, contact fine on the bow |
+
+### On the foliage clock
+`autumn_drying` and the green shots are the same scene at different points on the clock. The reed
+wall goes green → gold → ochre → dead straw as the water falls, so the act structure is legible
+from any camera angle without a single UI element. This is the strongest thing the wetland
+setting bought us, and it is already implemented (`autumn` parameter in `scene.wetland`).
 
 ---
 
-## The clock — `clockstrip.jpg`
+## Pass 1 — the parking lot  (`assets/mockups/`)  — superseded
 
-**The most important image here.** One locked camera, one fixed scatter of
-found objects, four water levels. The shoreline is *computed* from
-`water_level`, not painted: every metre the puddle gives up exposes another
-tide terrace and strands another prop.
-
-| Panel | Water | Waterline radius | What changed |
-|---|---|---|---|
-| `clock_0600` | 1.00 | ~98 | Open sea. Debris floating at the margin |
-| `clock_1000` | 0.70 | ~73 | First tide band. Shoals breaking surface |
-| `clock_1400` | 0.30 | ~47 | Props fully beached. Terraces clearly stepped |
-| `clock_1800` | 0.10 | ~27 | A dark remnant pool. Everything exposed |
-
-If one image has to sell the pitch, it's this one.
-
----
-
-## Acts
-
-| Shot | What it shows |
-|---|---|
-| `act1_flood` | 06:00, water 1.00. The Ark stands out into open water. Naval, wide, cold dawn light. Found objects on the far shore carry the scale |
-| `act2_shallows` | 10:00, water 0.55. Combined arms — hauler under way, fighter crossing as escort, tank working a shoal. Peak complexity |
-| `act3_drying` | 14:00, water 0.18. The Ark **aground**, heeled, fortress-not-ship, ringed by the tide terraces it left coming down. Hot, bleached, dusty |
-
-## Theaters
-
-| Shot | What it shows |
-|---|---|
-| `theater5_reef` | Cigarette Reef. Cover-dense debris field, tank country, hopeless for aircraft |
-| `theater6_lens` | The Lens. Sunlight focused through a discarded bottle into a moving column of lethal heat, scorching the water where it lands |
-| `theater8_throat` | The Throat. The storm grate — dark, vertical, cathedral-scale, light falling in shafts between bars |
-
-## Scenarios
-
-| Shot | What it shows |
-|---|---|
-| `rolling_god` | A car crosses the lot. A wall of water on top of the hull, the Ark heeled and bow-on. Neither tribe controls this |
-| `faction_standoff` | The design-language page: both haulers, one light. Combine = straight lines and smoke; Reedfolk = curves and glow |
-| `bridge_view` | First person from the Ark's bridge over the cargo deck and launch rail, contact ahead. The hub seat you always return to |
+Kept for the record. Thirteen views of the earlier tarmac setting, including the four-panel
+`clockstrip` that demonstrates waterline retreat and tide-mark banding. **The clock strip's
+mechanic still holds** — only its dressing changed — and it remains the clearest single
+demonstration of the core idea. Worth re-shooting in the marsh.
 
 ---
 
 ## What is real here, and what is faked
 
-Being explicit, because mock-ups that oversell cost you a schedule later.
-
-**Real — these are load-bearing and already work:**
-- All vehicles are the shipped glTF assets at true game scale.
-- The shoreline banding is genuinely driven by `water_level`. Changing one
-  float moves the waterline, the terraces and the beached props.
-- The basin profile, theater sizes and unit sizes are the design doc's numbers.
-- Lighting follows the four time-of-day presets in the art bible's §4.3.
+**Real:**
+- Every vehicle is the shipped glTF asset at true game scale.
+- Shoreline banding and plant placement are both computed from `water_level`: plants root only
+  where the water is shallower than ~5 units, so the reed belt genuinely advances as the pool
+  retreats.
+- Foliage colour is driven by one `autumn` parameter, matching the act structure.
 
 **Faked — do not read these as solved:**
-- **Water is a stand-in.** A faceted sum-of-sines surface, not the Gerstner +
-  interactive ripple-buffer system in design doc §8.1. The V wakes are *placed
-  geometry*, not simulation. The hero feature — wakes that persist, interfere,
-  reflect off shores and shove other boats — is not shown here because it isn't
-  built. Treat M1 as unproven.
-- **No VFX**: no smoke, spray, muzzle flash, steam, fire, or silt.
-- **No crews.** No finger-tall men anywhere. That's a whole animation budget.
-- **No UI.** Even `bridge_view` has no diegetic instruments yet.
-- Renders are Blender Cycles, not Godot. The target look is achievable in
-  Forward+, but colour and post will shift on the way across.
+- **Water is a stand-in.** A faceted sum-of-sines surface, not the Gerstner + interactive
+  ripple-buffer system in design doc §8.1. Wakes are placed geometry. **The hero water feature is
+  not in these pictures because it is not built.** Treat M1 as unproven.
+- **No crews.** No finger-tall men anywhere. This is still the biggest gap — crews would change
+  the sense of scale in every frame.
+- **No VFX** (spray, smoke, muzzle flash, silt) and **no UI**, including on the bridge view.
+- The heron is two legs and a shadow. There is no bird.
+- Renders are Blender Cycles, not Godot. Colour will shift on the way across.
 
-## What the next pass needs
+## Note on method
+There is **no image-generation model available in this environment** — these are rendered in
+Blender from the actual game assets. That has an upside (what you see is the real build, and it
+cannot drift from it) and a real limit: these are previews, not painted concept art. If you want
+diffusion-style key art, the art bible §11 shot list doubles as a prompt list to take elsewhere.
 
-1. Crews — even low-detail silhouettes change every shot's sense of scale.
-2. The bomber and submarine (design doc §6), the two biggest unbuilt roles.
-3. An underwater view. The submarine is the best surprise in the design and
-   has no picture yet.
-4. Diegetic HUD pass over `bridge_view` and a fighter cockpit.
-5. Act IV — the Return. The 90-second flash flood has no image, and it's the
-   best moment in the game.
+## Next
+1. Crews.
+2. Re-shoot the four-panel clock strip in the marsh, with the foliage turning.
+3. Bomber and submarine (design doc §6) — the two biggest unbuilt roles.
+4. Underwater: drowned leaf forest, silt, larvae. The submarine has no picture yet.
+5. Act IV — the Return. The best moment in the game has no image.

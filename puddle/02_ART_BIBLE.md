@@ -7,11 +7,14 @@
 
 ## 1. The One Sentence
 
-**A real parking lot, photographed with a macro lens, where the garbage has been conquered.**
+**A real wetland, photographed with a macro lens, where the marsh has been colonised and the
+garbage has been conquered.**
 
-Every silhouette in this game is *found human trash, weaponized by people who don't know what it
-was for.* That is the entire art identity. If a prop can't be traced back to something you'd find
-in a gutter, it doesn't belong in the game.
+Two material languages, and everything must belong to one of them. The **Reedfolk** build from
+what grows here — seed pod, wax, chitin, resin, reed, thorn. The **Combine** build from what
+*washed in* — tin, foil, staple, screw, bottle cap, razor blade. Human litter should always read
+as foreign, older and harder than everything around it. If an asset can't be traced to either the
+marsh or the litter in it, it doesn't belong in the game.
 
 ---
 
@@ -61,14 +64,21 @@ These four sell "miniature world" harder than any texture decision:
 
 ## 4. World Look
 
-### 4.1 The Lot
-Cracked grey-black asphalt with embedded aggregate — at this scale every pebble is a boulder,
-every crack a canyon. Faded white and yellow paint lines, chalky, peeling, eroding into the water
-as white silt. Oil stains as iridescent geography. Tire tread prints as valley systems.
+### 4.1 The Marsh
+A **standing forest of sedge and cattail** rings the pool — at this scale a blade of grass is a
+tree and a reed stand is a coastline. Behind it: vibrant shrub in layered greens and ochres,
+tussock grass, fern, and mossy rock the size of hills. Underfoot, peat and silt, drowned
+leaf-fall, root tangle.
+
+Foliage is the primary visual. It is not set dressing — it is the terrain, the cover, the
+skyline and the clock. Build it chunky and angular: big flat leaf-blades fanned from a point, not
+billboards. Silhouette over detail.
 
 ### 4.2 Water
-- **Surface:** dark and reflective from a low angle, clear and brown-green from above. Sky and
-  the underside of parked cars reflected in it.
+- **Surface:** dark, tannin-stained and strongly reflective — this pool is *deep*. Sky, reed
+  wall and lily pads mirrored in it. Far less transmissive than a rain puddle; depth must read
+  as depth.
+- **Skin:** lily pads and algae mats, which double as cover, landing platforms and map features.
 - **Shoreline:** the most important surface in the game. A wet-dark band, then a drying band, then
   dry tarmac. **The wet band recedes all day and leaves visible tide marks** — concentric rings of
   grit and grime that are a permanent record of the act structure. Players should be able to read
@@ -87,9 +97,15 @@ Only one day. The lighting *is* the clock:
 | IV | 18:00 | Storm light — bruised sky, wind, first heavy drops, everything goes dark and violent |
 
 ### 4.4 The Macro Intrusions
-Rendered *huge and out of focus* — a car is a wall of blurred colour and a shadow that swallows
-the map. Never show the whole human object in focus; always partial, always cropped, always too
-big for the frame. The Rolling God should be terrifying because you can't see all of it.
+Rendered *huge and cropped* — a heron is two tower-legs and a shadow that swallows the pool.
+Never show the whole creature; always partial, always too big for the frame. The Grey Judge is
+terrifying precisely because you cannot see all of it.
+
+### 4.5 The Foliage Clock
+The reed wall carries the act structure in its colour: deep green at the flood, full growth with
+first gold in the shallows, ochre and cracking in the drying, dead straw at the end. This is the
+single cheapest, strongest way to tell the player what time it is — cheaper than UI, and visible
+from any camera angle.
 
 ---
 
@@ -118,7 +134,7 @@ drunk the water away.
 
 | | |
 |---|---|
-| **Source materials** | Seed pods, beeswax, chitin shell, tree resin, amber, waxed leaf, spider silk, thorn, reed, bark, cicada wing |
+| **Source materials** | Seed pods, beeswax, chitin shell, tree resin, amber, waxed leaf, spider silk, thorn, reed, bark, cicada wing — all of it harvested from the marsh they are standing in |
 | **Construction** | Lashed and lacquered; compound-curve pod hulls; silk rigging; nothing bolted |
 | **Silhouette** | Curved, streamlined, tapering, insectile. Bilaterally symmetric — they grew it |
 | **Surface** | Translucent shell with light passing through it. Resin gloss. Waxy bloom |

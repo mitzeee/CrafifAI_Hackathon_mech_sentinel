@@ -210,7 +210,7 @@ def light(act='dawn', target=(0, 0, 0)):
 
     # cool bounce off the sky into the shadows
     f = bpy.data.lights.new('fill', 'AREA')
-    f.energy = 90000 if act != 'grate' else 25000
+    f.energy = 220000 if act != 'grate' else 70000
     f.size = 180
     f.color = kit.srgb('#A8BCCC')[:3]
     fo = bpy.data.objects.new('fill', f)
@@ -258,3 +258,118 @@ def place(name, loc=(0, 0, 0), rot_z=0.0, pitch=0.0, roll=0.0, scale=1.0):
     holder.rotation_euler = (pitch, roll, rot_z)
     holder.scale = (scale, scale, scale)
     return holder
+
+
+# ==========================================================================
+# WETLAND  -- the real setting: a big, deep pool in marsh, not a car park
+# ==========================================================================
+
+def wetland_z(x, y, radius=112, depth=17.0, seed=3):
+    """
+    Organic outline, not a circle. The pool is deep in the middle and shelves
+    out through a reed margin, so the bank reads as marsh rather than kerb.
+    """
+    a = math.atan2(y, x)
+    rmod = radius * (1.0 + 0.19 * math.sin(a * 3 + seed)
+                     + 0.12 * math.sin(a * 5 - seed * 2)
+                     + 0.07 * math.sin(a * 7 + 1.4))
+    r = math.hypot(x, y) / rmod
+    bowl = -depth * max(0.0, 1.0 - r * r) ** 1.22
+    n = (math.sin(x * 0.041 + seed) * math.cos(y * 0.037 - seed) * 1.5
+         + math.sin(x * 0.019 - y * 0.023) * 2.1
+         + math.sin(x * 0.11 + y * 0.09) * 0.45)
+    hump = 2.6 * max(0.0, r - 1.05)      # ground keeps rising past the margin
+    return bowl + n + hump
+
+
+def wetland(size=420, cell=3.4, radius=112, depth=17.0, water_level=0.0,
+            seed=3, autumn=0.0, plants=380, flora_mod=None, avoid=None):
+    """Terrain + dressed banks. Returns (terrain, plant_objects)."""
+    mats = [kit.mat('_wl_deep', '#33372A', roughness=0.95),
+            kit.mat('_wl_silt', '#434429', roughness=0.94),
+            kit.mat('_wl_mud', '#4A4231', roughness=0.93),
+            kit.mat('_wl_peat', '#4E4A34', roughness=0.92),
+            kit.mat('_wl_damp', '#5B5540', roughness=0.91),
+            kit.mat('_wl_bank', '#6A6146' if autumn < 0.5 else '#6E6142',
+                    roughness=0.92)]
+    n = int(size / cell)
+    bm = bmesh.new()
+    grid = {}
+    for i in range(n + 1):
+        for j in range(n + 1):
+            x = -size / 2 + i * cell
+            y = -size / 2 + j * cell
+            grid[(i, j)] = bm.verts.new((x, y, wetland_z(x, y, radius, depth, seed)))
+    for i in range(n):
+        for j in range(n):
+            bm.faces.new((grid[(i, j)], grid[(i + 1, j)],
+                          grid[(i + 1, j + 1)], grid[(i, j + 1)]))
+    ob = kit._finish('wetland', bm, None, weld=0)
+    for m in mats:
+        ob.data.materials.append(m)
+    for f in ob.data.polygons:
+        z = sum(ob.data.vertices[v].co.z for v in f.vertices) / len(f.vertices)
+        d = z - water_level
+        f.material_index = (0 if d < -6.0 else 1 if d < -1.8 else
+                            2 if d < -0.2 else 3 if d < 0.9 else
+                            4 if d < 2.2 else 5)
+    kit.flat(ob)
+
+    fl = flora_mod
+    ps = []
+    if fl:
+        ps = fl.bank(lambda x, y: wetland_z(x, y, radius, depth, seed),
+                     water_level, count=plants, r_in=radius * 0.36,
+                     r_out=radius * 1.55, seed=seed * 7, autumn=autumn,
+                     avoid=avoid)
+    return ob, ps
+
+
+def marsh_water(size=460, cell=2.6, level=0.0, amp=0.16, seed=1,
+                color='#2B3A31'):
+    """
+    Deep tannin-stained marsh water: darker and far less transmissive than a
+    rain puddle, so the surface carries the sky and the depth reads as depth.
+    """
+    m = kit.mat('_marsh_water', color, metallic=0.0, roughness=0.07)
+    n = int(size / cell)
+    bm = bmesh.new()
+    grid = {}
+    for i in range(n + 1):
+        for j in range(n + 1):
+            x = -size / 2 + i * cell
+            y = -size / 2 + j * cell
+            h = (math.sin(x * 0.26 + y * 0.17) * 0.40
+                 + math.sin(x * 0.11 - y * 0.31) * 0.32
+                 + math.sin(x * 0.58 + y * 0.49 + seed) * 0.18)
+            grid[(i, j)] = bm.verts.new((x, y, level + h * amp))
+    for i in range(n):
+        for j in range(n):
+            bm.faces.new((grid[(i, j)], grid[(i + 1, j)],
+                          grid[(i + 1, j + 1)], grid[(i, j + 1)]))
+    ob = kit._finish('marsh_water', bm, m, weld=0)
+    return kit.flat(ob)
+
+
+def floaters(fl, P, level, count=26, r_in=30, r_out=100, seed=9):
+    """Lily pads and algae mats on the open water."""
+    import random
+    rng = random.Random(seed)
+    pads = [fl.lily_pad(f'_pp{i}', P, 9 + i * 7, seed=i) for i in range(3)]
+    mats_ = [fl.algae_mat(f'_pa{i}', P, 16 + i * 11, seed=20 + i) for i in range(2)]
+    for o in pads + mats_:
+        o.hide_render = True
+        o.location = (0, 0, -900)
+    out = []
+    for i in range(count):
+        a = rng.uniform(0, math.tau)
+        rr = rng.uniform(r_in, r_out)
+        proto = rng.choice(pads if rng.random() < 0.7 else mats_)
+        ob = bpy.data.objects.new(f'float_{i}', proto.data)
+        bpy.context.collection.objects.link(ob)
+        ob.location = (math.cos(a) * rr, math.sin(a) * rr, level + 0.07)
+        ob.rotation_euler = (0, 0, rng.uniform(0, math.tau))
+        s = rng.uniform(0.7, 1.5)
+        ob.scale = (s, s, s)
+        out.append(ob)
+    return out
